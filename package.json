@@ -1,6 +1,6 @@
 {
-  "name": "parcel-template",
-  "description": "parcel-template",
+  "name": "telegram-wallpaper",
+  "description": "telegram-wallpaper",
   "version": "1.0.0",
   "scripts": {
     "dev": "parcel src/index.html --no-cache --host 127.0.0.1 --port 3000",
