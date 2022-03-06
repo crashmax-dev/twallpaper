@@ -11,6 +11,7 @@ interface RgbColor {
 
 interface Options {
   canvas: HTMLCanvasElement | null
+  fps?: number
   animate?: boolean
   scrollAnimate?: boolean
 }
@@ -60,11 +61,16 @@ export class TelegramWallpaper {
 
   constructor({
     canvas,
+    fps,
     animate,
     scrollAnimate
   }: Options) {
     if (canvas) {
       this.init(canvas)
+
+      if (fps !== undefined && !isNaN(fps)) {
+        this.frametime = 1000 / fps
+      }
 
       if (animate) {
         this.animate(animate)
