@@ -36,3 +36,7 @@ canvas {
   background: center repeat;
   background-size: contain;
 }
+
+.dg.ac {
+  opacity: 0.9;
+}

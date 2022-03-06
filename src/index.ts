@@ -1,3 +1,4 @@
+import { GUI } from 'dat.gui'
 import { TelegramWallpaper } from './telegram-wallpaper'
 
 const wallpaper = new TelegramWallpaper({
@@ -7,4 +8,12 @@ const wallpaper = new TelegramWallpaper({
   scrollAnimate: true
 })
 
+const gui = new GUI({
+  autoPlace: true,
+  width: 300
+})
+
+gui.add(wallpaper, 'frametime', 1, 60, 1)
+
+console.log(gui)
 console.log(wallpaper)
