@@ -3,32 +3,3 @@
   padding: 0px;
   user-select: none;
 }
-
-canvas {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
-.background_wrap {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.background_pattern {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  mix-blend-mode: overlay;
-  background: center repeat;
-  background-size: contain;
-}

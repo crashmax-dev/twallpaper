@@ -1,3 +1,5 @@
+import './telegram-wallpaper.css'
+
 interface Positions {
   x: number
   y: number
@@ -333,6 +335,7 @@ export class TelegramWallpaper {
     }
 
     this.canvas = document.createElement('canvas')
+    this.canvas.classList.add('background_canvas')
     this.canvas.width = this.width
     this.canvas.height = this.height
     this.ctx = this.canvas.getContext('2d')!
