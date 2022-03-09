@@ -8,13 +8,15 @@ const colors = {
   purple: ['#4f5bd5', '#962fbf', '#dd6cb9', '#fec496']
 }
 
+const initialColors = 0
+
 const container = document.querySelector('.background_wrap')!
 
 const options: Options = {
   fps: 15,
   opacity: 0.5,
   animate: false,
-  colors: colors.purple,
+  colors: Object.values(colors)[initialColors],
   scrollAnimate: true
 }
 
@@ -62,7 +64,7 @@ const colorsPane = tweakpane
   .addBlade({
     view: 'list',
     label: 'colors',
-    value: 0,
+    value: initialColors,
     options: Object.keys(colors).map((text, value) => {
       return { text, value }
     })
