@@ -13,17 +13,17 @@ interface RgbColor {
 
 type Container = HTMLElement | Element | null
 
-export interface Options {
+type InitOptions = Pick<TWOptions, 'colors' | 'opacity' | 'pattern'> & {
+  container?: Container
+}
+
+interface TWOptions {
   fps?: number
   pattern?: string
   colors?: string[]
   opacity?: number
   animate?: boolean
   scrollAnimate?: boolean
-}
-
-type InitOptions = Pick<Options, 'colors' | 'opacity' | 'pattern'> & {
-  container: Container
 }
 
 const curve = [
@@ -44,7 +44,7 @@ const positions: Positions[] = [
   { x: 0.75, y: 0.40 }
 ]
 
-export class TelegramWallpaper {
+class TelegramWallpaper {
   private width = 50
   private height = 50
   private phase = 0
@@ -61,9 +61,10 @@ export class TelegramWallpaper {
   private curve = curve
   private positions = positions
   private phases = positions.length
-  private interval: ReturnType<typeof setInterval> | null = null
-  private raf: ReturnType<typeof requestAnimationFrame> | null = null
+  private interval: ReturnType<typeof setInterval> | null
+  private raf: ReturnType<typeof requestAnimationFrame> | null
 
+  private container: Container
   private hc: HTMLCanvasElement
   private hctx: CanvasRenderingContext2D
   private canvas: HTMLCanvasElement
@@ -79,11 +80,12 @@ export class TelegramWallpaper {
       opacity,
       animate,
       scrollAnimate
-    }: Options
+    }: TWOptions
   ) {
-    if (container) {
+    this.container = container
+
+    if (this.container) {
       this.init({
-        container,
         pattern,
         opacity,
         colors,
@@ -272,7 +274,7 @@ export class TelegramWallpaper {
         pixels[offset++] = r / distanceSum * 255.0
         pixels[offset++] = g / distanceSum * 255.0
         pixels[offset++] = b / distanceSum * 255.0
-        pixels[offset++] = 0xFF
+        pixels[offset++] = 0xFF // 255
       }
     }
 
@@ -306,7 +308,7 @@ export class TelegramWallpaper {
   }
 
   init({ container, pattern, opacity, colors }: InitOptions): void {
-    if (!container || !colors) {
+    if (!this.container || !colors) {
       return
     }
 
@@ -338,15 +340,15 @@ export class TelegramWallpaper {
     this.canvas.classList.add('background_canvas')
     this.canvas.width = this.width
     this.canvas.height = this.height
-    this.ctx = this.canvas.getContext('2d')!
-    container.appendChild(this.canvas)
+    this.ctx = this.canvas.getContext('2d')!;
+    (container ?? this.container).appendChild(this.canvas)
 
     if (pattern) {
       this.pattern = document.createElement('div')
       this.pattern.classList.add('background_pattern')
       this.updatePattern(pattern)
-      this.updateOpacity(opacity ?? 0.3)
-      container.appendChild(this.pattern)
+      this.updateOpacity(opacity ?? 0.3);
+      (container ?? this.container).appendChild(this.pattern)
     }
 
     this.update()
@@ -357,15 +359,15 @@ export class TelegramWallpaper {
     this.drawGradient(pos)
   }
 
-  updateFrametime(fps: number) {
+  updateFrametime(fps: number): void {
     this.frametime = 1000 / fps
   }
 
-  updateOpacity(opacity: number) {
+  updateOpacity(opacity: number): void {
     this.pattern.style.opacity = opacity.toString()
   }
 
-  updatePattern(path: string) {
+  updatePattern(path: string): void {
     this.pattern.style.backgroundImage = `url(${path})`
   }
 
@@ -431,3 +433,6 @@ export class TelegramWallpaper {
     }
   }
 }
+
+export type { TWOptions }
+export default TelegramWallpaper

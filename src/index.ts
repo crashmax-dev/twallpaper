@@ -1,5 +1,5 @@
 import { Pane, ListApi } from 'tweakpane'
-import { TelegramWallpaper, Options } from './telegram-wallpaper'
+import TelegramWallpaper, { TWOptions } from './telegram-wallpaper'
 
 const colors = {
   default: ['#dbddbb', '#6ba587', '#d5d88d', '#88b884'],
@@ -34,7 +34,7 @@ const toggleOptions = {
   patterns: true
 }
 
-const options: Options = {
+const options: TWOptions = {
   fps: 60,
   opacity: 0.5,
   animate: true,
@@ -46,7 +46,6 @@ const options: Options = {
 const copyOptions = { ...options }
 
 const wallpaper = new TelegramWallpaper(container, options)
-const wallpaperInit = () => wallpaper.init({ container, ...options })
 
 const tweakpane = new Pane({
   document,
@@ -90,7 +89,7 @@ const colorsPane = tweakpane
 colorsPane
   .on('change', ({ value }) => {
     options.colors = colors[value]
-    wallpaperInit()
+    wallpaper.init(options)
   })
 
 tweakpane
@@ -116,7 +115,7 @@ tweakpane
       patternsPane.disabled = true
     }
 
-    wallpaperInit()
+    wallpaper.init(options)
   })
 
 const patternsPane = tweakpane
@@ -134,7 +133,7 @@ const patternsPane = tweakpane
 patternsPane
   .on('change', ({ value }) => {
     options.pattern = value
-    wallpaperInit()
+    wallpaper.init(options)
   })
 
 tweakpane.addSeparator()
@@ -146,7 +145,7 @@ tweakpane
     patternsPane.value = patterns[0].path
     toggleOptions.patterns = true
     tweakpane.refresh()
-    wallpaperInit()
+    wallpaper.init(options)
   })
 
 console.log(wallpaper)
