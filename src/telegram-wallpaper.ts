@@ -9,14 +9,22 @@ interface RgbColor {
   b: number
 }
 
-interface Options {
-  canvas: HTMLCanvasElement | null
+type Container = HTMLElement | Element | null
+
+export interface Options {
   fps?: number
+  image?: string
+  colors?: string[]
+  opacity?: number
   animate?: boolean
   scrollAnimate?: boolean
 }
 
-const curve: number[] = [
+type InitOptions = Pick<Options, 'colors' | 'opacity'> & {
+  container: Container
+}
+
+const curve = [
   0, 0.25, 0.50, 0.75, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5, 6, 7, 8, 9, 10, 11, 12,
   13, 14, 15, 16, 17, 18, 18.3, 18.6, 18.9, 19.2, 19.5, 19.8, 20.1, 20.4, 20.7,
   21.0, 21.3, 21.6, 21.9, 22.2, 22.5, 22.8, 23.1, 23.4, 23.7, 24.0, 24.3, 24.6,
@@ -58,18 +66,27 @@ export class TelegramWallpaper {
   private hctx: CanvasRenderingContext2D
   private canvas: HTMLCanvasElement
   private ctx: CanvasRenderingContext2D
+  private pattern: HTMLDivElement
 
-  constructor({
-    canvas,
-    fps,
-    animate,
-    scrollAnimate
-  }: Options) {
-    if (canvas) {
-      this.init(canvas)
+  constructor(
+    container: Container,
+    {
+      fps,
+      colors,
+      opacity,
+      animate,
+      scrollAnimate
+    }: Options
+  ) {
+    if (container) {
+      this.init({
+        container,
+        opacity,
+        colors,
+      })
 
-      if (fps !== undefined && !isNaN(fps)) {
-        this.frametime = 1000 / fps
+      if (typeof fps === 'number') {
+        this.updateFrametime(fps)
       }
 
       if (animate) {
@@ -197,8 +214,8 @@ export class TelegramWallpaper {
     if (this.frames.length > 0) {
       const id = this.frames.shift()!
       this.drawImageData(id)
-    } else if (this.interval) {
-      clearInterval(this.interval)
+    } else {
+      clearInterval(this.interval!)
     }
   }
 
@@ -284,11 +301,18 @@ export class TelegramWallpaper {
     this.raf = requestAnimationFrame(() => this.doAnimate())
   }
 
-  private init(canvas: HTMLCanvasElement): void {
-    let colors: string | string[] = (canvas.getAttribute('data-colors') || '')
+  init({ container, opacity, colors }: InitOptions): void {
+    if (!container || !colors) {
+      return
+    }
 
-    if (colors) {
-      colors = colors.split(',')
+    if (this.hc) {
+      clearInterval(this.interval!)
+      this.canvas.remove()
+      this.pattern.remove()
+      this.hc.remove()
+      this.colors = []
+      this.frames = []
     }
 
     for (let i = 0; i < colors.length; i++) {
@@ -306,8 +330,21 @@ export class TelegramWallpaper {
       this.hctx = this.hc.getContext('2d')!
     }
 
+    const canvas = document.createElement('canvas')
+    canvas.width = this.width
+    canvas.height = this.height
+
+    const pattern = document.createElement('div')
+    pattern.classList.add('background_pattern')
+    pattern.style.backgroundImage = 'url(/pattern1.svg)'
+    pattern.style.opacity = opacity?.toString() ?? '0.3'
+
     this.canvas = canvas
+    this.pattern = pattern
     this.ctx = this.canvas.getContext('2d')!
+
+    container.appendChild(canvas)
+    container.appendChild(pattern)
     this.update()
   }
 
@@ -316,12 +353,16 @@ export class TelegramWallpaper {
     this.drawGradient(pos)
   }
 
-  toNextPosition(): void {
-    if (!this.interval) {
-      return
-    }
+  updateFrametime(fps: number) {
+    this.frametime = 1000 / fps
+  }
 
-    clearInterval(this.interval)
+  updateOpacity(opacity: number) {
+    this.pattern.style.opacity = opacity.toString()
+  }
+
+  toNextPosition(): void {
+    clearInterval(this.interval!)
     this.frames = []
 
     const prev_pos = this.getPositions(this.phase % this.phases)

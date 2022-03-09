@@ -21,11 +21,6 @@ canvas {
   z-index: -1;
 }
 
-.background_pattern.default {
-  opacity: 0.3;
-  background-image: url("../static/pattern.svg");
-}
-
 .background_pattern {
   position: absolute;
   left: 0;
@@ -37,6 +32,6 @@ canvas {
   background-size: contain;
 }
 
-.dg.ac {
-  opacity: 0.9;
+.tp-dfwv {
+  width: 300px !important;
 }
