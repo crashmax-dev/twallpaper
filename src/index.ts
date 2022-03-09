@@ -143,5 +143,20 @@ tweakpane
     wallpaper.init(options)
   })
 
+tweakpane
+  .addButton({ title: 'Export' })
+  .on('click', () => {
+    const blob = new Blob([
+      JSON.stringify(options, void 0, 2)],
+      { type: 'text/plain' }
+    )
+
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(blob)
+    link.download = 'telegram-wallpaper-options.json'
+    link.click()
+    link.remove()
+  })
+
 console.log(wallpaper)
 console.log(tweakpane)
