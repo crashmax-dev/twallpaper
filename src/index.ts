@@ -30,10 +30,6 @@ const patterns = [
 
 const container = document.querySelector('.background_wrap')!
 
-const toggleOptions = {
-  patterns: true
-}
-
 const options: TWOptions = {
   fps: 60,
   opacity: 0.5,
@@ -63,18 +59,7 @@ tweakpane
     wallpaper.updateFrametime(value!)
   })
 
-tweakpane
-  .addInput(options, 'opacity', {
-    min: 0,
-    max: 1,
-    step: 0.1
-  })
-  .on('change', ({ value }) => {
-    options.opacity = Number(value!.toFixed(1))
-    wallpaper.updateOpacity(value!)
-  })
-
-const colorsPane = tweakpane
+const colorsList = tweakpane
   .addBlade({
     view: 'list',
     label: 'colors',
@@ -87,7 +72,7 @@ const colorsPane = tweakpane
     })
   }) as ListApi<keyof typeof colors>
 
-colorsPane
+colorsList
   .on('change', ({ value }) => {
     options.colors = colors[value]
     wallpaper.init(options)
@@ -105,15 +90,29 @@ tweakpane
     wallpaper.scrollAnimate(value!)
   })
 
-tweakpane
-  .addInput(toggleOptions, 'patterns')
-  .on('change', ({ value }) => {
-    options.pattern = value ? patterns[0].path : undefined
-    patternsPane.disabled = !value
+const patternFolder = tweakpane
+  .addFolder({
+    title: 'Pattern'
+  })
+
+patternFolder
+  .on('fold', ({ expanded }) => {
+    options.pattern = expanded ? patterns[0].path : undefined
     wallpaper.init(options)
   })
 
-const patternsPane = tweakpane
+patternFolder
+  .addInput(options, 'opacity', {
+    min: 0,
+    max: 1,
+    step: 0.1
+  })
+  .on('change', ({ value }) => {
+    options.opacity = Number(value!.toFixed(1))
+    wallpaper.updateOpacity(value!)
+  })
+
+const patternsList = patternFolder
   .addBlade({
     view: 'list',
     value: patterns[0].path,
@@ -125,20 +124,18 @@ const patternsPane = tweakpane
     })
   }) as ListApi<string>
 
-patternsPane
+patternsList
   .on('change', ({ value }) => {
     options.pattern = value
     wallpaper.init(options)
   })
 
-tweakpane.addSeparator()
-
 tweakpane
   .addButton({ title: 'Reset' })
   .on('click', () => {
     Object.assign(options, copyOptions)
-    patternsPane.value = patterns[0].path
-    toggleOptions.patterns = true
+    patternsList.value = patterns[0].path
+    patternFolder.expanded = true
     tweakpane.refresh()
     wallpaper.init(options)
   })
