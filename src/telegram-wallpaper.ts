@@ -13,14 +13,14 @@ type Container = HTMLElement | Element | null
 
 export interface Options {
   fps?: number
-  image?: string
+  pattern?: string
   colors?: string[]
   opacity?: number
   animate?: boolean
   scrollAnimate?: boolean
 }
 
-type InitOptions = Pick<Options, 'colors' | 'opacity'> & {
+type InitOptions = Pick<Options, 'colors' | 'opacity' | 'pattern'> & {
   container: Container
 }
 
@@ -73,6 +73,7 @@ export class TelegramWallpaper {
     {
       fps,
       colors,
+      pattern,
       opacity,
       animate,
       scrollAnimate
@@ -81,6 +82,7 @@ export class TelegramWallpaper {
     if (container) {
       this.init({
         container,
+        pattern,
         opacity,
         colors,
       })
@@ -301,7 +303,7 @@ export class TelegramWallpaper {
     this.raf = requestAnimationFrame(() => this.doAnimate())
   }
 
-  init({ container, opacity, colors }: InitOptions): void {
+  init({ container, pattern, opacity, colors }: InitOptions): void {
     if (!container || !colors) {
       return
     }
@@ -330,21 +332,20 @@ export class TelegramWallpaper {
       this.hctx = this.hc.getContext('2d')!
     }
 
-    const canvas = document.createElement('canvas')
-    canvas.width = this.width
-    canvas.height = this.height
-
-    const pattern = document.createElement('div')
-    pattern.classList.add('background_pattern')
-    pattern.style.backgroundImage = 'url(/pattern1.svg)'
-    pattern.style.opacity = opacity?.toString() ?? '0.3'
-
-    this.canvas = canvas
-    this.pattern = pattern
+    this.canvas = document.createElement('canvas')
+    this.canvas.width = this.width
+    this.canvas.height = this.height
     this.ctx = this.canvas.getContext('2d')!
+    container.appendChild(this.canvas)
 
-    container.appendChild(canvas)
-    container.appendChild(pattern)
+    if (pattern) {
+      this.pattern = document.createElement('div')
+      this.pattern.classList.add('background_pattern')
+      this.updatePattern(pattern)
+      this.updateOpacity(opacity ?? 0.3)
+      container.appendChild(this.pattern)
+    }
+
     this.update()
   }
 
@@ -359,6 +360,10 @@ export class TelegramWallpaper {
 
   updateOpacity(opacity: number) {
     this.pattern.style.opacity = opacity.toString()
+  }
+
+  updatePattern(path: string) {
+    this.pattern.style.backgroundImage = `url(${path})`
   }
 
   toNextPosition(): void {

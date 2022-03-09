@@ -1,4 +1,4 @@
-import { Pane, InputBindingApi } from 'tweakpane'
+import { Pane, ListApi } from 'tweakpane'
 import { TelegramWallpaper, Options } from './telegram-wallpaper'
 
 const colors = {
@@ -8,19 +8,45 @@ const colors = {
   purple: ['#4f5bd5', '#962fbf', '#dd6cb9', '#fec496']
 }
 
-const initialColors = 0
+const patternPath = location.href + 'patterns/'
+const patterns = [
+  {
+    text: 'Cat and Dog',
+    path: patternPath + 'cat_and_dog.svg'
+  },
+  {
+    text: 'Mythical',
+    path: patternPath + 'mythical.svg'
+  },
+  {
+    text: 'Star Wars',
+    path: patternPath + 'star_wars.svg'
+  },
+  {
+    text: 'Math',
+    path: patternPath + 'math.svg'
+  }
+]
 
 const container = document.querySelector('.background_wrap')!
 
-const options: Options = {
-  fps: 15,
-  opacity: 0.5,
-  animate: false,
-  colors: Object.values(colors)[initialColors],
-  scrollAnimate: true
+const toggleOptions = {
+  patterns: true
 }
 
+const options: Options = {
+  fps: 60,
+  opacity: 0.5,
+  animate: true,
+  scrollAnimate: true,
+  colors: colors.default,
+  pattern: patterns[0].path
+}
+
+const copyOptions = { ...options }
+
 const wallpaper = new TelegramWallpaper(container, options)
+const wallpaperInit = () => wallpaper.init({ container, ...options })
 
 const tweakpane = new Pane({
   document,
@@ -48,6 +74,25 @@ tweakpane
     wallpaper.updateOpacity(value!)
   })
 
+const colorsPane = tweakpane
+  .addBlade({
+    view: 'list',
+    label: 'colors',
+    value: 'default',
+    options: Object.keys(colors).map((text) => {
+      return {
+        text,
+        value: text
+      }
+    })
+  }) as ListApi<keyof typeof colors>
+
+colorsPane
+  .on('change', ({ value }) => {
+    options.colors = colors[value]
+    wallpaperInit()
+  })
+
 tweakpane
   .addInput(options, 'animate')
   .on('change', ({ value }) => {
@@ -60,19 +105,48 @@ tweakpane
     wallpaper.scrollAnimate(value!)
   })
 
-const colorsPane = tweakpane
+tweakpane
+  .addInput(toggleOptions, 'patterns')
+  .on('change', ({ value }) => {
+    if (value) {
+      options.pattern = patterns[0].path
+      patternsPane.disabled = false
+    } else {
+      options.pattern = undefined
+      patternsPane.disabled = true
+    }
+
+    wallpaperInit()
+  })
+
+const patternsPane = tweakpane
   .addBlade({
     view: 'list',
-    label: 'colors',
-    value: initialColors,
-    options: Object.keys(colors).map((text, value) => {
-      return { text, value }
+    value: patterns[0].path,
+    options: patterns.map(({ path, text }) => {
+      return {
+        text,
+        value: path
+      }
     })
-  }) as InputBindingApi<unknown, number>
+  }) as ListApi<string>
 
-colorsPane
+patternsPane
   .on('change', ({ value }) => {
-    wallpaper.init({ container, colors: Object.values(colors)[value] })
+    options.pattern = value
+    wallpaperInit()
+  })
+
+tweakpane.addSeparator()
+
+tweakpane
+  .addButton({ title: 'Reset' })
+  .on('click', () => {
+    Object.assign(options, copyOptions)
+    patternsPane.value = patterns[0].path
+    toggleOptions.patterns = true
+    tweakpane.refresh()
+    wallpaperInit()
   })
 
 console.log(wallpaper)
