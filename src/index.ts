@@ -70,6 +70,7 @@ tweakpane
     step: 0.1
   })
   .on('change', ({ value }) => {
+    options.opacity = Number(value!.toFixed(1))
     wallpaper.updateOpacity(value!)
   })
 
@@ -107,14 +108,8 @@ tweakpane
 tweakpane
   .addInput(toggleOptions, 'patterns')
   .on('change', ({ value }) => {
-    if (value) {
-      options.pattern = patterns[0].path
-      patternsPane.disabled = false
-    } else {
-      options.pattern = undefined
-      patternsPane.disabled = true
-    }
-
+    options.pattern = value ? patterns[0].path : undefined
+    patternsPane.disabled = !value
     wallpaper.init(options)
   })
 
