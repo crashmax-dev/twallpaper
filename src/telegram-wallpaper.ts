@@ -13,12 +13,13 @@ interface RgbColor {
 
 type Container = HTMLElement | Element | null
 
-type InitOptions = Pick<TWOptions, 'colors' | 'opacity' | 'pattern'> & {
+type InitOptions = Pick<TWOptions, 'colors' | 'opacity' | 'pattern' | 'blur'> & {
   container?: Container
 }
 
 interface TWOptions {
   fps?: number
+  blur?: number
   pattern?: string
   colors?: string[]
   opacity?: number
@@ -69,12 +70,13 @@ class TelegramWallpaper {
   private hctx: CanvasRenderingContext2D
   private canvas: HTMLCanvasElement
   private ctx: CanvasRenderingContext2D
-  private pattern: HTMLDivElement
+  private pattern: HTMLDivElement | null
 
   constructor(
     container: Container,
     {
       fps,
+      blur,
       colors,
       pattern,
       opacity,
@@ -89,6 +91,7 @@ class TelegramWallpaper {
         pattern,
         opacity,
         colors,
+        blur
       })
 
       if (typeof fps === 'number') {
@@ -307,7 +310,7 @@ class TelegramWallpaper {
     this.raf = requestAnimationFrame(() => this.doAnimate())
   }
 
-  init({ container, pattern, opacity, colors }: InitOptions): void {
+  init({ container, pattern, opacity, colors, blur }: InitOptions): void {
     if (!this.container || !colors) {
       return
     }
@@ -315,7 +318,7 @@ class TelegramWallpaper {
     if (this.hc) {
       clearInterval(this.interval!)
       this.canvas.remove()
-      this.pattern.remove()
+      this.pattern?.remove()
       this.hc.remove()
       this.colors = []
       this.frames = []
@@ -346,6 +349,7 @@ class TelegramWallpaper {
     if (pattern) {
       this.pattern = document.createElement('div')
       this.pattern.classList.add('background_pattern')
+      this.updateBlur(blur ?? 0)
       this.updatePattern(pattern)
       this.updateOpacity(opacity ?? 0.3);
       (container ?? this.container).appendChild(this.pattern)
@@ -364,11 +368,21 @@ class TelegramWallpaper {
   }
 
   updateOpacity(opacity: number): void {
-    this.pattern.style.opacity = opacity.toString()
+    if (this.pattern) {
+      this.pattern.style.opacity = opacity.toString()
+    }
   }
 
   updatePattern(path: string): void {
-    this.pattern.style.backgroundImage = `url(${path})`
+    if (this.pattern) {
+      this.pattern.style.backgroundImage = `url(${path})`
+    }
+  }
+
+  updateBlur(blur: number): void {
+    if (this.pattern) {
+      this.pattern.style.filter = `blur(${blur}px)`
+    }
   }
 
   toNextPosition(): void {

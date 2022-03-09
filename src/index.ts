@@ -32,6 +32,7 @@ const container = document.querySelector('.background_wrap')!
 
 const options: TWOptions = {
   fps: 60,
+  blur: 0,
   opacity: 0.5,
   animate: true,
   scrollAnimate: true,
@@ -99,6 +100,17 @@ patternFolder
   .on('fold', ({ expanded }) => {
     options.pattern = expanded ? patterns[0].path : undefined
     wallpaper.init(options)
+  })
+
+patternFolder
+  .addInput(options, 'blur', {
+    min: 0,
+    max: 5,
+    step: 0.1
+  })
+  .on('change', ({ value }) => {
+    options.blur = Number(value!.toFixed(1))
+    wallpaper.updateBlur(value!)
   })
 
 patternFolder
