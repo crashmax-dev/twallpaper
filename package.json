@@ -4,12 +4,15 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "parcel src/index.html --no-cache --host 127.0.0.1 --port 3000",
-    "build": "parcel build src/index.html --public-url ./"
+    "build": "parcel build src/index.html --public-url ./",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix"
   },
   "staticFiles": {
     "staticPath": "static"
   },
   "devDependencies": {
+    "@crashmax/eslint-config": "^1.0.4",
     "@tweakpane/core": "^1.0.8",
     "parcel": "^2.3.2",
     "parcel-reporter-clean-dist": "^1.0.4",

@@ -1,5 +1,7 @@
-import { Pane, ListApi } from 'tweakpane'
-import TelegramWallpaper, { TWOptions } from './telegram-wallpaper'
+import { Pane } from 'tweakpane'
+import TelegramWallpaper from './telegram-wallpaper'
+import type { ListApi } from 'tweakpane'
+import type { TWOptions } from './telegram-wallpaper'
 
 const colors = {
   'Default': ['#dbddbb', '#6ba587', '#d5d88d', '#88b884'],
@@ -21,7 +23,7 @@ const colors = {
   'Spindle': ['#b2e3dd', '#bbead5', '#9fb0ea', '#b0cdeb'],
   'Viola': ['#f7dd6d', '#e96caf', '#edac4c', '#a464f4'],
   'Wewak': ['#e8c06e', '#f29ebf', '#f0e486', '#eaa36e'],
-  'Wild Willow': ['#f0c07a', '#afd677', '#e4d573', '#7fc289'],
+  'Wild Willow': ['#f0c07a', '#afd677', '#e4d573', '#7fc289']
 }
 
 const patternPath = location.href + 'patterns/'
@@ -231,8 +233,8 @@ tweakpane
 tweakpane
   .addButton({ title: 'Export' })
   .on('click', () => {
-    const blob = new Blob([
-      JSON.stringify(options, void 0, 2)],
+    const blob = new Blob(
+      [JSON.stringify(options, void 0, 2)],
       { type: 'text/plain' }
     )
 

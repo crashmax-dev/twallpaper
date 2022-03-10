@@ -1,0 +1,7 @@
+{
+  "extends": "@crashmax/eslint-config",
+  "rules": {
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "multiline-ternary": "off"
+  }
+}
