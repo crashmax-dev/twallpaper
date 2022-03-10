@@ -32,7 +32,7 @@ const patterns = [
   },
   {
     text: 'Astronaut cats',
-    path: patternPath + 'space_cats.svg'
+    path: patternPath + 'astronaut_cats.svg'
   },
   {
     text: 'Beach',
@@ -40,15 +40,15 @@ const patterns = [
   },
   {
     text: 'Cats and Dogs',
-    path: patternPath + 'cat_and_dog.svg'
+    path: patternPath + 'cats_and_dogs.svg'
   },
   {
     text: 'Christmas',
     path: patternPath + 'christmas.svg'
   },
   {
-    text: 'DnD',
-    path: patternPath + 'mythical.svg'
+    text: 'Fantasy',
+    path: patternPath + 'fantasy.svg'
   },
   {
     text: 'Late night delight',
@@ -67,7 +67,7 @@ const patterns = [
     path: patternPath + 'paris.svg'
   },
   {
-    text: 'Press \"Start\"',
+    text: 'Games',
     path: patternPath + 'games.svg'
   },
   {
@@ -91,7 +91,7 @@ const patterns = [
     path: patternPath + 'tattoos.svg'
   },
   {
-    text: 'Underwater world',
+    text: 'Underwater World',
     path: patternPath + 'underwater_world.svg'
   },
   {
@@ -109,7 +109,7 @@ const container = document.querySelector('.background_wrap')!
 const options: TWOptions = {
   fps: 60,
   blur: 0,
-  opacity: 0.9,
+  opacity: 0.5,
   animate: true,
   scrollAnimate: true,
   colors: colors.Default,
@@ -242,3 +242,6 @@ tweakpane
     link.click()
     link.remove()
   })
+
+console.log(wallpaper)
+console.log(tweakpane)
