@@ -2,29 +2,105 @@ import { Pane, ListApi } from 'tweakpane'
 import TelegramWallpaper, { TWOptions } from './telegram-wallpaper'
 
 const colors = {
-  default: ['#dbddbb', '#6ba587', '#d5d88d', '#88b884'],
-  green: ['#fbe37d', '#336f55', '#fff5c5', '#7fa381'],
-  pink: ['#b493e6', '#eab9d9', '#8376c2', '#e4b2ea'],
-  purple: ['#4f5bd5', '#962fbf', '#dd6cb9', '#fec496']
+  'Default': ['#dbddbb', '#6ba587', '#d5d88d', '#88b884'],
+  'Amethyst': ['#4f5bd5', '#962fbf', '#dd6cb9', '#fec496'],
+  'Calico': ['#baa161', '#ddb56d', '#cea668', '#faf4d2'],
+  'Cashmere': ['#ffe7b2', '#e2c0ff', '#ffc3b2'],
+  'Cavern Pink': ['#ecd893', '#e5a1d0', '#edd594', '#d1a3e2'],
+  'Cheerfulness': ['#efd359', '#e984d8', '#ac86ed', '#40cdde'],
+  'Cold Purple': ['#6c8cd4', '#d4a7c9', '#b2b1ee'],
+  'Curious Blue': ['#527bdd', '#009fdd', '#a4dbff'],
+  'France': ['#fbd9e6', '#fb9ae5', '#d5f7ff', '#73caff'],
+  'Light Wisteria': ['#b493e6', '#eab9d9', '#8376c2', '#e4b2ea'],
+  'Malibu': ['#679ced', '#e39fea', '#888dec', '#8adbf2'],
+  'Monte Carlo': ['#85d685', '#67a3f2', '#8fe1d6', '#dceb92'],
+  'Perfume': ['#b9e2ff', '#eccbff', '#a2b4ff', '#daeacb'],
+  'Periwinkle Gray': ['#efb7dc', '#c6b1ef', '#b1e9ea', '#97beeb'],
+  'Pine Glade': ['#fbe37d', '#336f55', '#fff5c5', '#7fa381'],
+  'Santa': ['#384F2F', '#BF141B', '#135E35', '#7A3226'],
+  'Spindle': ['#b2e3dd', '#bbead5', '#9fb0ea', '#b0cdeb'],
+  'Viola': ['#f7dd6d', '#e96caf', '#edac4c', '#a464f4'],
+  'Wewak': ['#e8c06e', '#f29ebf', '#f0e486', '#eaa36e'],
+  'Wild Willow': ['#f0c07a', '#afd677', '#e4d573', '#7fc289'],
 }
 
 const patternPath = location.href + 'patterns/'
 const patterns = [
   {
-    text: 'Cat and Dog',
+    text: 'Animals',
+    path: patternPath + 'animals.svg'
+  },
+  {
+    text: 'Astronaut cats',
+    path: patternPath + 'space_cats.svg'
+  },
+  {
+    text: 'Beach',
+    path: patternPath + 'beach.svg'
+  },
+  {
+    text: 'Cats and Dogs',
     path: patternPath + 'cat_and_dog.svg'
   },
   {
-    text: 'Mythical',
+    text: 'Christmas',
+    path: patternPath + 'christmas.svg'
+  },
+  {
+    text: 'DnD',
     path: patternPath + 'mythical.svg'
+  },
+  {
+    text: 'Late night delight',
+    path: patternPath + 'late_night_delight.svg'
+  },
+  {
+    text: 'Magic',
+    path: patternPath + 'magic.svg'
+  },
+  {
+    text: 'Math',
+    path: patternPath + 'math.svg'
+  },
+  {
+    text: 'Paris',
+    path: patternPath + 'paris.svg'
+  },
+  {
+    text: 'Press \"Start\"',
+    path: patternPath + 'games.svg'
+  },
+  {
+    text: 'Snowflakes',
+    path: patternPath + 'snowflakes.svg'
+  },
+  {
+    text: 'Space',
+    path: patternPath + 'space.svg'
   },
   {
     text: 'Star Wars',
     path: patternPath + 'star_wars.svg'
   },
   {
-    text: 'Math',
-    path: patternPath + 'math.svg'
+    text: 'Sweets',
+    path: patternPath + 'sweets.svg'
+  },
+  {
+    text: 'Tattoos',
+    path: patternPath + 'tattoos.svg'
+  },
+  {
+    text: 'Underwater world',
+    path: patternPath + 'underwater_world.svg'
+  },
+  {
+    text: 'Unicorns',
+    path: patternPath + 'unicorn.svg'
+  },
+  {
+    text: 'Zoo',
+    path: patternPath + 'zoo.svg'
   }
 ]
 
@@ -33,10 +109,10 @@ const container = document.querySelector('.background_wrap')!
 const options: TWOptions = {
   fps: 60,
   blur: 0,
-  opacity: 0.5,
+  opacity: 0.9,
   animate: true,
   scrollAnimate: true,
-  colors: colors.default,
+  colors: colors.Default,
   pattern: patterns[0].path
 }
 
@@ -64,7 +140,7 @@ const colorsList = tweakpane
   .addBlade({
     view: 'list',
     label: 'colors',
-    value: 'default',
+    value: 'Default',
     options: Object.keys(colors).map((text) => {
       return {
         text,
@@ -166,6 +242,3 @@ tweakpane
     link.click()
     link.remove()
   })
-
-console.log(wallpaper)
-console.log(tweakpane)
