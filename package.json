@@ -12,7 +12,7 @@
     "staticPath": "static"
   },
   "devDependencies": {
-    "@crashmax/eslint-config": "^1.0.4",
+    "@crashmax/eslint-config": "^1.1.0",
     "@tweakpane/core": "^1.0.8",
     "parcel": "^2.3.2",
     "parcel-reporter-clean-dist": "^1.0.4",
