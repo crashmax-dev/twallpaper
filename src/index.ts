@@ -36,6 +36,7 @@ tweakpane
     wallpaper.updateFrametime(value!)
   })
 
+/** color */
 const colorsList = tweakpane
   .addBlade({
     view: 'list',
@@ -67,6 +68,7 @@ tweakpane
     wallpaper.scrollAnimate(value!)
   })
 
+/** pattern */
 const patternsFolder = tweakpane
   .addFolder({ title: 'Pattern' })
 
@@ -116,6 +118,7 @@ patternsList
     wallpaper.updatePattern(value)
   })
 
+/** export */
 const exportFolder = tweakpane
   .addFolder({
     title: 'Export',
@@ -125,25 +128,27 @@ const exportFolder = tweakpane
 const consoleOptions = exportFolder
   .addMonitor(stringOptions, 'options', {
     interval: 0,
-    lineCount: stringOptions.options.split('\n').length + 1,
+    lineCount: stringOptions.options.split('\n').length,
     multiline: true
   })
 
-consoleOptions.controller_.view.labelElement.remove()
+const consoleTextarea = consoleOptions.controller_.view.valueElement
+  .querySelector('textarea')!
+
+consoleOptions.controller_.view.labelElement
+  .remove()
+
 consoleOptions.controller_.view.valueElement.style.width = '100%'
+consoleTextarea.style.overflow = 'hidden'
 
 const consoleCopy = exportFolder
   .addButton({ title: 'Copy' })
 
 consoleCopy
   .on('click', () => {
-    const textarea = consoleOptions.controller_.view.valueElement
-      .querySelector('textarea')
-
-    if (textarea) {
-      textarea.select()
-      navigator.clipboard.writeText(textarea.value)
-    }
+    consoleTextarea.select()
+    navigator.clipboard.writeText(consoleTextarea.value)
+    consoleCopy.title = 'Copied'
   })
 
 exportFolder
@@ -161,6 +166,7 @@ exportFolder
     link.remove()
   })
 
+/** reset */
 tweakpane
   .addButton({ title: 'Reset' })
   .on('click', () => {
@@ -171,10 +177,12 @@ tweakpane
     wallpaper.init(options)
   })
 
-tweakpane.on('change', () => {
-  stringOptions.options = JSON.stringify(options, null, 2)
-  consoleOptions.refresh()
-})
+tweakpane
+  .on('change', () => {
+    stringOptions.options = JSON.stringify(options, null, 2)
+    consoleCopy.title = 'Copy'
+    consoleOptions.refresh()
+  })
 
 console.log(wallpaper)
 console.log(tweakpane)
