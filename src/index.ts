@@ -27,6 +27,13 @@ const tweakpane = new Pane({
 })
 
 tweakpane
+  .on('change', () => {
+    stringOptions.options = JSON.stringify(options, null, 2)
+    consoleCopy.title = 'Copy'
+    consoleOptions.refresh()
+  })
+
+tweakpane
   .addInput(options, 'fps', {
     min: 1,
     max: 360,
@@ -177,12 +184,30 @@ tweakpane
     wallpaper.init(options)
   })
 
-tweakpane
-  .on('change', () => {
-    stringOptions.options = JSON.stringify(options, null, 2)
-    consoleCopy.title = 'Copy'
-    consoleOptions.refresh()
-  })
+/** fullscreen */
+declare global {
+  interface Element {
+    webkitRequestFullscreen?(): void
+    mozRequestFullScreen?(): void
+    msRequestFullscreen?(): void
+  }
+}
+
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'F11') {
+    event.preventDefault()
+
+    if (container.requestFullscreen) {
+      container.requestFullscreen()
+    } else if (container.webkitRequestFullscreen) {
+      container.webkitRequestFullscreen()
+    } else if (container.mozRequestFullScreen) {
+      container.mozRequestFullScreen()
+    } else if (container.msRequestFullscreen) {
+      container.msRequestFullscreen()
+    }
+  }
+})
 
 console.log(wallpaper)
 console.log(tweakpane)
