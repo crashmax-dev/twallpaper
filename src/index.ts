@@ -5,8 +5,6 @@ import TelegramWallpaper from './telegram-wallpaper'
 import type { ListApi } from 'tweakpane'
 import type { TWOptions } from './telegram-wallpaper'
 
-const container = document.querySelector('.background_wrap')!
-
 const options: TWOptions = {
   fps: 60,
   blur: 0,
@@ -17,8 +15,9 @@ const options: TWOptions = {
   pattern: patterns[0].path
 }
 
+const container = document.querySelector('.background_wrap')!
+const stringOptions = { options: JSON.stringify(options, null, 2) }
 const copyOptions = { ...options }
-
 const wallpaper = new TelegramWallpaper(container, options)
 
 const tweakpane = new Pane({
@@ -69,9 +68,7 @@ tweakpane
   })
 
 const patternsFolder = tweakpane
-  .addFolder({
-    title: 'Pattern'
-  })
+  .addFolder({ title: 'Pattern' })
 
 patternsFolder
   .on('fold', ({ expanded }) => {
@@ -119,18 +116,38 @@ patternsList
     wallpaper.updatePattern(value)
   })
 
-tweakpane
-  .addButton({ title: 'Reset' })
-  .on('click', () => {
-    Object.assign(options, copyOptions)
-    patternsList.value = patterns[0].path
-    patternsFolder.expanded = true
-    tweakpane.refresh()
-    wallpaper.init(options)
+const exportFolder = tweakpane
+  .addFolder({
+    title: 'Export',
+    expanded: false
   })
 
-tweakpane
-  .addButton({ title: 'Export' })
+const consoleOptions = exportFolder
+  .addMonitor(stringOptions, 'options', {
+    interval: 0,
+    lineCount: stringOptions.options.split('\n').length + 1,
+    multiline: true
+  })
+
+consoleOptions.controller_.view.labelElement.remove()
+consoleOptions.controller_.view.valueElement.style.width = '100%'
+
+const consoleCopy = exportFolder
+  .addButton({ title: 'Copy' })
+
+consoleCopy
+  .on('click', () => {
+    const textarea = consoleOptions.controller_.view.valueElement
+      .querySelector('textarea')
+
+    if (textarea) {
+      textarea.select()
+      navigator.clipboard.writeText(textarea.value)
+    }
+  })
+
+exportFolder
+  .addButton({ title: 'Download' })
   .on('click', () => {
     const blob = new Blob(
       [JSON.stringify(options, void 0, 2)],
@@ -143,6 +160,21 @@ tweakpane
     link.click()
     link.remove()
   })
+
+tweakpane
+  .addButton({ title: 'Reset' })
+  .on('click', () => {
+    Object.assign(options, copyOptions)
+    patternsList.value = patterns[0].path
+    patternsFolder.expanded = true
+    tweakpane.refresh()
+    wallpaper.init(options)
+  })
+
+tweakpane.on('change', () => {
+  stringOptions.options = JSON.stringify(options, null, 2)
+  consoleOptions.refresh()
+})
 
 console.log(wallpaper)
 console.log(tweakpane)
