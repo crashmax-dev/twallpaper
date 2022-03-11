@@ -245,18 +245,17 @@ class TelegramWallpaper {
         const centerDistance = Math.sqrt(centerDistanceX * centerDistanceX + centerDistanceY2)
 
         const swirlFactor = 0.35 * centerDistance
-        const theta = swirlFactor * swirlFactor * 0.8 * 8.0
+        const theta = swirlFactor * swirlFactor * 0.8 * 8
         const sinTheta = Math.sin(theta)
         const cosTheta = Math.cos(theta)
 
-        const pixelX = Math.max(0.0, Math.min(1.0, 0.5 + centerDistanceX * cosTheta - centerDistanceY * sinTheta))
-        const pixelY = Math.max(0.0, Math.min(1.0, 0.5 + centerDistanceX * sinTheta + centerDistanceY * cosTheta))
+        const pixelX = Math.max(0, Math.min(1, 0.5 + centerDistanceX * cosTheta - centerDistanceY * sinTheta))
+        const pixelY = Math.max(0, Math.min(1, 0.5 + centerDistanceX * sinTheta + centerDistanceY * cosTheta))
 
-        let distanceSum = 0.0
-
-        let r = 0.0
-        let g = 0.0
-        let b = 0.0
+        let distanceSum = 0
+        let r = 0
+        let g = 0
+        let b = 0
 
         for (let i = 0; i < this.colors.length; i++) {
           const colorX = positions[i].x
@@ -265,7 +264,7 @@ class TelegramWallpaper {
           const distanceX = pixelX - colorX
           const distanceY = pixelY - colorY
 
-          let distance = Math.max(0.0, 0.9 - Math.sqrt(distanceX * distanceX + distanceY * distanceY))
+          let distance = Math.max(0, 0.9 - Math.sqrt(distanceX * distanceX + distanceY * distanceY))
           distance = distance * distance * distance * distance
           distanceSum += distance
 
@@ -274,9 +273,9 @@ class TelegramWallpaper {
           b += distance * this.colors[i].b / 255
         }
 
-        pixels[offset++] = r / distanceSum * 255.0
-        pixels[offset++] = g / distanceSum * 255.0
-        pixels[offset++] = b / distanceSum * 255.0
+        pixels[offset++] = r / distanceSum * 255
+        pixels[offset++] = g / distanceSum * 255
+        pixels[offset++] = b / distanceSum * 255
         pixels[offset++] = 0xFF // 255
       }
     }
@@ -286,7 +285,7 @@ class TelegramWallpaper {
 
   private drawImageData(id: ImageData): void {
     this.hctx.putImageData(id, 0, 0)
-    this.ctx.drawImage(this.hc, 0, 0, 50, 50)
+    this.ctx.drawImage(this.hc, 0, 0, this.width, this.height)
   }
 
   private drawGradient(pos: Positions[]): void {
