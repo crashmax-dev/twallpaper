@@ -58,7 +58,7 @@ class TelegramWallpaper {
   private scrollDelta = 0
   private scrollTicking = false
   private frames: ImageData[] = []
-  private colors: RgbColor[] = []
+  private rgb: RgbColor[] = []
   private curve = curve
   private positions = positions
   private phases = positions.length
@@ -257,7 +257,7 @@ class TelegramWallpaper {
         let g = 0
         let b = 0
 
-        for (let i = 0; i < this.colors.length; i++) {
+        for (let i = 0; i < this.rgb.length; i++) {
           const colorX = positions[i].x
           const colorY = positions[i].y
 
@@ -268,9 +268,9 @@ class TelegramWallpaper {
           distance = distance * distance * distance * distance
           distanceSum += distance
 
-          r += distance * this.colors[i].r / 255
-          g += distance * this.colors[i].g / 255
-          b += distance * this.colors[i].b / 255
+          r += distance * this.rgb[i].r / 255
+          g += distance * this.rgb[i].g / 255
+          b += distance * this.rgb[i].b / 255
         }
 
         pixels[offset++] = r / distanceSum * 255
@@ -319,16 +319,7 @@ class TelegramWallpaper {
       this.canvas.remove()
       this.pattern?.remove()
       this.hc.remove()
-      this.colors = []
       this.frames = []
-    }
-
-    for (let i = 0; i < colors.length; i++) {
-      const color = this.hexToRgb(colors[i])
-
-      if (color) {
-        this.colors.push(color)
-      }
     }
 
     if (!this.hc) {
@@ -354,6 +345,7 @@ class TelegramWallpaper {
       (container ?? this.container).appendChild(this.pattern)
     }
 
+    this.updateColors(colors)
     this.update()
   }
 
@@ -381,6 +373,20 @@ class TelegramWallpaper {
   updateBlur(blur: number): void {
     if (this.pattern) {
       this.pattern.style.filter = `blur(${blur}px)`
+    }
+  }
+
+  updateColors(colors: string[]): void {
+    const rgbColors = colors.map((color) => {
+      const rgb = this.hexToRgb(color)
+
+      if (rgb) {
+        return { ...rgb }
+      }
+    }) as RgbColor[]
+
+    if (rgbColors.length < 5 && rgbColors.length > 0) {
+      this.rgb = rgbColors
     }
   }
 

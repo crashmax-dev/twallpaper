@@ -53,7 +53,7 @@ const colorsList = tweakpane
 colorsList
   .on('change', ({ value }) => {
     options.colors = colors[value].colors
-    wallpaper.init(options)
+    wallpaper.updateColors(colors[value].colors)
   })
 
 tweakpane
