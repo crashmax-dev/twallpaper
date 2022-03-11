@@ -116,7 +116,7 @@ const patternsList = patternsFolder
 patternsList
   .on('change', ({ value }) => {
     options.pattern = value
-    wallpaper.init(options)
+    wallpaper.updatePattern(value)
   })
 
 tweakpane
