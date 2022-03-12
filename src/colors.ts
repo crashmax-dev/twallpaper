@@ -80,7 +80,7 @@ export const colors = [
 export function mapColors(index: number) {
   return Object
     .values(colors[index].colors)
-    .map((value, key) => {
-      return { [key]: value }
+    .map((color, key) => {
+      return { [key]: color }
     })
 }

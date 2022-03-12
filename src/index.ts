@@ -31,12 +31,12 @@ const tweakpane = new Pane({
   title: document.title
 })
 
-tweakpane.on('change', () => refreshTweakConsole())
+tweakpane.on('change', () => refreshPaneConsole())
 
-function refreshTweakConsole() {
+function refreshPaneConsole() {
   data.stringOptions = JSON.stringify(options, null, 2)
-  consoleCopy.title = 'Copy'
-  consoleOptions.refresh()
+  consoleButtonCopy.title = 'Copy'
+  consolePane.refresh()
 }
 
 tweakpane
@@ -174,30 +174,30 @@ const exportFolder = tweakpane
     expanded: false
   })
 
-const consoleOptions = exportFolder
+const consolePane = exportFolder
   .addMonitor(data, 'stringOptions', {
     interval: 0,
     lineCount: data.stringOptions.split('\n').length,
     multiline: true
   })
 
-const consoleTextarea = consoleOptions.controller_.view.valueElement
+const consoleTextarea = consolePane.controller_.view.valueElement
   .querySelector('textarea')!
 
-consoleOptions.controller_.view.labelElement
+consolePane.controller_.view.labelElement
   .remove()
 
-consoleOptions.controller_.view.valueElement.style.width = '100%'
+consolePane.controller_.view.valueElement.style.width = '100%'
 consoleTextarea.style.overflow = 'hidden'
 
-const consoleCopy = exportFolder
+const consoleButtonCopy = exportFolder
   .addButton({ title: 'Copy' })
 
-consoleCopy
+consoleButtonCopy
   .on('click', () => {
     consoleTextarea.select()
     navigator.clipboard.writeText(consoleTextarea.value)
-    consoleCopy.title = 'Copied'
+    consoleButtonCopy.title = 'Copied'
   })
 
 exportFolder
@@ -227,7 +227,7 @@ tweakpane
     patternsFolder.expanded = true
 
     generateColorsInput()
-    refreshTweakConsole()
+    refreshPaneConsole()
     tweakpane.refresh()
     wallpaper.init(options)
   })
