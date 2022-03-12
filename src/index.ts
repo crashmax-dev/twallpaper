@@ -1,9 +1,9 @@
 import { Pane } from 'tweakpane'
-import { colors } from './colors'
 import { patterns } from './patterns'
+import { colors, mapColors } from './colors'
 import TelegramWallpaper from './telegram-wallpaper'
-import type { ListApi } from 'tweakpane'
 import type { TWOptions } from './telegram-wallpaper'
+import type { ListApi, InputBindingApi } from 'tweakpane'
 
 const options: TWOptions = {
   fps: 60,
@@ -15,23 +15,29 @@ const options: TWOptions = {
   pattern: patterns[0].path
 }
 
-const container = document.querySelector('.background_wrap')!
-const stringOptions = { options: JSON.stringify(options, null, 2) }
-const copyOptions = { ...options }
+const data = {
+  container: document.querySelector('.background_wrap')!,
+  stringOptions: JSON.stringify(options, null, 2),
+  copyOptions: { ...options },
+  currentColors: mapColors(0)
+}
+
+const { container, copyOptions } = data
 const wallpaper = new TelegramWallpaper(container, options)
 
 const tweakpane = new Pane({
   document,
   expanded: true,
-  title: 'Telegram Wallpaper'
+  title: document.title
 })
 
-tweakpane
-  .on('change', () => {
-    stringOptions.options = JSON.stringify(options, null, 2)
-    consoleCopy.title = 'Copy'
-    consoleOptions.refresh()
-  })
+tweakpane.on('change', () => refreshTweakConsole())
+
+function refreshTweakConsole() {
+  data.stringOptions = JSON.stringify(options, null, 2)
+  consoleCopy.title = 'Copy'
+  consoleOptions.refresh()
+}
 
 tweakpane
   .addInput(options, 'fps', {
@@ -43,8 +49,27 @@ tweakpane
     wallpaper.updateFrametime(value!)
   })
 
+tweakpane
+  .addInput(options, 'animate')
+  .on('change', ({ value }) => {
+    wallpaper.animate(value!)
+  })
+
+tweakpane
+  .addInput(options, 'scrollAnimate')
+  .on('change', ({ value }) => {
+    wallpaper.scrollAnimate(value!)
+  })
+
 /** color */
-const colorsList = tweakpane
+const colorsInput: InputBindingApi<unknown, string>[] = []
+
+const colorsFolder = tweakpane
+  .addFolder({
+    title: 'Color'
+  })
+
+const colorsList = colorsFolder
   .addBlade({
     view: 'list',
     label: 'colors',
@@ -61,19 +86,36 @@ colorsList
   .on('change', ({ value }) => {
     options.colors = colors[value].colors
     wallpaper.updateColors(colors[value].colors)
+    data.currentColors = mapColors(value)
+    generateColorsInput()
   })
 
-tweakpane
-  .addInput(options, 'animate')
-  .on('change', ({ value }) => {
-    wallpaper.animate(value!)
+function generateColorsInput(): void {
+  const inputs = data.currentColors.map((color, key) => {
+    const input = colorsFolder
+      .addInput(color, key, {
+        label: `color ${key + 1}`
+      })
+
+    input
+      .on('change', ({ value }) => {
+        color[key] = value
+        options.colors = data.currentColors.map((color, key) => color[key])
+        wallpaper.updateColors(options.colors)
+      })
+
+    input.controller_.view.labelElement.remove()
+    input.controller_.view.valueElement.style.width = '100%'
+
+    return input
   })
 
-tweakpane
-  .addInput(options, 'scrollAnimate')
-  .on('change', ({ value }) => {
-    wallpaper.scrollAnimate(value!)
-  })
+  colorsInput.forEach((input) => input.dispose())
+  colorsInput.splice(0, colorsInput.length)
+  colorsInput.push(...inputs)
+}
+
+generateColorsInput()
 
 /** pattern */
 const patternsFolder = tweakpane
@@ -92,8 +134,8 @@ patternsFolder
     step: 0.1
   })
   .on('change', ({ value }) => {
-    options.blur = Number(value!.toFixed(1))
-    wallpaper.updateBlur(value!)
+    options.blur = Number(value!.toPrecision(1))
+    wallpaper.updateBlur(options.blur)
   })
 
 patternsFolder
@@ -103,8 +145,8 @@ patternsFolder
     step: 0.1
   })
   .on('change', ({ value }) => {
-    options.opacity = Number(value!.toFixed(1))
-    wallpaper.updateOpacity(value!)
+    options.opacity = Number(value!.toPrecision(1))
+    wallpaper.updateOpacity(options.opacity)
   })
 
 const patternsList = patternsFolder
@@ -133,9 +175,9 @@ const exportFolder = tweakpane
   })
 
 const consoleOptions = exportFolder
-  .addMonitor(stringOptions, 'options', {
+  .addMonitor(data, 'stringOptions', {
     interval: 0,
-    lineCount: stringOptions.options.split('\n').length,
+    lineCount: data.stringOptions.split('\n').length,
     multiline: true
   })
 
@@ -178,8 +220,14 @@ tweakpane
   .addButton({ title: 'Reset' })
   .on('click', () => {
     Object.assign(options, copyOptions)
+    colorsList.value = 0
+    colorsFolder.expanded = true
+    data.currentColors = mapColors(0)
     patternsList.value = patterns[0].path
     patternsFolder.expanded = true
+
+    generateColorsInput()
+    refreshTweakConsole()
     tweakpane.refresh()
     wallpaper.init(options)
   })

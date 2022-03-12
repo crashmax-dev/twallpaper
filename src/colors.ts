@@ -12,24 +12,12 @@ export const colors = [
     colors: ['#baa161', '#ddb56d', '#cea668', '#faf4d2']
   },
   {
-    text: 'Cashmere',
-    colors: ['#ffe7b2', '#e2c0ff', '#ffc3b2']
-  },
-  {
     text: 'Cavern Pink',
     colors: ['#ecd893', '#e5a1d0', '#edd594', '#d1a3e2']
   },
   {
     text: 'Cheerfulness',
     colors: ['#efd359', '#e984d8', '#ac86ed', '#40cdde']
-  },
-  {
-    text: 'Cold Purple',
-    colors: ['#6c8cd4', '#d4a7c9', '#b2b1ee']
-  },
-  {
-    text: 'Cold Purple',
-    colors: ['#527bdd', '#009fdd', '#a4dbff']
   },
   {
     text: 'France',
@@ -74,5 +62,25 @@ export const colors = [
   {
     text: 'Wild Willow',
     colors: ['#f0c07a', '#afd677', '#e4d573', '#7fc289']
+  },
+  {
+    text: 'Cashmere',
+    colors: ['#ffe7b2', '#e2c0ff', '#ffc3b2']
+  },
+  {
+    text: 'Cold Purple',
+    colors: ['#6c8cd4', '#d4a7c9', '#b2b1ee']
+  },
+  {
+    text: 'Cold Blue',
+    colors: ['#527bdd', '#009fdd', '#a4dbff']
   }
 ]
+
+export function mapColors(index: number) {
+  return Object
+    .values(colors[index].colors)
+    .map((value, key) => {
+      return { [key]: value }
+    })
+}
