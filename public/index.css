@@ -1,3 +1,9 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  user-select: none;
+}
+
 /* https://cocopon.github.io/tweakpane/theming.html */
 
 :root {
