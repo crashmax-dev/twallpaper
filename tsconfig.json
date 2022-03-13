@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
+    "module": "ESNext",
     "target": "ESNext",
     "lib": [
       "ESNext",
       "DOM"
     ],
-    "module": "ESNext",
-    "rootDir": "src",
     "strict": true,
     "skipLibCheck": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
     "strictPropertyInitialization": false
-  }
+  },
+  "include": [
+    "src"
+  ]
 }
