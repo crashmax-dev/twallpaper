@@ -1,5 +1,3 @@
-import './telegram-wallpaper.css'
-
 interface Positions {
   x: number
   y: number
@@ -13,11 +11,11 @@ interface RgbColor {
 
 type Container = HTMLElement | Element | null
 
-type InitOptions = Pick<TWOptions, 'colors' | 'opacity' | 'pattern' | 'blur'> & {
+type WallpaperInit = Pick<WallpaperOptions, 'colors' | 'opacity' | 'pattern' | 'blur'> & {
   container?: Container
 }
 
-interface TWOptions {
+export interface WallpaperOptions {
   fps?: number
   blur?: number
   pattern?: string
@@ -45,7 +43,7 @@ const positions: Positions[] = [
   { x: 0.75, y: 0.40 }
 ]
 
-class TelegramWallpaper {
+export class TelegramWallpaper {
   private width = 50
   private height = 50
   private phase = 0
@@ -82,7 +80,7 @@ class TelegramWallpaper {
       opacity,
       animate,
       scrollAnimate
-    }: TWOptions
+    }: WallpaperOptions
   ) {
     this.container = container
 
@@ -311,7 +309,7 @@ class TelegramWallpaper {
     this.raf = requestAnimationFrame(() => this.doAnimate())
   }
 
-  init({ container, pattern, opacity, colors, blur }: InitOptions): void {
+  init({ container, pattern, opacity, colors, blur }: WallpaperInit): void {
     if (!this.container || !colors) {
       return
     }
@@ -387,7 +385,7 @@ class TelegramWallpaper {
       }
     }) as RgbColor[]
 
-    if (rgbColors.length < 5 && rgbColors.length > 0) {
+    if (rgbColors.length > 1 && rgbColors.length < 5) {
       this.rgb = rgbColors
     }
   }
@@ -454,6 +452,3 @@ class TelegramWallpaper {
     }
   }
 }
-
-export type { TWOptions }
-export default TelegramWallpaper
