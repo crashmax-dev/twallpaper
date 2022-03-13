@@ -1,0 +1,62 @@
+declare type Container = HTMLElement | Element | null;
+declare type WallpaperInit = Pick<WallpaperOptions, 'colors' | 'opacity' | 'pattern' | 'blur'> & {
+    container?: Container;
+};
+export interface WallpaperOptions {
+    fps?: number;
+    blur?: number;
+    pattern?: string;
+    colors?: string[];
+    opacity?: number;
+    animate?: boolean;
+    scrollAnimate?: boolean;
+}
+export declare class TelegramWallpaper {
+    private width;
+    private height;
+    private phase;
+    private tail;
+    private tails;
+    private scrolltails;
+    private timestamp;
+    private fps;
+    private frametime;
+    private scrollDelta;
+    private scrollTicking;
+    private frames;
+    private rgb;
+    private curve;
+    private positions;
+    private phases;
+    private interval;
+    private raf;
+    private container;
+    private hc;
+    private hctx;
+    private canvas;
+    private ctx;
+    private pattern;
+    constructor(container: Container, { fps, blur, colors, pattern, opacity, animate, scrollAnimate }: WallpaperOptions);
+    private hexToRgb;
+    private getPositions;
+    private curPosition;
+    private changeTail;
+    private onWheel;
+    private drawOnWheel;
+    private drawNextPositionAnimated;
+    private getGradientImageData;
+    private drawImageData;
+    private drawGradient;
+    private doAnimate;
+    init({ container, pattern, opacity, colors, blur }: WallpaperInit): void;
+    update(): void;
+    updateFrametime(fps: number): void;
+    updateOpacity(opacity: number): void;
+    updatePattern(path: string): void;
+    updateBlur(blur: number): void;
+    updateColors(colors: string[]): void;
+    toNextPosition(): void;
+    animate(start: boolean): void;
+    scrollAnimate(start: boolean): void;
+}
+export {};
