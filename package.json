@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "parcel src/index.html --no-cache --host 127.0.0.1 --port 3000",
-    "build": "parcel build src/index.html --public-url ./",
+    "build": "parcel build src/index.html --no-source-maps --public-url ./",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix"
   },
