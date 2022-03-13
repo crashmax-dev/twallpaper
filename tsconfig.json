@@ -1,19 +1,23 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "module": "ESNext",
-    "target": "ESNext",
+    "module": "commonjs",
+    "target": "es6",
     "lib": [
-      "ESNext",
-      "DOM"
+      "es6",
+      "dom"
     ],
+    "rootDir": "src",
+    "outDir": "dist",
     "strict": true,
+    "sourceMap": true,
+    "declaration": true,
     "skipLibCheck": true,
-    "isolatedModules": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "strictPropertyInitialization": false
   },
   "include": [
-    "src"
+    "src/**/*"
   ]
 }
