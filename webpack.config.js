@@ -1,11 +1,11 @@
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const RemovePlugin = require('remove-files-webpack-plugin')
 
 module.exports = (env, args) => ({
   entry: {
-    demo: './src/demo/index.ts',
+    index: './src/demo/index.ts',
     twallpaper: './src/twallpaper.ts'
   },
   output: {
@@ -69,7 +69,18 @@ module.exports = (env, args) => ({
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    new RemovePlugin({
+      before: {
+        include: [
+          'dist'
+        ]
+      },
+      after: {
+        include: [
+          'dist/demo'
+        ]
+      }
+    }),
     new CopyPlugin({
       patterns: [
         {
