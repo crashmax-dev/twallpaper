@@ -1,12 +1,9 @@
 declare type Container = HTMLElement | Element | null;
-declare type TWallpaperInit = Pick<TWallpaperOptions, 'colors' | 'opacity' | 'pattern' | 'blur'> & {
-    container?: Container;
-};
 export interface TWallpaperOptions {
     fps?: number;
     blur?: number;
     pattern?: string;
-    colors?: string[];
+    colors: string[];
     opacity?: number;
     animate?: boolean;
     scrollAnimate?: boolean;
@@ -36,7 +33,7 @@ export declare class TWallpaper {
     private canvas;
     private ctx;
     private pattern;
-    constructor(container: Container, { fps, blur, colors, pattern, opacity, animate, scrollAnimate }: TWallpaperOptions);
+    constructor(container: Container, options: TWallpaperOptions);
     private hexToRgb;
     private getPositions;
     private curPosition;
@@ -48,7 +45,10 @@ export declare class TWallpaper {
     private drawImageData;
     private drawGradient;
     private doAnimate;
-    init({ container, pattern, opacity, colors, blur }: TWallpaperInit): void;
+    init({ fps, blur, colors, pattern, opacity, animate, container, scrollAnimate }: TWallpaperOptions & {
+        container?: Container;
+    }): void;
+    dispose(): void;
     update(): void;
     updateFrametime(fps: number): void;
     updateOpacity(opacity: number): void;
