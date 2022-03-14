@@ -11,15 +11,11 @@ interface RgbColor {
 
 type Container = HTMLElement | Element | null
 
-type TWallpaperInit = Pick<TWallpaperOptions, 'colors' | 'opacity' | 'pattern' | 'blur'> & {
-  container?: Container
-}
-
 export interface TWallpaperOptions {
   fps?: number
   blur?: number
   pattern?: string
-  colors?: string[]
+  colors: string[]
   opacity?: number
   animate?: boolean
   scrollAnimate?: boolean
@@ -72,38 +68,9 @@ export class TWallpaper {
 
   constructor(
     container: Container,
-    {
-      fps,
-      blur,
-      colors,
-      pattern,
-      opacity,
-      animate,
-      scrollAnimate
-    }: TWallpaperOptions
+    options: TWallpaperOptions
   ) {
-    this.container = container
-
-    if (this.container) {
-      this.init({
-        pattern,
-        opacity,
-        colors,
-        blur
-      })
-
-      if (typeof fps === 'number') {
-        this.updateFrametime(fps)
-      }
-
-      if (animate) {
-        this.animate(animate)
-      }
-
-      if (scrollAnimate) {
-        this.scrollAnimate(scrollAnimate)
-      }
-    }
+    this.init({ container, ...options })
   }
 
   private hexToRgb(hex: string): RgbColor | null {
@@ -309,18 +276,24 @@ export class TWallpaper {
     this.raf = requestAnimationFrame(() => this.doAnimate())
   }
 
-  init({ container, pattern, opacity, colors, blur }: TWallpaperInit): void {
-    if (!this.container || !colors) {
-      return
+  init({
+    fps,
+    blur,
+    colors,
+    pattern,
+    opacity,
+    animate,
+    container,
+    scrollAnimate
+  }: TWallpaperOptions & { container?: Container }): void {
+    this.container = container ?? this.container
+
+    if (!this.container || !colors.length) {
+      throw new Error('Container or colors do not exist!')
     }
 
-    if (this.hc) {
-      clearInterval(this.interval!)
-      this.canvas.remove()
-      this.pattern?.remove()
-      this.hc.remove()
-      this.frames = []
-    }
+    this.dispose()
+    this.updateColors(colors)
 
     if (!this.hc) {
       this.hc = document.createElement('canvas')
@@ -333,20 +306,43 @@ export class TWallpaper {
     this.canvas.classList.add('background_canvas')
     this.canvas.width = this.width
     this.canvas.height = this.height
-    this.ctx = this.canvas.getContext('2d')!;
-    (container ?? this.container).appendChild(this.canvas)
+    this.ctx = this.canvas.getContext('2d')!
+    this.container.appendChild(this.canvas)
 
     if (pattern) {
       this.pattern = document.createElement('div')
       this.pattern.classList.add('background_pattern')
       this.updateBlur(blur ?? 0)
       this.updatePattern(pattern)
-      this.updateOpacity(opacity ?? 0.3);
-      (container ?? this.container).appendChild(this.pattern)
+      this.updateOpacity(opacity ?? 0.3)
+      this.container.appendChild(this.pattern)
     }
 
-    this.updateColors(colors)
+    if (typeof fps === 'number') {
+      this.updateFrametime(fps)
+    }
+
+    if (animate) {
+      this.animate(animate)
+    }
+
+    if (scrollAnimate) {
+      this.scrollAnimate(scrollAnimate)
+    }
+
     this.update()
+  }
+
+  dispose(): void {
+    if (this.hc) {
+      clearInterval(this.interval!)
+      cancelAnimationFrame(this.raf!)
+      this.animate(false)
+      this.canvas.remove()
+      this.pattern?.remove()
+      this.hc.remove()
+      this.frames = []
+    }
   }
 
   update(): void {
@@ -387,6 +383,8 @@ export class TWallpaper {
 
     if (rgbColors.length > 1 && rgbColors.length < 5) {
       this.rgb = rgbColors
+    } else {
+      throw new Error('Use colors option. No more than 5 hex colors in array!')
     }
   }
 
