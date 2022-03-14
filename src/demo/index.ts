@@ -1,11 +1,11 @@
 import { Pane } from 'tweakpane'
 import { patterns } from './patterns'
 import { colors, mapColors } from './colors'
-import { TelegramWallpaper } from '../twallpaper'
-import type { WallpaperOptions } from '../twallpaper'
+import { TWallpaper } from '../twallpaper'
+import type { TWallpaperOptions } from '../twallpaper'
 import type { ListApi, InputBindingApi } from 'tweakpane'
 
-const options: WallpaperOptions = {
+const options: TWallpaperOptions = {
   fps: 60,
   blur: 0,
   opacity: 0.5,
@@ -23,7 +23,7 @@ const data = {
 }
 
 const { container, copyOptions } = data
-const wallpaper = new TelegramWallpaper(container, options)
+const wallpaper = new TWallpaper(container, options)
 
 const tweakpane = new Pane({
   document,

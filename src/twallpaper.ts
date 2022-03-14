@@ -11,11 +11,11 @@ interface RgbColor {
 
 type Container = HTMLElement | Element | null
 
-type WallpaperInit = Pick<WallpaperOptions, 'colors' | 'opacity' | 'pattern' | 'blur'> & {
+type TWallpaperInit = Pick<TWallpaperOptions, 'colors' | 'opacity' | 'pattern' | 'blur'> & {
   container?: Container
 }
 
-export interface WallpaperOptions {
+export interface TWallpaperOptions {
   fps?: number
   blur?: number
   pattern?: string
@@ -43,7 +43,7 @@ const positions: Positions[] = [
   { x: 0.75, y: 0.40 }
 ]
 
-export class TelegramWallpaper {
+export class TWallpaper {
   private width = 50
   private height = 50
   private phase = 0
@@ -80,7 +80,7 @@ export class TelegramWallpaper {
       opacity,
       animate,
       scrollAnimate
-    }: WallpaperOptions
+    }: TWallpaperOptions
   ) {
     this.container = container
 
@@ -309,7 +309,7 @@ export class TelegramWallpaper {
     this.raf = requestAnimationFrame(() => this.doAnimate())
   }
 
-  init({ container, pattern, opacity, colors, blur }: WallpaperInit): void {
+  init({ container, pattern, opacity, colors, blur }: TWallpaperInit): void {
     if (!this.container || !colors) {
       return
     }

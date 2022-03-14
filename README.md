@@ -25,3 +25,27 @@
     <img alt="npm bundle size" src="https://badgen.net/bundlephobia/minzip/twallpaper">
   </a>
 </p>
+
+## Features
+
+ - 🔥 Zero [dependencies](https://www.npmjs.com/package/twallpaper?activeTab=dependents)
+ - 📜 Supports [TypeScript](https://www.typescriptlang.org) type definition
+
+## Installation
+
+```sh
+# with npm:
+npm install twallpaper
+
+# or yarn:
+yarn add twallpaper
+```
+
+## Usage
+
+```js
+import { TWallpaper } from 'twallpaper'
+
+const container = document.querySelector('.wallpaper-container')
+const wallpaper = new TWallpaper(container, { /* options */ })
+```
