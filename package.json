@@ -15,6 +15,14 @@
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crashmax-dev/twallpaper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/crashmax-dev/twallpaper/issues"
+  },
+  "homepage": "https://crashmax-dev.github.io/twallpaper/",
   "keywords": [
     "multicolor",
     "gradient",
