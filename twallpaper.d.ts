@@ -1,8 +1,8 @@
 declare type Container = HTMLElement | Element | null;
-declare type WallpaperInit = Pick<WallpaperOptions, 'colors' | 'opacity' | 'pattern' | 'blur'> & {
+declare type TWallpaperInit = Pick<TWallpaperOptions, 'colors' | 'opacity' | 'pattern' | 'blur'> & {
     container?: Container;
 };
-export interface WallpaperOptions {
+export interface TWallpaperOptions {
     fps?: number;
     blur?: number;
     pattern?: string;
@@ -11,7 +11,7 @@ export interface WallpaperOptions {
     animate?: boolean;
     scrollAnimate?: boolean;
 }
-export declare class TelegramWallpaper {
+export declare class TWallpaper {
     private width;
     private height;
     private phase;
@@ -36,7 +36,7 @@ export declare class TelegramWallpaper {
     private canvas;
     private ctx;
     private pattern;
-    constructor(container: Container, { fps, blur, colors, pattern, opacity, animate, scrollAnimate }: WallpaperOptions);
+    constructor(container: Container, { fps, blur, colors, pattern, opacity, animate, scrollAnimate }: TWallpaperOptions);
     private hexToRgb;
     private getPositions;
     private curPosition;
@@ -48,7 +48,7 @@ export declare class TelegramWallpaper {
     private drawImageData;
     private drawGradient;
     private doAnimate;
-    init({ container, pattern, opacity, colors, blur }: WallpaperInit): void;
+    init({ container, pattern, opacity, colors, blur }: TWallpaperInit): void;
     update(): void;
     updateFrametime(fps: number): void;
     updateOpacity(opacity: number): void;
