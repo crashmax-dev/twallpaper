@@ -2,6 +2,7 @@ declare type Container = HTMLElement | Element | null;
 export interface TWallpaperOptions {
     fps?: number;
     blur?: number;
+    tails?: number;
     pattern?: string;
     colors: string[];
     opacity?: number;
@@ -14,7 +15,7 @@ export declare class TWallpaper {
     private phase;
     private tail;
     private tails;
-    private scrolltails;
+    private scrollTails;
     private timestamp;
     private fps;
     private frametime;
@@ -45,18 +46,19 @@ export declare class TWallpaper {
     private drawImageData;
     private drawGradient;
     private doAnimate;
-    init({ fps, blur, colors, pattern, opacity, animate, container, scrollAnimate }: TWallpaperOptions & {
+    init({ fps, blur, tails, colors, pattern, opacity, animate, container, scrollAnimate }: TWallpaperOptions & {
         container?: Container;
     }): void;
     dispose(): void;
     update(): void;
+    updateTails(tails?: number): void;
     updateFrametime(fps: number): void;
-    updateOpacity(opacity: number): void;
+    updateOpacity(opacity?: number): void;
     updatePattern(path: string): void;
-    updateBlur(blur: number): void;
+    updateBlur(blur?: number): void;
     updateColors(colors: string[]): void;
     toNextPosition(): void;
-    animate(start: boolean): void;
-    scrollAnimate(start: boolean): void;
+    animate(start?: boolean): void;
+    scrollAnimate(start?: boolean): void;
 }
 export {};
