@@ -8,7 +8,8 @@ import type { ListApi, InputBindingApi } from 'tweakpane'
 const options: TWallpaperOptions = {
   fps: 60,
   blur: 0,
-  opacity: 0.5,
+  tails: 90,
+  opacity: 0.3,
   animate: true,
   scrollAnimate: true,
   colors: colors[0].colors,
@@ -50,20 +51,32 @@ tweakpane
   })
 
 tweakpane
+  .addInput(options, 'tails', {
+    min: 5,
+    max: 90,
+    step: 1
+  })
+  .on('change', ({ value }) => {
+    wallpaper.updateTails(value)
+  })
+
+tweakpane
   .addInput(options, 'animate')
   .on('change', ({ value }) => {
-    wallpaper.animate(value!)
+    wallpaper.animate(value)
   })
 
 tweakpane
   .addInput(options, 'scrollAnimate')
   .on('change', ({ value }) => {
-    wallpaper.scrollAnimate(value!)
+    wallpaper.scrollAnimate(value)
   })
 
 tweakpane
   .addButton({ title: 'Next position' })
-  .on('click', () => wallpaper.toNextPosition())
+  .on('click', () => {
+    wallpaper.toNextPosition()
+  })
 
 /** color */
 const colorsInput: InputBindingApi<unknown, string>[] = []

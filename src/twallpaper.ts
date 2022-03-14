@@ -14,6 +14,7 @@ type Container = HTMLElement | Element | null
 export interface TWallpaperOptions {
   fps?: number
   blur?: number
+  tails?: number
   pattern?: string
   colors: string[]
   opacity?: number
@@ -284,6 +285,7 @@ export class TWallpaper {
   init({
     fps,
     blur,
+    tails,
     colors,
     pattern,
     opacity,
@@ -298,7 +300,6 @@ export class TWallpaper {
     }
 
     this.dispose()
-    this.updateColors(colors)
 
     if (!this.hc) {
       this.hc = document.createElement('canvas')
@@ -317,9 +318,9 @@ export class TWallpaper {
     if (pattern) {
       this.pattern = document.createElement('div')
       this.pattern.classList.add('background_pattern')
-      this.updateBlur(blur ?? 0)
+      this.updateBlur(blur)
       this.updatePattern(pattern)
-      this.updateOpacity(opacity ?? 0.3)
+      this.updateOpacity(opacity)
       this.container.appendChild(this.pattern)
     }
 
@@ -327,14 +328,10 @@ export class TWallpaper {
       this.updateFrametime(fps)
     }
 
-    if (animate) {
-      this.animate(animate)
-    }
-
-    if (scrollAnimate) {
-      this.scrollAnimate(scrollAnimate)
-    }
-
+    this.animate(animate)
+    this.updateTails(tails)
+    this.updateColors(colors)
+    this.scrollAnimate(scrollAnimate)
     this.update()
   }
 
@@ -356,11 +353,17 @@ export class TWallpaper {
     this.drawGradient(pos)
   }
 
+  updateTails(tails = 90): void {
+    if (tails > 0) {
+      this.tails = tails
+    }
+  }
+
   updateFrametime(fps: number): void {
     this.frametime = 1000 / fps
   }
 
-  updateOpacity(opacity: number): void {
+  updateOpacity(opacity = 0.3): void {
     if (this.pattern) {
       this.pattern.style.opacity = opacity.toString()
     }
@@ -372,7 +375,7 @@ export class TWallpaper {
     }
   }
 
-  updateBlur(blur: number): void {
+  updateBlur(blur = 0): void {
     if (this.pattern) {
       this.pattern.style.filter = `blur(${blur}px)`
     }
@@ -396,7 +399,7 @@ export class TWallpaper {
 
   toNextPosition(): void {
     clearInterval(this.interval!)
-    this.animate(false)
+    this.animate()
     this.frames = []
 
     const prev_pos = this.getPositions(this.phase % this.phases)
@@ -441,7 +444,11 @@ export class TWallpaper {
     }, this.frametime)
   }
 
-  animate(start: boolean): void {
+  animate(start = false): void {
+    if (this.interval) {
+      return
+    }
+
     if (!start && this.raf) {
       return cancelAnimationFrame(this.raf)
     }
@@ -449,7 +456,7 @@ export class TWallpaper {
     this.doAnimate()
   }
 
-  scrollAnimate(start: boolean): void {
+  scrollAnimate(start = false): void {
     if (start) {
       document.onwheel = (event) => this.onWheel(event)
     } else {
