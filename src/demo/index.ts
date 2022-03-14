@@ -210,7 +210,7 @@ exportFolder
 
     const link = document.createElement('a')
     link.href = URL.createObjectURL(blob)
-    link.download = 'telegram-wallpaper-options.json'
+    link.download = 'twallpaper-options.json'
     link.click()
     link.remove()
   })

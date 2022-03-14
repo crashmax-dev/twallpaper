@@ -1,13 +1,29 @@
 {
-  "name": "telegram-wallpaper",
-  "description": "telegram-wallpaper",
-  "version": "1.0.0",
+  "name": "twallpaper",
+  "description": "🌈 Multicolor gradient wallpaper created algorithmically and shimmers smoothly.",
+  "version": "1.0.0-rc.0",
+  "main": "dist/twallpaper.js",
+  "types": "dist/twallpaper.d.ts",
+  "files": [
+    "dist/twallpaper.css",
+    "dist/twallpaper.js",
+    "dist/twallpaper.d.ts"
+  ],
   "scripts": {
     "dev": "webpack serve --mode=development",
     "build": "webpack --mode=production",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix"
   },
+  "keywords": [
+    "multicolor",
+    "gradient",
+    "wallpaper",
+    "background",
+    "animation",
+    "telegram",
+    "canvas"
+  ],
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",
