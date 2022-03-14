@@ -61,6 +61,10 @@ tweakpane
     wallpaper.scrollAnimate(value!)
   })
 
+tweakpane
+  .addButton({ title: 'Next position' })
+  .on('click', () => wallpaper.toNextPosition())
+
 /** color */
 const colorsInput: InputBindingApi<unknown, string>[] = []
 

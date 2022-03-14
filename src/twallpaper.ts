@@ -24,7 +24,7 @@ export interface TWallpaperOptions {
 const curve = [
   0, 0.25, 0.50, 0.75, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5, 6, 7, 8, 9, 10, 11, 12,
   13, 14, 15, 16, 17, 18, 18.3, 18.6, 18.9, 19.2, 19.5, 19.8, 20.1, 20.4, 20.7,
-  21.0, 21.3, 21.6, 21.9, 22.2, 22.5, 22.8, 23.1, 23.4, 23.7, 24.0, 24.3, 24.6,
+  21, 21.3, 21.6, 21.9, 22.2, 22.5, 22.8, 23.1, 23.4, 23.7, 24.0, 24.3, 24.6,
   24.9, 25.2, 25.5, 25.8, 26.1, 26.3, 26.4, 26.5, 26.6, 26.7, 26.8, 26.9, 27
 ]
 
@@ -45,7 +45,7 @@ export class TWallpaper {
   private phase = 0
   private tail = 0
   private tails = 90
-  private scrolltails = 50
+  private scrollTails = 50
   private timestamp = 100
   private fps = 15
   private frametime = 1000 / this.fps
@@ -161,6 +161,10 @@ export class TWallpaper {
   }
 
   private onWheel(event: WheelEvent): void {
+    if (this.interval) {
+      return
+    }
+
     this.scrollDelta += event.deltaY
 
     if (!this.scrollTicking) {
@@ -170,8 +174,8 @@ export class TWallpaper {
   }
 
   private drawOnWheel(): void {
-    let diff = this.scrollDelta / this.scrolltails
-    this.scrollDelta %= this.scrolltails
+    let diff = this.scrollDelta / this.scrollTails
+    this.scrollDelta %= this.scrollTails
 
     diff = diff > 0 ?
       Math.floor(diff) :
@@ -192,6 +196,7 @@ export class TWallpaper {
       this.drawImageData(id)
     } else {
       clearInterval(this.interval!)
+      this.interval = null
     }
   }
 
@@ -336,8 +341,9 @@ export class TWallpaper {
   dispose(): void {
     if (this.hc) {
       clearInterval(this.interval!)
+      this.interval = null
       cancelAnimationFrame(this.raf!)
-      this.animate(false)
+      this.raf = null
       this.canvas.remove()
       this.pattern?.remove()
       this.hc.remove()
@@ -390,6 +396,7 @@ export class TWallpaper {
 
   toNextPosition(): void {
     clearInterval(this.interval!)
+    this.animate(false)
     this.frames = []
 
     const prev_pos = this.getPositions(this.phase % this.phases)
@@ -406,7 +413,7 @@ export class TWallpaper {
     const d4x = (pos[3].x - prev_pos[3].x) / h
     const d4y = (pos[3].y - prev_pos[3].y) / h
 
-    for (let frame = 0; frame < 60; frame++) {
+    for (let frame = 0; frame < this.curve.length; frame++) {
       const cur_pos: Positions[] = [
         {
           x: prev_pos[0].x + d1x * this.curve[frame],
@@ -431,7 +438,7 @@ export class TWallpaper {
 
     this.interval = setInterval(() => {
       this.drawNextPositionAnimated()
-    }, 1000 / 30)
+    }, this.frametime)
   }
 
   animate(start: boolean): void {
