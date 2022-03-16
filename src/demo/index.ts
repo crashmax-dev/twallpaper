@@ -47,7 +47,7 @@ tweakpane
     step: 1
   })
   .on('change', ({ value }) => {
-    wallpaper.updateFrametime(value!)
+    wallpaper.updateFrametime(value)
   })
 
 tweakpane
@@ -60,7 +60,7 @@ tweakpane
     wallpaper.updateTails(value)
   })
 
-tweakpane
+const toggleAnimate = tweakpane
   .addInput(options, 'animate')
   .on('change', ({ value }) => {
     wallpaper.animate(value)
@@ -75,7 +75,13 @@ tweakpane
 tweakpane
   .addButton({ title: 'Next position' })
   .on('click', () => {
-    wallpaper.toNextPosition()
+    options.animate = false
+    toggleAnimate.disabled = true
+    toggleAnimate.refresh()
+    wallpaper.animate(false)
+    wallpaper.toNextPosition(() => {
+      toggleAnimate.disabled = false
+    })
   })
 
 /** color */

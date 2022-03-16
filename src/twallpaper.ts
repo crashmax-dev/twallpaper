@@ -45,11 +45,10 @@ export class TWallpaper {
   private height = 50
   private phase = 0
   private tail = 0
-  private tails = 90
+  private tails: number // 90
   private scrollTails = 50
-  private timestamp = 100
-  private fps = 15
-  private frametime = 1000 / this.fps
+  private timestamp: number
+  private frametime: number // 1000 / 15
   private scrollDelta = 0
   private scrollTicking = false
   private frames: ImageData[] = []
@@ -191,13 +190,17 @@ export class TWallpaper {
     this.scrollTicking = false
   }
 
-  private drawNextPositionAnimated(): void {
+  private drawNextPositionAnimated(callback?: () => void): void {
     if (this.frames.length > 0) {
       const id = this.frames.shift()!
       this.drawImageData(id)
     } else {
       clearInterval(this.interval!)
       this.interval = null
+
+      if (callback) {
+        callback()
+      }
     }
   }
 
@@ -265,12 +268,15 @@ export class TWallpaper {
     this.drawImageData(this.getGradientImageData(pos))
   }
 
+  private requestAnimate(): void {
+    this.raf = requestAnimationFrame(() => this.doAnimate())
+  }
+
   private doAnimate(): void {
     const now = +Date.now()
 
     if (!document.hasFocus() || now - this.timestamp < this.frametime) {
-      this.raf = requestAnimationFrame(() => this.doAnimate())
-      return
+      return this.requestAnimate()
     }
 
     this.timestamp = now
@@ -278,8 +284,7 @@ export class TWallpaper {
 
     const cur_pos = this.curPosition(this.phase, this.tail)
     this.drawGradient(cur_pos)
-
-    this.raf = requestAnimationFrame(() => this.doAnimate())
+    this.requestAnimate()
   }
 
   init({
@@ -296,7 +301,7 @@ export class TWallpaper {
     this.container = container ?? this.container
 
     if (!this.container || !colors.length) {
-      throw new Error('Container or colors do not exist!')
+      throw new Error('Container or colors do not exist')
     }
 
     this.dispose()
@@ -324,13 +329,10 @@ export class TWallpaper {
       this.container.appendChild(this.pattern)
     }
 
-    if (typeof fps === 'number') {
-      this.updateFrametime(fps)
-    }
-
     this.animate(animate)
     this.updateTails(tails)
     this.updateColors(colors)
+    this.updateFrametime(fps)
     this.scrollAnimate(scrollAnimate)
     this.update()
   }
@@ -359,7 +361,7 @@ export class TWallpaper {
     }
   }
 
-  updateFrametime(fps: number): void {
+  updateFrametime(fps = 30): void {
     this.frametime = 1000 / fps
   }
 
@@ -382,24 +384,26 @@ export class TWallpaper {
   }
 
   updateColors(colors: string[]): void {
-    const rgbColors = colors.map((color) => {
+    const rgbColors = colors.reduce<RgbColor[]>((acc, color) => {
       const rgb = this.hexToRgb(color)
 
       if (rgb) {
-        return { ...rgb }
+        acc.push(rgb)
       }
-    }) as RgbColor[]
+
+      return acc
+    }, [])
 
     if (rgbColors.length > 1 && rgbColors.length < 5) {
       this.rgb = rgbColors
     } else {
-      throw new Error('Use colors option. No more than 5 hex colors in array!')
+      throw new Error('Required from 1-4 hex colors')
     }
   }
 
-  toNextPosition(): void {
+  toNextPosition(callback?: () => void): void {
     clearInterval(this.interval!)
-    this.animate()
+    this.animate(false)
     this.frames = []
 
     const prev_pos = this.getPositions(this.phase % this.phases)
@@ -440,15 +444,11 @@ export class TWallpaper {
     }
 
     this.interval = setInterval(() => {
-      this.drawNextPositionAnimated()
+      this.drawNextPositionAnimated(callback)
     }, this.frametime)
   }
 
-  animate(start = false): void {
-    if (this.interval) {
-      return
-    }
-
+  animate(start = true): void {
     if (!start && this.raf) {
       return cancelAnimationFrame(this.raf)
     }
@@ -456,7 +456,7 @@ export class TWallpaper {
     this.doAnimate()
   }
 
-  scrollAnimate(start = false): void {
+  scrollAnimate(start = true): void {
     if (start) {
       document.onwheel = (event) => this.onWheel(event)
     } else {
