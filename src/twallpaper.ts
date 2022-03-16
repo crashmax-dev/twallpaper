@@ -275,7 +275,7 @@ export class TWallpaper {
   private doAnimate(): void {
     const now = +Date.now()
 
-    if (!document.hasFocus() || now - this.timestamp < this.frametime) {
+    if (now - this.timestamp < this.frametime) {
       return this.requestAnimate()
     }
 
