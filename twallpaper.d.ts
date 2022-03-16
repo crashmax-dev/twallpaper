@@ -17,7 +17,6 @@ export declare class TWallpaper {
     private tails;
     private scrollTails;
     private timestamp;
-    private fps;
     private frametime;
     private scrollDelta;
     private scrollTicking;
@@ -45,6 +44,7 @@ export declare class TWallpaper {
     private getGradientImageData;
     private drawImageData;
     private drawGradient;
+    private requestAnimate;
     private doAnimate;
     init({ fps, blur, tails, colors, pattern, opacity, animate, container, scrollAnimate }: TWallpaperOptions & {
         container?: Container;
@@ -52,12 +52,12 @@ export declare class TWallpaper {
     dispose(): void;
     update(): void;
     updateTails(tails?: number): void;
-    updateFrametime(fps: number): void;
+    updateFrametime(fps?: number): void;
     updateOpacity(opacity?: number): void;
     updatePattern(path: string): void;
     updateBlur(blur?: number): void;
     updateColors(colors: string[]): void;
-    toNextPosition(): void;
+    toNextPosition(callback?: () => void): void;
     animate(start?: boolean): void;
     scrollAnimate(start?: boolean): void;
 }
