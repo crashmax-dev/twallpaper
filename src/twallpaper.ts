@@ -456,7 +456,7 @@ export class TWallpaper {
     this.doAnimate()
   }
 
-  scrollAnimate(start = true): void {
+  scrollAnimate(start = false): void {
     if (start) {
       document.onwheel = (event) => this.onWheel(event)
     } else {

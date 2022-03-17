@@ -44,7 +44,7 @@
   {
     "Key": "scrollAnimate",
     "Type": "<code>boolean</code>",
-    "Default": "<code>true</code>",
+    "Default": "<code>false</code>",
     "Description": "The animation is tied to scrolling with the mouse wheel."
   }
 ]
