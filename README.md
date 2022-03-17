@@ -1,7 +1,7 @@
 <br>
 <p align="center">
-  <a href="https://crashmax-dev.github.io/twallpaper/">
-    <img height="240" src="https://crashmax-dev.github.io/twallpaper/utya.gif"/>
+  <a href="https://twallpaper.js.org">
+    <img height="220" src="https://twallpaper.js.org/utya.gif"/>
     <br/>
     <h1 align="center">TWallpaper</h1>
   </a>
