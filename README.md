@@ -1,7 +1,7 @@
 <br>
 <p align="center">
   <a href="https://twallpaper.js.org">
-    <img height="220" src="https://twallpaper.js.org/utya.gif"/>
+    <img height="220" src="https://twallpaper.js.org/utya.webp"/>
     <br/>
     <h1 align="center">TWallpaper</h1>
   </a>
