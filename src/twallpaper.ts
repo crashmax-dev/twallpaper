@@ -314,7 +314,7 @@ export class TWallpaper {
     }
 
     this.canvas = document.createElement('canvas')
-    this.canvas.classList.add('tw_canvas')
+    this.canvas.classList.add('tw-canvas')
     this.canvas.width = this.width
     this.canvas.height = this.height
     this.ctx = this.canvas.getContext('2d')!
@@ -322,7 +322,7 @@ export class TWallpaper {
 
     if (pattern) {
       this.pattern = document.createElement('div')
-      this.pattern.classList.add('tw_pattern')
+      this.pattern.classList.add('tw-pattern')
       this.updateBlur(blur)
       this.updatePattern(pattern)
       this.updateOpacity(opacity)
