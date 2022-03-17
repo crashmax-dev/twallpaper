@@ -59,7 +59,7 @@ You can play with `twallpaper` on [twallpaper.js.org](https://twallpaper.js.org)
 ```js
 import { TWallpaper } from 'twallpaper'
 
-const container = document.querySelector('.wallpaper-container')
+const container = document.querySelector('.tw-wrap')
 const wallpaper = new TWallpaper(container, { /* options */ })
 ```
 

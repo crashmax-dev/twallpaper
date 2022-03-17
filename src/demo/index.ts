@@ -17,7 +17,7 @@ const options: TWallpaperOptions = {
 }
 
 const data = {
-  container: document.querySelector('.background_wrap')!,
+  container: document.getElementById('app')!,
   stringOptions: JSON.stringify(options, null, 2),
   copyOptions: { ...options },
   currentColors: mapColors(0)
