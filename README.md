@@ -78,5 +78,5 @@ const wallpaper = new TWallpaper(container, { /* options */ })
 <tr ><td class="key-td td_text">fps</td><td class="type-td td_text"><code>number</code></td><td class="default-td td_text"><code>30</code></td><td class="description-td td_text">Frame time is just the time between frames.</td></tr>
 <tr ><td class="key-td td_text">tails</td><td class="type-td td_text"><code>number</code></td><td class="default-td td_text"><code>90</code></td><td class="description-td td_text">Tail speed animation.</td></tr>
 <tr ><td class="key-td td_text">animate</td><td class="type-td td_text"><code>boolean</code></td><td class="default-td td_text"><code>true</code></td><td class="description-td td_text">The main parameter responsible for the operation of the animation.</td></tr>
-<tr ><td class="key-td td_text">scrollAnimate</td><td class="type-td td_text"><code>boolean</code></td><td class="default-td td_text"><code>true</code></td><td class="description-td td_text">The animation is tied to scrolling with the mouse wheel.</td></tr></tbody></table>
+<tr ><td class="key-td td_text">scrollAnimate</td><td class="type-td td_text"><code>boolean</code></td><td class="default-td td_text"><code>false</code></td><td class="description-td td_text">The animation is tied to scrolling with the mouse wheel.</td></tr></tbody></table>
 <!-- MARKDOWN-AUTO-DOCS:END -->
