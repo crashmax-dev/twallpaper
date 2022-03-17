@@ -59,9 +59,24 @@ You can play with `twallpaper` on [twallpaper.js.org](https://twallpaper.js.org)
 ## Usage
 
 <!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./.github/markdown-autodocs/usage.js) -->
+<!-- The below code snippet is automatically added from ./.github/markdown-autodocs/usage.js -->
+```js
+import { TWallpaper } from 'twallpaper'
+
+const container = document.querySelector('.tw-wrap')
+const wallpaper = new TWallpaper(container, { /* options */ })
+```
 <!-- MARKDOWN-AUTO-DOCS:END -->
 
 ## Options
 
 <!-- MARKDOWN-AUTO-DOCS:START (JSON_TO_HTML_TABLE:src=./.github/markdown-autodocs/options.json) -->
+<table class="JSON-TO-HTML-TABLE"><thead><tr><th class="key-th">Key</th><th class="type-th">Type</th><th class="default-th">Default</th><th class="description-th">Description</th></tr></thead><tbody ><tr ><td class="key-td td_text">colors</td><td class="type-td td_text"><code>string[]</code></td><td class="default-td td_num"></td><td class="description-td td_text">Colors for gradient, use 1-4 full hex codes.</td></tr>
+<tr ><td class="key-td td_text">pattern</td><td class="type-td td_text"><code>string</code></td><td class="default-td td_num"></td><td class="description-td td_text">Wallpaper image. Use the standard <a href='https://github.com/crashmax-dev/twallpaper/tree/master/public/patterns'>pattern</a> or create your own.</td></tr>
+<tr ><td class="key-td td_text">blur</td><td class="type-td td_text"><code>number</code></td><td class="default-td td_text"><code>0</code></td><td class="description-td td_text">Required wallpaper image (pattern). The property is applied using a css rule.</td></tr>
+<tr ><td class="key-td td_text">opacity</td><td class="type-td td_text"><code>number</code></td><td class="default-td td_text"><code>0.3</code></td><td class="description-td td_text">Required wallpaper image (pattern). The property is applied using a css rule.</td></tr>
+<tr ><td class="key-td td_text">fps</td><td class="type-td td_text"><code>number</code></td><td class="default-td td_text"><code>30</code></td><td class="description-td td_text">Frame time is just the time between frames.</td></tr>
+<tr ><td class="key-td td_text">tails</td><td class="type-td td_text"><code>number</code></td><td class="default-td td_text"><code>90</code></td><td class="description-td td_text">Tail speed animation.</td></tr>
+<tr ><td class="key-td td_text">animate</td><td class="type-td td_text"><code>boolean</code></td><td class="default-td td_text"><code>true</code></td><td class="description-td td_text">The main parameter responsible for the operation of the animation.</td></tr>
+<tr ><td class="key-td td_text">scrollAnimate</td><td class="type-td td_text"><code>boolean</code></td><td class="default-td td_text"><code>true</code></td><td class="description-td td_text">The animation is tied to scrolling with the mouse wheel.</td></tr></tbody></table>
 <!-- MARKDOWN-AUTO-DOCS:END -->
