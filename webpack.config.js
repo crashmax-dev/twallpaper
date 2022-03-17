@@ -2,6 +2,7 @@ const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const RemovePlugin = require('remove-files-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 module.exports = (env, args) => ({
   entry: {
@@ -63,6 +64,7 @@ module.exports = (env, args) => ({
   },
   optimization: {
     minimizer: [
+      new CssMinimizerPlugin(),
       new TerserPlugin({
         extractComments: false
       })

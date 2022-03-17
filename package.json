@@ -39,6 +39,7 @@
     "@tweakpane/core": "^1.0.8",
     "babel-loader": "^8.2.3",
     "copy-webpack-plugin": "^10.2.4",
+    "css-minimizer-webpack-plugin": "^3.4.1",
     "remove-files-webpack-plugin": "^1.5.0",
     "terser-webpack-plugin": "^5.3.1",
     "ts-loader": "^9.2.8",
