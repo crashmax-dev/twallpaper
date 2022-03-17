@@ -47,20 +47,21 @@ yarn add twallpaper
 
 You can play with `twallpaper` on [twallpaper.js.org](https://twallpaper.js.org)
 
- - Vanilla\
-  [![Edit twallpaper-typescript-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/twallpaper-typescript-example-1hwedw?fontsize=14&hidenavigation=1&theme=dark)
-
- - React\
-  [![Edit twallpaper-react-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/twallpaper-react-example-sl2sy0?fontsize=14&hidenavigation=1&theme=dark)
-
+<p align="left">
+  <a href="https://codesandbox.io/s/twallpaper-typescript-example-1hwedw?fontsize=14&hidenavigation=1&theme=dark">
+    <img alt="Edit twallpaper-typescript-example" src="https://img.shields.io/badge/TypeScript-informational?label=CodeSandbox&style=flat&logo=CodeSandbox&logoColor=ffffff&color=2286f7">
+  </a>
+  <a href="https://codesandbox.io/s/twallpaper-react-example-sl2sy0?fontsize=14&hidenavigation=1&theme=dark">
+    <img alt="Edit twallpaper-react-example" src="https://img.shields.io/badge/React-informational?label=CodeSandbox&style=flat&logo=CodeSandbox&logoColor=ffffff&color=2286f7">
+  </a>
+</p>
 
 ## Usage
 
-```js
-import { TWallpaper } from 'twallpaper'
-
-const container = document.querySelector('.tw-wrap')
-const wallpaper = new TWallpaper(container, { /* options */ })
-```
+<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./.github/markdown-autodocs/usage.js) -->
+<!-- MARKDOWN-AUTO-DOCS:END -->
 
 ## Options
+
+<!-- MARKDOWN-AUTO-DOCS:START (JSON_TO_HTML_TABLE:src=./.github/markdown-autodocs/options.json) -->
+<!-- MARKDOWN-AUTO-DOCS:END -->

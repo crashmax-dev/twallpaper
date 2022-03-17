@@ -1,0 +1,50 @@
+[
+  {
+    "Key": "colors",
+    "Type": "<code>string[]</code>",
+    "Default": "",
+    "Description": "Colors for gradient, use 1-4 full hex codes."
+  },
+  {
+    "Key": "pattern",
+    "Type": "<code>string</code>",
+    "Default": "",
+    "Description": "Wallpaper image. Use the standard <a href='https://github.com/crashmax-dev/twallpaper/tree/master/public/patterns'>pattern</a> or create your own."
+  },
+  {
+    "Key": "blur",
+    "Type": "<code>number</code>",
+    "Default": "<code>0</code>",
+    "Description": "Required wallpaper image (pattern). The property is applied using a css rule."
+  },
+  {
+    "Key": "opacity",
+    "Type": "<code>number</code>",
+    "Default": "<code>0.3</code>",
+    "Description": "Required wallpaper image (pattern). The property is applied using a css rule."
+  },
+  {
+    "Key": "fps",
+    "Type": "<code>number</code>",
+    "Default": "<code>30</code>",
+    "Description": "Frame time is just the time between frames."
+  },
+  {
+    "Key": "tails",
+    "Type": "<code>number</code>",
+    "Default": "<code>90</code>",
+    "Description": "Tail speed animation."
+  },
+  {
+    "Key": "animate",
+    "Type": "<code>boolean</code>",
+    "Default": "<code>true</code>",
+    "Description": "The main parameter responsible for the operation of the animation."
+  },
+  {
+    "Key": "scrollAnimate",
+    "Type": "<code>boolean</code>",
+    "Default": "<code>true</code>",
+    "Description": "The animation is tied to scrolling with the mouse wheel."
+  }
+]
