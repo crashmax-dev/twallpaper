@@ -1,13 +1,19 @@
 declare type Container = HTMLElement | Element | null;
+export interface PatternOptions {
+    image?: string;
+    dark?: boolean;
+    background?: string;
+    blur?: number;
+    size?: number;
+    opacity?: number;
+}
 export interface TWallpaperOptions {
     fps?: number;
-    blur?: number;
     tails?: number;
-    pattern?: string;
     colors: string[];
-    opacity?: number;
     animate?: boolean;
     scrollAnimate?: boolean;
+    pattern?: PatternOptions;
 }
 export declare class TWallpaper {
     private width;
@@ -46,16 +52,14 @@ export declare class TWallpaper {
     private drawGradient;
     private requestAnimate;
     private doAnimate;
-    init({ fps, blur, tails, colors, pattern, opacity, animate, container, scrollAnimate }: TWallpaperOptions & {
+    private update;
+    init({ fps, tails, colors, pattern, animate, container, scrollAnimate }: TWallpaperOptions & {
         container?: Container;
     }): void;
     dispose(): void;
-    update(): void;
     updateTails(tails?: number): void;
     updateFrametime(fps?: number): void;
-    updateOpacity(opacity?: number): void;
-    updatePattern(path: string): void;
-    updateBlur(blur?: number): void;
+    updatePattern(pattern: PatternOptions): void;
     updateColors(colors: string[]): void;
     toNextPosition(callback?: () => void): void;
     animate(start?: boolean): void;
