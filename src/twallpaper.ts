@@ -11,15 +11,22 @@ interface RgbColor {
 
 type Container = HTMLElement | Element | null
 
+export interface PatternOptions {
+  image?: string
+  dark?: boolean
+  background?: string
+  blur?: number
+  size?: number
+  opacity?: number
+}
+
 export interface TWallpaperOptions {
   fps?: number
-  blur?: number
   tails?: number
-  pattern?: string
   colors: string[]
-  opacity?: number
   animate?: boolean
   scrollAnimate?: boolean
+  pattern?: PatternOptions
 }
 
 const curve = [
@@ -287,13 +294,16 @@ export class TWallpaper {
     this.requestAnimate()
   }
 
+  private update(): void {
+    const pos = this.curPosition(this.phase, this.tail)
+    this.drawGradient(pos)
+  }
+
   init({
     fps,
-    blur,
     tails,
     colors,
     pattern,
-    opacity,
     animate,
     container,
     scrollAnimate
@@ -323,9 +333,7 @@ export class TWallpaper {
     if (pattern) {
       this.pattern = document.createElement('div')
       this.pattern.classList.add('tw-pattern')
-      this.updateBlur(blur)
       this.updatePattern(pattern)
-      this.updateOpacity(opacity)
       this.container.appendChild(this.pattern)
     }
 
@@ -350,11 +358,6 @@ export class TWallpaper {
     }
   }
 
-  update(): void {
-    const pos = this.curPosition(this.phase, this.tail)
-    this.drawGradient(pos)
-  }
-
   updateTails(tails = 90): void {
     if (tails > 0) {
       this.tails = tails
@@ -365,21 +368,22 @@ export class TWallpaper {
     this.frametime = 1000 / fps
   }
 
-  updateOpacity(opacity = 0.3): void {
-    if (this.pattern) {
-      this.pattern.style.opacity = opacity.toString()
-    }
-  }
+  updatePattern(pattern: PatternOptions): void {
+    if (this.pattern && this.container) {
+      const { dark, blur, size, image, opacity, background } = pattern
+      const { style } = this.container as HTMLDivElement
 
-  updatePattern(path: string): void {
-    if (this.pattern) {
-      this.pattern.style.backgroundImage = `url(${path})`
-    }
-  }
+      style.setProperty('--tw-pattern-size', typeof size === 'number' ? `${size}px` : 'auto')
+      style.setProperty('--tw-pattern-opacity', `${opacity ?? 0.5}`)
+      style.setProperty('--tw-pattern-image', `url(${image!})`)
+      style.setProperty('--tw-pattern-blur', `${blur ?? 0}px`)
+      style.setProperty('--tw-background', background ?? '#000')
 
-  updateBlur(blur = 0): void {
-    if (this.pattern) {
-      this.pattern.style.filter = `blur(${blur}px)`
+      if (dark) {
+        this.canvas.classList.add('tw-dark')
+      } else {
+        this.canvas.classList.remove('tw-dark')
+      }
     }
   }
 

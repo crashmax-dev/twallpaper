@@ -7,13 +7,18 @@ import type { ListApi, InputBindingApi } from 'tweakpane'
 
 const options: TWallpaperOptions = {
   fps: 60,
-  blur: 0,
   tails: 90,
-  opacity: 0.3,
   animate: true,
   scrollAnimate: true,
   colors: colors[0].colors,
-  pattern: patterns[0].path
+  pattern: {
+    image: patterns[0].path,
+    background: '#000',
+    blur: 0,
+    size: 420,
+    opacity: 0.5,
+    dark: false
+  }
 }
 
 const data = {
@@ -145,31 +150,48 @@ const patternsFolder = tweakpane
   .addFolder({ title: 'Pattern' })
 
 patternsFolder
-  .on('fold', ({ expanded }) => {
-    options.pattern = expanded ? patterns[0].path : undefined
-    wallpaper.init(options)
+  .addInput(options.pattern!, 'dark')
+  .on('change', ({ value }) => {
+    blur.disabled = value!
+    wallpaper.updatePattern(options.pattern!)
   })
 
 patternsFolder
-  .addInput(options, 'blur', {
+  .addInput(options.pattern!, 'size', {
+    min: 100,
+    max: 1000,
+    step: 1
+  })
+  .on('change', () => {
+    wallpaper.updatePattern(options.pattern!)
+  })
+
+const blur = patternsFolder
+  .addInput(options.pattern!, 'blur', {
     min: 0,
     max: 5,
     step: 0.1
   })
   .on('change', ({ value }) => {
-    options.blur = Number(value!.toPrecision(1))
-    wallpaper.updateBlur(options.blur)
+    options.pattern!.blur = Number(value!.toPrecision(1))
+    wallpaper.updatePattern(options.pattern!)
   })
 
 patternsFolder
-  .addInput(options, 'opacity', {
+  .addInput(options.pattern!, 'opacity', {
     min: 0,
     max: 1,
     step: 0.1
   })
   .on('change', ({ value }) => {
-    options.opacity = Number(value!.toPrecision(1))
-    wallpaper.updateOpacity(options.opacity)
+    options.pattern!.opacity = Number(value!.toPrecision(1))
+    wallpaper.updatePattern(options.pattern!)
+  })
+
+patternsFolder
+  .addInput(options.pattern!, 'background')
+  .on('change', () => {
+    wallpaper.updatePattern(options.pattern!)
   })
 
 const patternsList = patternsFolder
@@ -186,8 +208,14 @@ const patternsList = patternsFolder
 
 patternsList
   .on('change', ({ value }) => {
-    options.pattern = value
-    wallpaper.updatePattern(value)
+    options.pattern!.image = value
+    wallpaper.updatePattern(options.pattern!)
+  })
+
+patternsFolder
+  .on('fold', ({ expanded }) => {
+    options.pattern!.image = expanded ? patterns[0].path : undefined
+    wallpaper.init(options)
   })
 
 /** export */
