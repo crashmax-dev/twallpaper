@@ -1,8 +1,8 @@
 .tw-dark {
   -webkit-mask: center repeat;
-  -webkit-mask-size: var(--tw-pattern-size) auto;
-  -webkit-mask-image: var(--tw-pattern-image);
-  opacity: var(--tw-pattern-opacity);
+  -webkit-mask-size: var(--tw-size) auto;
+  -webkit-mask-image: var(--tw-image);
+  opacity: var(--tw-opacity);
 }
 
 .tw-wrap {
@@ -38,8 +38,8 @@
   height: 100%;
   mix-blend-mode: overlay;
   background: center repeat;
-  background-size: var(--tw-pattern-size) auto;
-  background-image: var(--tw-pattern-image);
-  filter: blur(var(--tw-pattern-blur));
-  opacity: var(--tw-pattern-opacity);
+  background-size: var(--tw-size) auto;
+  background-image: var(--tw-image);
+  filter: blur(var(--tw-blur));
+  opacity: var(--tw-opacity);
 }

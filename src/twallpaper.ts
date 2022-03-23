@@ -373,11 +373,16 @@ export class TWallpaper {
       const { dark, blur, size, image, opacity, background } = pattern
       const { style } = this.container as HTMLDivElement
 
-      style.setProperty('--tw-pattern-size', typeof size === 'number' ? `${size}px` : 'auto')
-      style.setProperty('--tw-pattern-opacity', `${opacity ?? 0.5}`)
-      style.setProperty('--tw-pattern-image', `url(${image!})`)
-      style.setProperty('--tw-pattern-blur', `${blur ?? 0}px`)
+      style.setProperty('--tw-size', typeof size === 'number' ? `${size}px` : 'auto')
+      style.setProperty('--tw-opacity', `${opacity ?? 0.5}`)
+      style.setProperty('--tw-blur', `${blur ?? 0}px`)
       style.setProperty('--tw-background', background ?? '#000')
+
+      if (image) {
+        style.setProperty('--tw-image', `url(${image})`)
+      } else {
+        style.removeProperty('--tw-image')
+      }
 
       if (dark) {
         this.canvas.classList.add('tw-dark')
