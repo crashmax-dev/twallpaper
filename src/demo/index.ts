@@ -1,3 +1,5 @@
+import merge from 'lodash/merge'
+import cloneDeep from 'lodash/cloneDeep'
 import { Pane } from 'tweakpane'
 import { patterns } from './patterns'
 import { colors, mapColors } from './colors'
@@ -24,7 +26,7 @@ const options: TWallpaperOptions = {
 const data = {
   container: document.querySelector('.tw-wrap')!,
   stringOptions: JSON.stringify(options, null, 2),
-  copyOptions: { ...options },
+  copyOptions: cloneDeep(options),
   currentColors: mapColors(0)
 }
 
@@ -152,7 +154,8 @@ const patternsFolder = tweakpane
 patternsFolder
   .addInput(options.pattern!, 'dark')
   .on('change', ({ value }) => {
-    blur.disabled = value!
+    patternBlur.disabled = value!
+    patternBackground.disabled = !value!
     wallpaper.updatePattern(options.pattern!)
   })
 
@@ -166,30 +169,33 @@ patternsFolder
     wallpaper.updatePattern(options.pattern!)
   })
 
-const blur = patternsFolder
-  .addInput(options.pattern!, 'blur', {
-    min: 0,
-    max: 5,
-    step: 0.1
-  })
-  .on('change', ({ value }) => {
-    options.pattern!.blur = Number(value!.toPrecision(1))
-    wallpaper.updatePattern(options.pattern!)
-  })
-
 patternsFolder
   .addInput(options.pattern!, 'opacity', {
     min: 0,
     max: 1,
-    step: 0.1
+    step: 0.1,
+    format: (value) => Number(value.toFixed(1))
   })
-  .on('change', ({ value }) => {
-    options.pattern!.opacity = Number(value!.toPrecision(1))
+  .on('change', () => {
     wallpaper.updatePattern(options.pattern!)
   })
 
-patternsFolder
-  .addInput(options.pattern!, 'background')
+
+const patternBlur = patternsFolder
+  .addInput(options.pattern!, 'blur', {
+    min: 0,
+    max: 5,
+    step: 0.1,
+    format: (value) => Number(value.toFixed(2))
+  })
+  .on('change', () => {
+    wallpaper.updatePattern(options.pattern!)
+  })
+
+const patternBackground = patternsFolder
+  .addInput(options.pattern!, 'background', {
+    disabled: true
+  })
   .on('change', () => {
     wallpaper.updatePattern(options.pattern!)
   })
@@ -270,7 +276,7 @@ exportFolder
 tweakpane
   .addButton({ title: 'Reset' })
   .on('click', () => {
-    Object.assign(options, copyOptions)
+    merge(options, copyOptions)
     colorsList.value = 0
     colorsFolder.expanded = true
     data.currentColors = mapColors(0)
