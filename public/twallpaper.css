@@ -1,4 +1,4 @@
-.tw-dark {
+.tw-mask {
   -webkit-mask: center repeat;
   -webkit-mask-size: var(--tw-size) auto;
   -webkit-mask-image: var(--tw-image);
@@ -16,7 +16,7 @@
   background: var(--tw-background);
 }
 
-.tw-canvas.tw-dark + .tw-pattern {
+.tw-canvas.tw-mask + .tw-pattern {
   background-image: none;
   opacity: initial;
   filter: none;

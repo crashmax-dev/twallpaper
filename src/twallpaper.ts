@@ -13,7 +13,7 @@ type Container = HTMLElement | Element | null
 
 export interface PatternOptions {
   image?: string
-  dark?: boolean
+  mask?: boolean
   background?: string
   blur?: number
   size?: number
@@ -363,7 +363,7 @@ export class TWallpaper {
 
   updatePattern(pattern: PatternOptions): void {
     if (this.pattern && this.container) {
-      const { dark, blur, size, image, opacity, background } = pattern
+      const { mask, blur, size, image, opacity, background } = pattern
       const { style } = this.container as HTMLDivElement
 
       style.setProperty('--tw-size', typeof size === 'number' ? `${size}px` : 'auto')
@@ -377,10 +377,10 @@ export class TWallpaper {
         style.removeProperty('--tw-image')
       }
 
-      if (dark) {
-        this.canvas.classList.add('tw-dark')
+      if (mask) {
+        this.canvas.classList.add('tw-mask')
       } else {
-        this.canvas.classList.remove('tw-dark')
+        this.canvas.classList.remove('tw-mask')
       }
     }
   }

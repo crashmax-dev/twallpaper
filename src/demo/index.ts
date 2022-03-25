@@ -19,7 +19,7 @@ const options: TWallpaperOptions = {
     blur: 0,
     size: 420,
     opacity: 0.5,
-    dark: false
+    mask: false
   }
 }
 
@@ -158,7 +158,7 @@ const patternsFolder = tweakpane
   .addFolder({ title: 'Pattern' })
 
 patternsFolder
-  .addInput(options.pattern!, 'dark')
+  .addInput(options.pattern!, 'mask')
   .on('change', ({ value }) => {
     patternBlur.disabled = value!
     patternBackground.disabled = !value!
