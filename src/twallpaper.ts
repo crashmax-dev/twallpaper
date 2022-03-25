@@ -289,14 +289,9 @@ export class TWallpaper {
     this.timestamp = now
     this.changeTail(1)
 
-    const cur_pos = this.curPosition(this.phase, this.tail)
-    this.drawGradient(cur_pos)
-    this.requestAnimate()
-  }
-
-  private update(): void {
     const pos = this.curPosition(this.phase, this.tail)
     this.drawGradient(pos)
+    this.requestAnimate()
   }
 
   init({
@@ -342,15 +337,13 @@ export class TWallpaper {
     this.updateColors(colors)
     this.updateFrametime(fps)
     this.scrollAnimate(scrollAnimate)
-    this.update()
   }
 
   dispose(): void {
     if (this.hc) {
       clearInterval(this.interval!)
       this.interval = null
-      cancelAnimationFrame(this.raf!)
-      this.raf = null
+      this.animate(false)
       this.canvas.remove()
       this.pattern?.remove()
       this.hc.remove()
@@ -458,11 +451,12 @@ export class TWallpaper {
   }
 
   animate(start = true): void {
-    if (!start && this.raf) {
-      return cancelAnimationFrame(this.raf)
+    if (start) {
+      this.doAnimate()
+    } else if (this.raf) {
+      cancelAnimationFrame(this.raf)
+      this.raf = null
     }
-
-    this.doAnimate()
   }
 
   scrollAnimate(start = false): void {

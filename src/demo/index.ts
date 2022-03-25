@@ -116,6 +116,12 @@ colorsList
   .on('change', ({ value }) => {
     options.colors = colors[value].colors
     wallpaper.updateColors(colors[value].colors)
+
+    if (!options.animate) {
+      options.animate = true
+      toggleAnimate.refresh()
+    }
+
     data.currentColors = mapColors(value)
     generateColorsInput()
   })
