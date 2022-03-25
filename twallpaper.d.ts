@@ -52,7 +52,6 @@ export declare class TWallpaper {
     private drawGradient;
     private requestAnimate;
     private doAnimate;
-    private update;
     init({ fps, tails, colors, pattern, animate, container, scrollAnimate }: TWallpaperOptions & {
         container?: Container;
     }): void;
