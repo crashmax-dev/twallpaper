@@ -3,25 +3,49 @@
     "Key": "colors",
     "Type": "<code>string[]</code>",
     "Default": "",
-    "Description": "Colors for gradient, use 1-4 full hex codes."
+    "Description": "Colors for gradient, use 1-4 full hex codes. This parameter is enough to make the fantastic gradient work."
   },
   {
     "Key": "pattern",
+    "Type": "<code><a href='https://github.com/crashmax-dev/twallpaper/blob/1567669011dbd3438f0addc632484624b1b94044/src/twallpaper.ts#L14-L21'>PatternOptions</a></code>",
+    "Default": "",
+    "Description": "Pattern options."
+  },
+  {
+    "Key": "pattern.mask",
+    "Type": "<code>boolean</code>",
+    "Default": "<code>false</code>",
+    "Description": "Option enables a mask for the background image using the <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/mask-image'>mask-image</a> css-property."
+  },
+  {
+    "Key": "pattern.image",
     "Type": "<code>string</code>",
     "Default": "",
-    "Description": "Wallpaper image. Use the standard <a href='https://github.com/crashmax-dev/twallpaper/tree/master/public/patterns'>pattern</a> or create your own."
+    "Description": "Wallpaper image. Use standard <a href='https://github.com/crashmax-dev/twallpaper/tree/master/public/patterns'>pattern</a> or create your own."
   },
   {
-    "Key": "blur",
+    "Key": "pattern.size",
+    "Type": "<code>number</code>",
+    "Default": "<code>420</code>",
+    "Description": "Image size on pixels."
+  },
+  {
+    "Key": "pattern.background",
+    "Type": "<code>string</code>",
+    "Default": "<code>#000</code>",
+    "Description": "<code>mask<code> be enabled. Specify the mask color in hex format."
+  },
+  {
+    "Key": "pattern.blur",
     "Type": "<code>number</code>",
     "Default": "<code>0</code>",
-    "Description": "Required wallpaper image (pattern). The property is applied using a css rule."
+    "Description": "Applies to the pattern image. Blur does not work when <code>mask</code> is enabled."
   },
   {
-    "Key": "opacity",
+    "Key": "pattern.opacity",
     "Type": "<code>number</code>",
-    "Default": "<code>0.3</code>",
-    "Description": "Required wallpaper image (pattern). The property is applied using a css rule."
+    "Default": "<code>0.5</code>",
+    "Description": "Applies to the pattern image."
   },
   {
     "Key": "fps",
