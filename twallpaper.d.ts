@@ -1,7 +1,7 @@
 declare type Container = HTMLElement | Element | null;
 export interface PatternOptions {
     image?: string;
-    dark?: boolean;
+    mask?: boolean;
     background?: string;
     blur?: number;
     size?: number;
