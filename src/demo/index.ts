@@ -179,22 +179,21 @@ patternsFolder
   .addInput(options.pattern!, 'opacity', {
     min: 0,
     max: 1,
-    step: 0.1,
-    format: (value) => Number(value.toFixed(1))
+    step: 0.1
   })
-  .on('change', () => {
+  .on('change', ({ value }) => {
+    options.pattern!.opacity = Number(value!.toFixed(1))
     wallpaper.updatePattern(options.pattern!)
   })
-
 
 const patternBlur = patternsFolder
   .addInput(options.pattern!, 'blur', {
     min: 0,
     max: 5,
-    step: 0.1,
-    format: (value) => Number(value.toFixed(2))
+    step: 0.1
   })
-  .on('change', () => {
+  .on('change', ({ value }) => {
+    options.pattern!.blur = Number(value!.toFixed(2))
     wallpaper.updatePattern(options.pattern!)
   })
 
