@@ -51,7 +51,7 @@
     "Key": "pattern.background",
     "Type": "<code>string</code>",
     "Default": "<code>#000</code>",
-    "Description": "<code>mask</code> be enabled. Specify the mask color in hex format."
+    "Description": "Specify the mask color in hex format. Background does not work when <code>mask</code> is enabled."
   },
   {
     "Key": "pattern.size",
