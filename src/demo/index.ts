@@ -17,7 +17,7 @@ const options: TWallpaperOptions = {
     image: patterns[0].path,
     background: '#000',
     blur: 0,
-    size: 420,
+    size: '420px',
     opacity: 0.5,
     mask: false
   }
@@ -27,7 +27,8 @@ const data = {
   container: document.querySelector('.tw-wrap')!,
   stringOptions: JSON.stringify(options, null, 2),
   copyOptions: cloneDeep(options),
-  currentColors: mapColors(0)
+  currentColors: mapColors(0),
+  size: 420
 }
 
 const { container, copyOptions } = data
@@ -166,12 +167,13 @@ patternsFolder
   })
 
 patternsFolder
-  .addInput(options.pattern!, 'size', {
+  .addInput(data, 'size', {
     min: 100,
     max: 1000,
-    step: 1
+    step: 10
   })
-  .on('change', () => {
+  .on('change', ({ value }) => {
+    options.pattern!.size = `${value}px`
     wallpaper.updatePattern(options.pattern!)
   })
 

@@ -16,7 +16,7 @@ export interface PatternOptions {
   mask?: boolean
   background?: string
   blur?: number
-  size?: number
+  size?: string
   opacity?: number
 }
 
@@ -366,7 +366,7 @@ export class TWallpaper {
       const { mask, blur, size, image, opacity, background } = pattern
       const { style } = this.container as HTMLDivElement
 
-      style.setProperty('--tw-size', typeof size === 'number' ? `${size}px` : 'auto')
+      style.setProperty('--tw-size', size ?? 'auto')
       style.setProperty('--tw-opacity', `${opacity ?? 0.5}`)
       style.setProperty('--tw-blur', `${blur ?? 0}px`)
       style.setProperty('--tw-background', background ?? '#000')

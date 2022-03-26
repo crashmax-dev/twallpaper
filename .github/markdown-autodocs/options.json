@@ -49,9 +49,9 @@
   },
   {
     "Key": "pattern.size",
-    "Type": "<code>number</code>",
-    "Default": "<code>420</code>",
-    "Description": "Image size on pixels."
+    "Type": "<code>string</code>",
+    "Default": "<code>auto</code>",
+    "Description": "Image background size."
   },
   {
     "Key": "pattern.background",
