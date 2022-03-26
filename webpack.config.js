@@ -33,26 +33,7 @@ module.exports = (env, args) => ({
       {
         test: /\.ts$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                [
-                  '@babel/preset-env',
-                  {
-                    targets: {
-                      esmodules: true
-                    }
-                  }
-                ]
-              ]
-            }
-          },
-          {
-            loader: 'ts-loader'
-          }
-        ]
+        loader: 'babel-loader'
       }
     ]
   },

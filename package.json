@@ -9,6 +9,11 @@
     "dist/twallpaper.js",
     "dist/twallpaper.d.ts"
   ],
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "ie 11"
+  ],
   "scripts": {
     "dev": "webpack serve --mode=development",
     "build": "webpack --mode=production",
@@ -36,6 +41,7 @@
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
     "@crashmax/eslint-config": "^1.1.0",
     "@tweakpane/core": "^1.0.8",
     "@types/lodash": "^4.14.180",
@@ -45,7 +51,6 @@
     "lodash": "^4.17.21",
     "remove-files-webpack-plugin": "^1.5.0",
     "terser-webpack-plugin": "^5.3.1",
-    "ts-loader": "^9.2.8",
     "tweakpane": "^3.0.7",
     "typescript": "^4.6.2",
     "webpack": "^5.70.0",
