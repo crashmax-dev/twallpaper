@@ -4,7 +4,7 @@ export interface PatternOptions {
     mask?: boolean;
     background?: string;
     blur?: number;
-    size?: number;
+    size?: string;
     opacity?: number;
 }
 export interface TWallpaperOptions {
