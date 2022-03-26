@@ -6,6 +6,30 @@
     "Description": "Colors for gradient, use 1-4 full hex codes. This parameter is enough to make the fantastic gradient work."
   },
   {
+    "Key": "fps",
+    "Type": "<code>number</code>",
+    "Default": "<code>30</code>",
+    "Description": "Frame time is just the time between frames."
+  },
+  {
+    "Key": "tails",
+    "Type": "<code>number</code>",
+    "Default": "<code>90</code>",
+    "Description": "Tail speed animation."
+  },
+  {
+    "Key": "animate",
+    "Type": "<code>boolean</code>",
+    "Default": "<code>true</code>",
+    "Description": "The main parameter responsible for the operation of the animation."
+  },
+  {
+    "Key": "scrollAnimate",
+    "Type": "<code>boolean</code>",
+    "Default": "<code>false</code>",
+    "Description": "The animation is tied to scrolling with the mouse wheel."
+  },
+  {
     "Key": "pattern",
     "Type": "<code><a href='https://github.com/crashmax-dev/twallpaper/blob/1567669011dbd3438f0addc632484624b1b94044/src/twallpaper.ts#L14-L21'>PatternOptions</a></code>",
     "Default": "",
@@ -46,29 +70,5 @@
     "Type": "<code>number</code>",
     "Default": "<code>0.5</code>",
     "Description": "Applies to the pattern image."
-  },
-  {
-    "Key": "fps",
-    "Type": "<code>number</code>",
-    "Default": "<code>30</code>",
-    "Description": "Frame time is just the time between frames."
-  },
-  {
-    "Key": "tails",
-    "Type": "<code>number</code>",
-    "Default": "<code>90</code>",
-    "Description": "Tail speed animation."
-  },
-  {
-    "Key": "animate",
-    "Type": "<code>boolean</code>",
-    "Default": "<code>true</code>",
-    "Description": "The main parameter responsible for the operation of the animation."
-  },
-  {
-    "Key": "scrollAnimate",
-    "Type": "<code>boolean</code>",
-    "Default": "<code>false</code>",
-    "Description": "The animation is tied to scrolling with the mouse wheel."
   }
 ]
