@@ -68,7 +68,6 @@ You can play with `twallpaper` on [twallpaper.js.org](https://twallpaper.js.org)
 <!-- The below code snippet is automatically added from ./.github/markdown-autodocs/usage.js -->
 ```js
 import { TWallpaper } from 'twallpaper'
-import 'twallpaper/dist/twallpaper.css'
 
 const container = document.querySelector('.tw-wrap')
 const wallpaper = new TWallpaper(container, { /* options */ })
@@ -141,7 +140,7 @@ Destroy the instance wallpaper.
 <tr ><td class="key-td td_text">tails</td><td class="type-td td_text"><code>number</code></td><td class="default-td td_text"><code>90</code></td><td class="description-td td_text">Tail speed animation.</td></tr>
 <tr ><td class="key-td td_text">animate</td><td class="type-td td_text"><code>boolean</code></td><td class="default-td td_text"><code>true</code></td><td class="description-td td_text">The main parameter responsible for the operation of the animation.</td></tr>
 <tr ><td class="key-td td_text">scrollAnimate</td><td class="type-td td_text"><code>boolean</code></td><td class="default-td td_text"><code>false</code></td><td class="description-td td_text">The animation is tied to scrolling with the mouse wheel.</td></tr>
-<tr ><td class="key-td td_text">pattern</td><td class="type-td td_text"><code><a href='https://github.com/crashmax-dev/twallpaper/blob/1567669011dbd3438f0addc632484624b1b94044/src/twallpaper.ts#L14-L21'>PatternOptions</a></code></td><td class="default-td td_num"></td><td class="description-td td_text">Pattern options.</td></tr>
+<tr ><td class="key-td td_text">pattern</td><td class="type-td td_text"><code><a href='https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L14-L21'>PatternOptions</a></code></td><td class="default-td td_num"></td><td class="description-td td_text">Pattern options.</td></tr>
 <tr ><td class="key-td td_text">pattern.image</td><td class="type-td td_text"><code>string</code></td><td class="default-td td_num"></td><td class="description-td td_text">Wallpaper image. Use standard <a href='https://github.com/crashmax-dev/twallpaper/tree/master/public/patterns'>pattern</a> or create your own.</td></tr>
 <tr ><td class="key-td td_text">pattern.mask</td><td class="type-td td_text"><code>boolean</code></td><td class="default-td td_text"><code>false</code></td><td class="description-td td_text">Option enables a mask for the background image using the <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/mask-image'>mask-image</a> css-property.</td></tr>
 <tr ><td class="key-td td_text">pattern.background</td><td class="type-td td_text"><code>string</code></td><td class="default-td td_text"><code>#000</code></td><td class="description-td td_text">Specify the mask color in hex format. Background does not work when <code>mask</code> is enabled.</td></tr>
