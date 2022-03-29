@@ -29,7 +29,7 @@
 ## Features
 
  - 🔥 Zero [dependencies](https://www.npmjs.com/package/twallpaper?activeTab=dependents)
- - ⚙️ Flexible [configuration](#options)
+ - ⚙️ Flexible [configuration](#options-1)
  - 📦 Lightweight ([~2.5kB gzipped](https://bundlephobia.com/package/twallpaper))
  - 📜 Supports [TypeScript](https://www.typescriptlang.org) type definition
 
@@ -73,6 +73,15 @@ const container = document.querySelector('.tw-wrap')
 const wallpaper = new TWallpaper(container, { /* options */ })
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
+
+## Using CDN
+```html
+<!-- JSDelivr  -->
+<script src="https://cdn.jsdelivr.net/npm/twallpaper@latest/dist/twallpaper.js"></script>
+
+<!-- UNPKG -->
+<script src="https://unpkg.com/twallpaper@latest/dist/twallpaper.js"></script>
+```
 
 ## API
 
