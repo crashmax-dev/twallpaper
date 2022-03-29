@@ -80,7 +80,7 @@ const wallpaper = new TWallpaper(container, { /* options */ })
 Re/initilize animation.
 
 #### options
-Type: `object`
+Type: [`TWallpaperOptions`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L23-L30) and [`Container`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L12)
 
 ### .animate(start?)
 Start/stop animation.
