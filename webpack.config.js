@@ -37,9 +37,9 @@ module.exports = (env, args) => ({
           {
             loader: 'babel-loader'
           },
-          {
-            loader: 'ts-loader'
-          }
+          // {
+          //   loader: 'ts-loader'
+          // }
         ]
       }
     ]
@@ -65,11 +65,11 @@ module.exports = (env, args) => ({
           'dist'
         ]
       },
-      after: {
-        include: [
-          'dist/demo'
-        ]
-      }
+      // after: {
+      //   include: [
+      //     'dist/demo'
+      //   ]
+      // }
     }),
     new CopyPlugin({
       patterns: [
