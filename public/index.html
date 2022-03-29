@@ -12,5 +12,15 @@
 
 <body>
   <div class="tw-wrap"></div>
+  <script>
+    function isIE() {
+      return /Trident\/|MSIE/.test(window.navigator.userAgent)
+    }
+
+    if (isIE()) {
+      document.location.href = 'ie11.html'
+    }
+  </script>
   <script src="./index.js"></script>
+
 </html>

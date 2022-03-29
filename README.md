@@ -30,7 +30,7 @@
 
  - 🔥 Zero [dependencies](https://www.npmjs.com/package/twallpaper?activeTab=dependents)
  - ⚙️ Flexible [configuration](#options)
- - 📦 Lightweight ([~2.3kB gzipped](https://bundlephobia.com/package/twallpaper))
+ - 📦 Lightweight ([~2.5kB gzipped](https://bundlephobia.com/package/twallpaper))
  - 📜 Supports [TypeScript](https://www.typescriptlang.org) type definition
 
 ## Browsers support
