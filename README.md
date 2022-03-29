@@ -30,7 +30,7 @@
 
  - 🔥 Zero [dependencies](https://www.npmjs.com/package/twallpaper?activeTab=dependents)
  - ⚙️ Flexible [configuration](#options)
- - 📦 Lightweight ([~2.5kB gzipped](https://bundlephobia.com/package/twallpaper))
+ - 📦 Lightweight ([~2.3kB gzipped](https://bundlephobia.com/package/twallpaper))
  - 📜 Supports [TypeScript](https://www.typescriptlang.org) type definition
 
 ## Browsers support
@@ -68,11 +68,70 @@ You can play with `twallpaper` on [twallpaper.js.org](https://twallpaper.js.org)
 <!-- The below code snippet is automatically added from ./.github/markdown-autodocs/usage.js -->
 ```js
 import { TWallpaper } from 'twallpaper'
+import 'twallpaper/dist/twallpaper.css'
 
 const container = document.querySelector('.tw-wrap')
 const wallpaper = new TWallpaper(container, { /* options */ })
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
+
+## API
+
+### .init(options)
+Re/initilize animation.
+
+#### options
+Type: `object`
+
+### .animate(start?)
+Start/stop animation.
+
+#### start
+Type: `boolean`\
+Default: `true`
+
+### .scrollAnimate(start?)
+Start/stop mouse scroll animation.
+
+#### start
+Type: `boolean`\
+Default: `false`
+
+### .toNextPosition(callback?)
+Next animation position (animation turns off after use).
+
+#### callback
+Execution `toNextPosition` is finished.\
+Type: `function`
+
+### .updateColors(colors)
+Force update colors.
+
+#### colors
+Type: `string[]`
+
+### .updateFrametime(fps?)
+Force update colors.
+
+#### fps
+Type: `number`\
+Default: `30`
+
+### .updatePattern(pattern)
+Force update pattern options.
+
+#### pattern
+Type: [`PatternOptions`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L14-L21)
+
+### .updateTails(tails?)
+Force update tails speed.
+
+#### tails
+Type: `number`\
+Default `90`
+
+### .dispose()
+Destroy the instance wallpaper.
 
 ## Options
 

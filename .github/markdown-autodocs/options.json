@@ -31,7 +31,7 @@
   },
   {
     "Key": "pattern",
-    "Type": "<code><a href='https://github.com/crashmax-dev/twallpaper/blob/1567669011dbd3438f0addc632484624b1b94044/src/twallpaper.ts#L14-L21'>PatternOptions</a></code>",
+    "Type": "<code><a href='https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L14-L21'>PatternOptions</a></code>",
     "Default": "",
     "Description": "Pattern options."
   },
