@@ -1,8 +1,12 @@
 const path = require('path')
+const { BannerPlugin } = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const RemovePlugin = require('remove-files-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+
+const { name, version, description, homepage } = require('./package.json')
+const banner = `${name}@${version} (${homepage})\n${description}`
 
 module.exports = (env, args) => ({
   entry: {
@@ -59,6 +63,7 @@ module.exports = (env, args) => ({
     ]
   },
   plugins: [
+    new BannerPlugin(banner),
     new RemovePlugin({
       before: {
         include: [
