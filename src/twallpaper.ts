@@ -63,8 +63,10 @@ export class TWallpaper {
   private curve = curve
   private positions = positions
   private phases = positions.length
+
   private interval: ReturnType<typeof setInterval> | null
   private raf: ReturnType<typeof requestAnimationFrame> | null
+  private wheel: (event: WheelEvent) => void
 
   private container: Container
   private hc: HTMLCanvasElement
@@ -77,6 +79,7 @@ export class TWallpaper {
     container: Container,
     options: TWallpaperOptions
   ) {
+    this.wheel = this.onWheel.bind(this)
     this.init({ container, ...options })
   }
 
@@ -461,9 +464,9 @@ export class TWallpaper {
 
   scrollAnimate(start = false): void {
     if (start) {
-      document.onwheel = (event) => this.onWheel(event)
+      document.addEventListener('wheel', this.wheel)
     } else {
-      document.onwheel = null
+      document.removeEventListener('wheel', this.wheel)
     }
   }
 }
