@@ -86,7 +86,7 @@ const wallpaper = new TWallpaper(container, { /* options */ })
 ## API
 
 ### .init(options)
-Re/initilize animation.
+Re/initilize animation (before reinitializing, calls the `dispose()` method).
 
 #### options
 Type: [`TWallpaperOptions`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L23-L30) and [`Container`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L12)
@@ -119,7 +119,7 @@ Force update colors.
 Type: `string[]`
 
 ### .updateFrametime(fps?)
-Force update colors.
+Force update frametime.
 
 #### fps
 Type: `number`\
