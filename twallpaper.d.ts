@@ -33,6 +33,7 @@ export declare class TWallpaper {
     private phases;
     private interval;
     private raf;
+    private wheel;
     private container;
     private hc;
     private hctx;
