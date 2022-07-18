@@ -41,7 +41,7 @@ jobs:
         run: pnpm install
 
       - name: Build website
-        run: pnpm build
+        run: pnpm build:website
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
