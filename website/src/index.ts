@@ -274,6 +274,13 @@ tweakpane.addButton({ title: 'Reset' }).on('click', () => {
   wallpaper.init(options)
 })
 
+tweakpane.addSeparator()
+
+/** github link */
+tweakpane.addButton({ title: 'GitHub' }).on('click', () => {
+  window.open('https://github.com/crashmax-dev/twallpaper', '_blank')
+})
+
 /** fullscreen */
 declare global {
   interface Element {
