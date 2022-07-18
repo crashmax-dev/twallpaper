@@ -37,14 +37,14 @@ const curve = [
 ]
 
 const positions: Positions[] = [
-  { x: 0.80, y: 0.10 },
-  { x: 0.60, y: 0.20 },
+  { x: 0.8, y: 0.1 },
+  { x: 0.6, y: 0.2 },
   { x: 0.35, y: 0.25 },
-  { x: 0.25, y: 0.60 },
-  { x: 0.20, y: 0.90 },
-  { x: 0.40, y: 0.80 },
+  { x: 0.25, y: 0.6 },
+  { x: 0.2, y: 0.9 },
+  { x: 0.4, y: 0.8 },
   { x: 0.65, y: 0.75 },
-  { x: 0.75, y: 0.40 }
+  { x: 0.75, y: 0.4 }
 ]
 
 export class TWallpaper {
@@ -75,10 +75,7 @@ export class TWallpaper {
   private ctx: CanvasRenderingContext2D
   private pattern: HTMLDivElement | null
 
-  constructor(
-    container: Container,
-    options: TWallpaperOptions
-  ) {
+  constructor(container: Container, options: TWallpaperOptions) {
     this.wheel = this.onWheel.bind(this)
     this.init({ container, ...options })
   }
@@ -187,9 +184,7 @@ export class TWallpaper {
     let diff = this.scrollDelta / this.scrollTails
     this.scrollDelta %= this.scrollTails
 
-    diff = diff > 0 ?
-      Math.floor(diff) :
-      Math.ceil(diff)
+    diff = diff > 0 ? Math.floor(diff) : Math.ceil(diff)
 
     if (diff) {
       this.changeTail(diff)
@@ -228,15 +223,29 @@ export class TWallpaper {
         const directPixelX = x / this.width
 
         const centerDistanceX = directPixelX - 0.5
-        const centerDistance = Math.sqrt(centerDistanceX * centerDistanceX + centerDistanceY2)
+        const centerDistance = Math.sqrt(
+          centerDistanceX * centerDistanceX + centerDistanceY2
+        )
 
         const swirlFactor = 0.35 * centerDistance
         const theta = swirlFactor * swirlFactor * 0.8 * 8
         const sinTheta = Math.sin(theta)
         const cosTheta = Math.cos(theta)
 
-        const pixelX = Math.max(0, Math.min(1, 0.5 + centerDistanceX * cosTheta - centerDistanceY * sinTheta))
-        const pixelY = Math.max(0, Math.min(1, 0.5 + centerDistanceX * sinTheta + centerDistanceY * cosTheta))
+        const pixelX = Math.max(
+          0,
+          Math.min(
+            1,
+            0.5 + centerDistanceX * cosTheta - centerDistanceY * sinTheta
+          )
+        )
+        const pixelY = Math.max(
+          0,
+          Math.min(
+            1,
+            0.5 + centerDistanceX * sinTheta + centerDistanceY * cosTheta
+          )
+        )
 
         let distanceSum = 0
         let r = 0
@@ -250,19 +259,22 @@ export class TWallpaper {
           const distanceX = pixelX - colorX
           const distanceY = pixelY - colorY
 
-          let distance = Math.max(0, 0.9 - Math.sqrt(distanceX * distanceX + distanceY * distanceY))
+          let distance = Math.max(
+            0,
+            0.9 - Math.sqrt(distanceX * distanceX + distanceY * distanceY)
+          )
           distance = distance * distance * distance * distance
           distanceSum += distance
 
-          r += distance * this.rgb[i].r / 255
-          g += distance * this.rgb[i].g / 255
-          b += distance * this.rgb[i].b / 255
+          r += (distance * this.rgb[i].r) / 255
+          g += (distance * this.rgb[i].g) / 255
+          b += (distance * this.rgb[i].b) / 255
         }
 
-        pixels[offset++] = r / distanceSum * 255
-        pixels[offset++] = g / distanceSum * 255
-        pixels[offset++] = b / distanceSum * 255
-        pixels[offset++] = 0xFF // 255
+        pixels[offset++] = (r / distanceSum) * 255
+        pixels[offset++] = (g / distanceSum) * 255
+        pixels[offset++] = (b / distanceSum) * 255
+        pixels[offset++] = 0xff // 255
       }
     }
 

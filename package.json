@@ -2,24 +2,27 @@
   "name": "twallpaper",
   "description": "🌈 Multicolor gradient wallpaper created algorithmically and shimmers smoothly.",
   "version": "1.0.1",
-  "main": "dist/twallpaper.js",
-  "types": "dist/twallpaper.d.ts",
+  "types": "./dist/twallpaper.d.ts",
+  "module": "./dist/twallpaper.es.js",
+  "main": "./dist/twallpaper.cjs.js",
+  "main:umd": "./dist/twallpaper.umd.js",
   "files": [
-    "dist/twallpaper.css",
-    "dist/twallpaper.js",
-    "dist/twallpaper.d.ts"
+    "dist"
   ],
-  "browserslist": [
-    "last 1 version",
-    "> 1%",
-    "ie 11"
-  ],
+  "exports": {
+    ".": {
+      "import": "./dist/twallpaper.es.js",
+      "require": "./dist/twallpaper.cjs.js",
+      "default": "./dist/twallpaper.es.js",
+      "types": "./dist/twallpaper.d.ts"
+    },
+    "./dist/twallpaper.css": "./dist/twallpaper.css"
+  },
   "scripts": {
-    "dev": "webpack serve --mode=development",
-    "build": "webpack --mode=production && npm run types",
-    "types": "tsc src/twallpaper.ts --emitDeclarationOnly --declaration --outDir dist",
-    "lint": "eslint src --ext .ts",
-    "lint:fix": "eslint src --ext .ts --fix"
+    "dev": "pnpm build && pnpm dev:website",
+    "build": "del-cli dist && vite build && tsc --emitDeclarationOnly && cp src/twallpaper.css dist",
+    "dev:website": "pnpm -r --filter=website run dev",
+    "build:website": "pnpm -r --filter=website run build"
   },
   "license": "MIT",
   "repository": {
@@ -40,22 +43,13 @@
     "canvas"
   ],
   "devDependencies": {
-    "@babel/core": "^7.17.8",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-typescript": "^7.16.7",
-    "@crashmax/eslint-config": "^1.1.0",
-    "@tweakpane/core": "^1.0.8",
-    "@types/lodash": "^4.14.181",
-    "babel-loader": "^8.2.4",
-    "copy-webpack-plugin": "^10.2.4",
-    "css-minimizer-webpack-plugin": "^3.4.1",
-    "lodash": "^4.17.21",
-    "remove-files-webpack-plugin": "^1.5.0",
-    "terser-webpack-plugin": "^5.3.1",
-    "tweakpane": "^3.0.7",
-    "typescript": "^4.6.3",
-    "webpack": "^5.70.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "@crashmax/tsconfig": "^1.0.1",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@types/node": "^18.0.6",
+    "del-cli": "^4.0.1",
+    "vite": "^3.0.1",
+    "vite-plugin-banner": "^0.3.0"
   }
 }
