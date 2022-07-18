@@ -7,12 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Telegram Wallpaper (IE 11)</title>
   <link rel="stylesheet" href="./index.css">
-  <link rel="stylesheet" href="./twallpaper.css">
 </head>
 
 <body>
   <div class="tw-wrap"></div>
-  <script src="./twallpaper.js"></script>
+  <script src="https://unpkg.com/twallpaper@latest/dist/twallpaper.js"></script>
   <script>
     var options = {
       fps: 120,
@@ -30,5 +29,6 @@
     var container = document.querySelector('.tw-wrap')
     var wallpaper = new TWallpaper(container, options)
   </script>
+</body>
 
 </html>
