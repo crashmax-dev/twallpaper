@@ -484,4 +484,11 @@ export class TWallpaper {
       document.removeEventListener('wheel', this.wheel)
     }
   }
+
+  generateColors(length = 4): string[] {
+    return Array.from(
+      { length },
+      () => '#' + Math.floor(Math.random() * 16777215).toString(16)
+    )
+  }
 }

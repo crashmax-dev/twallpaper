@@ -85,61 +85,70 @@ const wallpaper = new TWallpaper(container, { /* options */ })
 
 ## API
 
-### .init(options)
+### `.init(options?, container?)`
 Re/initilize animation (before reinitializing, calls the `dispose()` method).
 
 #### options
-Type: [`TWallpaperOptions`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L23-L30) and [`Container`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L12)
+Type: [`TWallpaperOptions`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L23-L30)
 
-### .animate(start?)
+#### container
+Type: [`Container`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L12)
+
+### `.animate(start?)`
 Start/stop animation.
 
 #### start
 Type: `boolean`\
 Default: `true`
 
-### .scrollAnimate(start?)
+### `.dispose()`
+Destroy the instance wallpaper.
+
+### `.scrollAnimate(start?)`
 Start/stop mouse scroll animation.
 
 #### start
 Type: `boolean`\
 Default: `false`
 
-### .toNextPosition(callback?)
+### `.toNextPosition(callback?)`
 Next animation position (animation turns off after use).
 
 #### callback
 Execution `toNextPosition` is finished.\
 Type: `function`
 
-### .updateColors(colors)
+### `.updateColors(colors)`
 Force update colors.
 
 #### colors
 Type: `string[]`
 
-### .updateFrametime(fps?)
+### `.updateFrametime(fps?)`
 Force update frametime.
 
 #### fps
 Type: `number`\
 Default: `30`
 
-### .updatePattern(pattern)
+### `.updatePattern(pattern)`
 Force update pattern options.
 
 #### pattern
 Type: [`PatternOptions`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L14-L21)
 
-### .updateTails(tails?)
+### `.updateTails(tails?)`
 Force update tails speed.
 
 #### tails
 Type: `number`\
 Default `90`
 
-### .dispose()
-Destroy the instance wallpaper.
+### `.generateColors(length?)`
+Generation of colors up to 4 by default.
+
+#### length
+Type: `number`
 
 ## Options
 
