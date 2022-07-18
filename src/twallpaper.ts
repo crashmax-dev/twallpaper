@@ -68,16 +68,17 @@ export class TWallpaper {
   private raf: ReturnType<typeof requestAnimationFrame> | null
   private wheel: (event: WheelEvent) => void
 
-  private container: Container
   private hc: HTMLCanvasElement
   private hctx: CanvasRenderingContext2D
   private canvas: HTMLCanvasElement
   private ctx: CanvasRenderingContext2D
   private pattern: HTMLDivElement | null
 
-  constructor(container: Container, options: TWallpaperOptions) {
+  constructor(
+    private container?: Container,
+    private options?: TWallpaperOptions
+  ) {
     this.wheel = this.onWheel.bind(this)
-    this.init({ container, ...options })
   }
 
   private hexToRgb(hex: string): RgbColor | null {
@@ -309,16 +310,18 @@ export class TWallpaper {
     this.requestAnimate()
   }
 
-  init({
-    fps,
-    tails,
-    colors,
-    pattern,
-    animate,
-    container,
-    scrollAnimate
-  }: TWallpaperOptions & { container?: Container }): void {
+  init(options?: TWallpaperOptions, container?: Container): void {
+    this.options = options ? { ...this.options, ...options } : this.options
     this.container = container ?? this.container
+
+    const {
+      colors,
+      animate,
+      fps,
+      pattern,
+      scrollAnimate,
+      tails
+    } = this.options
 
     if (!this.container || !colors.length) {
       throw new Error('Container or colors do not exist')

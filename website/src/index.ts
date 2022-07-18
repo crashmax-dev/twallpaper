@@ -34,6 +34,7 @@ const data = {
 
 const { container, copyOptions } = data
 const wallpaper = new TWallpaper(container, options)
+wallpaper.init()
 console.log(wallpaper)
 
 const tweakpane = new Pane({
