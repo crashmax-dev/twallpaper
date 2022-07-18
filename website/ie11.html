@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Wallpaper (IE 11)</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <div class="tw-wrap"></div>
+  <script type="module" src="./twallpaper.js"></script>
+  <script>
+    var options = {
+      fps: 120,
+      tails: 30,
+      animate: true,
+      scrollAnimate: true,
+      colors: [
+        '#85d685',
+        '#67a3f2',
+        '#8fe1d6',
+        '#dceb92'
+      ]
+    }
+
+    var container = document.querySelector('.tw-wrap')
+    var wallpaper = new TWallpaper(container, options)
+  </script>
+
+</html>

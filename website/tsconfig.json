@@ -1,0 +1,10 @@
+{
+  "extends": "@crashmax/tsconfig",
+  "compilerOptions": {
+    "outDir": "dist",
+    "noUncheckedIndexedAccess": false,
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
