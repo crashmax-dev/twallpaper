@@ -22,7 +22,7 @@
     "dev": "pnpm build && pnpm dev:website",
     "build": "del-cli dist && vite build && tsc --emitDeclarationOnly && cp src/twallpaper.css dist",
     "dev:website": "pnpm -r --filter=website run dev",
-    "build:website": "pnpm -r --filter=website run build"
+    "build:website": "pnpm build && pnpm -r --filter=website run build"
   },
   "license": "MIT",
   "repository": {
