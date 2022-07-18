@@ -77,10 +77,10 @@ const wallpaper = new TWallpaper(container, { /* options */ })
 ## Using CDN
 ```html
 <!-- JSDelivr  -->
-<script src="https://cdn.jsdelivr.net/npm/twallpaper@latest/dist/twallpaper.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/twallpaper@latest/dist/twallpaper.umd.js"></script>
 
 <!-- UNPKG -->
-<script src="https://unpkg.com/twallpaper@latest/dist/twallpaper.js"></script>
+<script src="https://unpkg.com/twallpaper@latest/dist/twallpaper.umd.js"></script>
 ```
 
 ## API
