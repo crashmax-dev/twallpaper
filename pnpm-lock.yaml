@@ -22,6 +22,17 @@ importers:
       vite: 3.0.1
       vite-plugin-banner: 0.3.0
 
+  examples/basic:
+    specifiers:
+      twallpaper: workspace:*
+      typescript: ^4.6.4
+      vite: ^3.0.0
+    dependencies:
+      twallpaper: link:../..
+    devDependencies:
+      typescript: 4.7.4
+      vite: 3.0.1
+
   website:
     specifiers:
       '@tweakpane/core': ^1.1.0
@@ -2432,6 +2443,12 @@ packages:
   /type-fest/1.4.0:
     resolution: {integrity: sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==}
     engines: {node: '>=10'}
+    dev: true
+
+  /typescript/4.7.4:
+    resolution: {integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
     dev: true
 
   /unicode-canonical-property-names-ecmascript/2.0.0:
