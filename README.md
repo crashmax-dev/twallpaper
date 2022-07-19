@@ -42,11 +42,15 @@
 ## Installation
 
 ```sh
-# with npm:
 npm install twallpaper
+```
 
-# or yarn:
+```sh
 yarn add twallpaper
+```
+
+```sh
+pnpm add twallpaper
 ```
 
 ## Demo
@@ -87,16 +91,16 @@ wallpaper.init()
 ## API
 
 ### `.init(options?, container?)`
-Re/initilize animation (before reinitializing, calls the `dispose()` method).
+Initialize animation (before reinitializing, calls the `dispose()` method).
 
 #### options
 Type: [`TWallpaperOptions`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L23-L30)
 
 #### container
-Type: [`Container`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L12)
+Type: `Element`
 
 ### `.animate(start?)`
-Start/stop animation.
+Start or stop animation.
 
 #### start
 Type: `boolean`\
@@ -106,7 +110,7 @@ Default: `true`
 Destroy the instance wallpaper.
 
 ### `.scrollAnimate(start?)`
-Start/stop mouse scroll animation.
+Start or stop mouse scroll animation.
 
 #### start
 Type: `boolean`\
