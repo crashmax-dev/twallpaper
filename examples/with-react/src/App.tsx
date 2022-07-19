@@ -6,7 +6,7 @@ export function App() {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const wallpaper = new TWallpaper(ref.current)
+    const wallpaper = new TWallpaper(ref.current!)
     wallpaper.init({ colors: wallpaper.generateColors() })
 
     return () => {

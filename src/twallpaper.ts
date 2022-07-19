@@ -9,8 +9,6 @@ interface RgbColor {
   b: number
 }
 
-type Container = HTMLElement | Element | null
-
 export interface PatternOptions {
   image?: string
   mask?: boolean
@@ -75,7 +73,7 @@ export class TWallpaper {
   private pattern: HTMLDivElement | null
 
   constructor(
-    private container?: Container,
+    private container?: Element,
     private options?: TWallpaperOptions
   ) {
     this.wheel = this.onWheel.bind(this)
@@ -310,7 +308,7 @@ export class TWallpaper {
     this.requestAnimate()
   }
 
-  init(options?: TWallpaperOptions, container?: Container): void {
+  init(options?: TWallpaperOptions, container?: Element): void {
     this.options = options ? { ...this.options, ...options } : this.options
     this.container = container ?? this.container
 
