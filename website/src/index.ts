@@ -1,7 +1,7 @@
 import cloneDeep from 'lodash.clonedeep'
 import merge from 'lodash.merge'
 import { patterns } from './patterns.js'
-import { colors, mapColors } from './colors.js'
+import { defaultColors, mappedColors } from './colors.js'
 import { Pane } from 'tweakpane'
 import { TWallpaper } from 'twallpaper'
 import type { InputBindingApi, ListApi } from 'tweakpane'
@@ -13,7 +13,7 @@ const options: TWallpaperOptions = {
   tails: 90,
   animate: true,
   scrollAnimate: true,
-  colors: colors[0].colors,
+  colors: defaultColors[0].colors,
   pattern: {
     image: patterns[0].path,
     background: '#000',
@@ -28,7 +28,7 @@ const data = {
   container: document.querySelector('.tw-wrap')!,
   stringOptions: JSON.stringify(options, null, 2),
   copyOptions: cloneDeep(options),
-  currentColors: mapColors(0),
+  currentColors: mappedColors(options.colors),
   size: 420
 }
 
@@ -102,7 +102,7 @@ const colorsList = colorsFolder.addBlade({
   view: 'list',
   label: 'colors',
   value: 0,
-  options: colors.map(({ text }, key) => {
+  options: defaultColors.map(({ text }, key) => {
     return {
       text,
       value: key
@@ -110,18 +110,28 @@ const colorsList = colorsFolder.addBlade({
   })
 }) as ListApi<number>
 
+colorsFolder.addButton({ title: 'Random colors' }).on('click', () => {
+  const colors = wallpaper.generateColors()
+  updateColors(colors)
+})
+
 colorsList.on('change', ({ value }) => {
-  options.colors = colors[value].colors
-  wallpaper.updateColors(colors[value].colors)
+  const { colors } = defaultColors[value]
+  updateColors(colors)
+})
+
+function updateColors(colors: string[]): void {
+  options.colors = colors
+  wallpaper.updateColors(colors)
 
   if (!options.animate) {
     options.animate = true
     toggleAnimate.refresh()
   }
 
-  data.currentColors = mapColors(value)
+  data.currentColors = mappedColors(colors)
   generateColorsInput()
-})
+}
 
 function generateColorsInput(): void {
   const inputs = data.currentColors.map((color, key) => {
@@ -214,11 +224,6 @@ patternsList.on('change', ({ value }) => {
   wallpaper.updatePattern(options.pattern!)
 })
 
-patternsFolder.on('fold', ({ expanded }) => {
-  options.pattern!.image = expanded ? patterns[0].path : undefined
-  wallpaper.init(options)
-})
-
 /** export */
 const exportFolder = tweakpane.addFolder({
   title: 'Export',
@@ -264,7 +269,7 @@ tweakpane.addButton({ title: 'Reset' }).on('click', () => {
   merge(options, copyOptions)
   colorsList.value = 0
   colorsFolder.expanded = true
-  data.currentColors = mapColors(0)
+  data.currentColors = mappedColors(defaultColors[0].colors)
   patternsList.value = patterns[0].path
   patternsFolder.expanded = true
 

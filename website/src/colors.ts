@@ -1,4 +1,4 @@
-export const colors = [
+export const defaultColors = [
   {
     text: 'Default',
     colors: [
@@ -169,8 +169,8 @@ export const colors = [
   }
 ]
 
-export function mapColors(index: number) {
-  return Object.values(colors[index].colors).map((color, key) => {
-    return { [key]: color }
-  })
+export function mappedColors(colors: string[]) {
+  return Object
+    .values(colors)
+    .map((color, key) => ({ [key]: color }))
 }
