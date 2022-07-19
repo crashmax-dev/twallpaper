@@ -1,11 +1,22 @@
+import { copyFile } from 'fs'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
 import banner from 'vite-plugin-banner'
 import { babel } from '@rollup/plugin-babel'
 import { description, homepage, name, version } from './package.json'
 
 export default defineConfig({
   plugins: [
+    dts({
+      insertTypesEntry: true,
+      afterBuild() {
+        copyFile('src/twallpaper.css', 'dist/twallpaper.css', (err) => {
+          if (err) throw err
+          console.log('[vite] twallpaper.css was copied')
+        })
+      }
+    }),
     babel({
       extensions: ['.ts'],
       babelHelpers: 'bundled',

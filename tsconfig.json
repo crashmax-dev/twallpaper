@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "declaration": true,
     "noUncheckedIndexedAccess": false,
     "outDir": "dist"
   },
