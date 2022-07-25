@@ -1,6 +1,6 @@
 import { TWallpaper } from 'twallpaper'
 import type { TWallpaperOptions } from 'twallpaper'
-import 'twallpaper/dist/twallpaper.css'
+import 'twallpaper/css'
 
 const container = document.querySelector('#app')!
 const options: TWallpaperOptions = {

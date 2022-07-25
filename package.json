@@ -17,7 +17,8 @@
       "default": "./dist/twallpaper.es.js",
       "types": "./dist/index.d.ts"
     },
-    "./dist/twallpaper.css": "./dist/twallpaper.css"
+    "./dist/twallpaper.css": "./dist/twallpaper.css",
+    "./css": "./dist/twallpaper.css"
   },
   "scripts": {
     "dev": "npm-run-all --parallel build:watch dev:website",

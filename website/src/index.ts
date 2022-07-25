@@ -6,7 +6,7 @@ import { Pane } from 'tweakpane'
 import { TWallpaper } from 'twallpaper'
 import type { InputBindingApi, ListApi } from 'tweakpane'
 import type { TWallpaperOptions } from 'twallpaper'
-import 'twallpaper/dist/twallpaper.css'
+import 'twallpaper/css'
 
 const options: TWallpaperOptions = {
   fps: 60,
