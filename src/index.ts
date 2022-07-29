@@ -1,5 +1,5 @@
 import { TWallpaper } from './twallpaper.js'
-import type { TWallpaperOptions, PatternOptions } from './twallpaper.js'
+import type { PatternOptions, TWallpaperOptions } from './twallpaper.js'
 
 export { TWallpaper }
 export default TWallpaper

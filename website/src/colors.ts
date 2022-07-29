@@ -170,7 +170,5 @@ export const defaultColors = [
 ]
 
 export function mappedColors(colors: string[]) {
-  return Object
-    .values(colors)
-    .map((color, key) => ({ [key]: color }))
+  return Object.values(colors).map((color, key) => ({ [key]: color }))
 }

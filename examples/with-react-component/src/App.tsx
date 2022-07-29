@@ -10,7 +10,9 @@ export function App() {
       <button
         style={{ position: 'absolute', zIndex: 1 }}
         onClick={() => ref.current!.toNextPosition()}
-      >toNextPosition</button>
+      >
+        toNextPosition
+      </button>
       <TWallpaper ref={ref} />
     </div>
   )

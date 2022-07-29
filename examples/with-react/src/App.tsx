@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react'
 import { TWallpaper } from 'twallpaper'
 import 'twallpaper/css'
+import { useEffect, useRef } from 'react'
 
 export function App() {
   const ref = useRef<HTMLDivElement>(null)
