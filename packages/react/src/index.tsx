@@ -1,9 +1,10 @@
 import type { PatternOptions, TWallpaperOptions } from 'twallpaper'
 import { TWallpaper as TW } from 'twallpaper'
-import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import 'twallpaper/css'
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
+import type { HTMLAttributes } from 'react'
 
-interface TWallpaperProps {
+interface TWallpaperProps extends HTMLAttributes<HTMLDivElement> {
   options?: TWallpaperOptions
 }
 
@@ -12,13 +13,25 @@ interface TWallpaperHandlers {
 }
 
 const TWallpaper = forwardRef<TWallpaperHandlers, TWallpaperProps>(
-  ({ options }, ref) => {
+  ({ options, ...props }, ref) => {
     const container = useRef<HTMLDivElement>(null)
     const twallpaper = useRef<TW>()
 
     useImperativeHandle(ref, () => ({
-      toNextPosition() {
-        twallpaper.current!.toNextPosition()
+      updateColors(colors: string[]) {
+        twallpaper.current!.updateColors(colors)
+      },
+      updateFrametime(fps: number) {
+        twallpaper.current!.updateFrametime(fps)
+      },
+      updatePattern(pattern: PatternOptions) {
+        twallpaper.current!.updatePattern(pattern)
+      },
+      updateTails(tails: number) {
+        twallpaper.current!.updateTails(tails)
+      },
+      toNextPosition(callback?: () => void) {
+        twallpaper.current!.toNextPosition(callback)
       }
     }))
 
@@ -37,7 +50,12 @@ const TWallpaper = forwardRef<TWallpaperHandlers, TWallpaperProps>(
       }
     }, [options])
 
-    return <div ref={container}></div>
+    return (
+      <div
+        {...props}
+        ref={container}
+      ></div>
+    )
   }
 )
 
