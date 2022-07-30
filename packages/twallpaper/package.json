@@ -7,16 +7,20 @@
   "main": "./dist/index.cjs.js",
   "main:umd": "./dist/index.umd.js",
   "files": [
-    "dist"
+    "dist/index.cjs.js",
+    "dist/index.es.js",
+    "dist/index.umd.js",
+    "dist/index.d.ts",
+    "dist/style.css"
   ],
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js",
-      "types": "./dist/index.d.ts"
+      "default": "./dist/index.es.js"
     },
-    "./dist/twallpaper.css": "./dist/twallpaper.css",
-    "./css": "./dist/twallpaper.css"
+    "./dist/style.css": "./dist/style.css",
+    "./css": "./dist/style.css"
   },
   "scripts": {
     "dev": "vite",
@@ -24,7 +28,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "typescript": "^4.6.4",
-    "vite": "^3.0.0"
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "@rollup/plugin-babel": "^5.3.1",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.4"
   }
 }

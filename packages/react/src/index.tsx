@@ -1,13 +1,13 @@
+import type { PatternOptions, TWallpaperOptions } from 'twallpaper'
 import { TWallpaper as TW } from 'twallpaper'
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
-import type { TWallpaperOptions } from 'twallpaper'
 import 'twallpaper/css'
 
-export interface TWallpaperProps {
+interface TWallpaperProps {
   options?: TWallpaperOptions
 }
 
-export interface TWallpaperHandlers {
+interface TWallpaperHandlers {
   toNextPosition: () => void
 }
 
@@ -43,4 +43,9 @@ const TWallpaper = forwardRef<TWallpaperHandlers, TWallpaperProps>(
 
 export { TWallpaper }
 export default TWallpaper
-export type { TWallpaperOptions }
+export type {
+  TWallpaperProps,
+  TWallpaperHandlers,
+  TWallpaperOptions,
+  PatternOptions
+}

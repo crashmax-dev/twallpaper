@@ -1,7 +1,9 @@
 {
   "extends": "@crashmax/tsconfig",
   "compilerOptions": {
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "jsx": "preserve",
+    "outDir": "dist"
   },
   "include": [
     "src/**/*"

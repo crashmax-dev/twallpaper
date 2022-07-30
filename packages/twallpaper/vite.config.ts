@@ -11,9 +11,9 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       afterBuild() {
-        copyFile('src/twallpaper.css', 'dist/twallpaper.css', (err) => {
+        copyFile('src/style.css', 'dist/style.css', (err) => {
           if (err) throw err
-          console.log('[vite] twallpaper.css was copied')
+          console.log('[vite] style.css was copied')
         })
       }
     }),
@@ -32,10 +32,10 @@ export default defineConfig({
     }),
     banner(
       `/**\n * name: ${name}` +
-        `\n * description: ${description}` +
-        `\n * version: ${version}` +
-        `\n * homepage: ${homepage}` +
-        '\n */'
+      `\n * description: ${description}` +
+      `\n * version: ${version}` +
+      `\n * homepage: ${homepage}` +
+      '\n */'
     )
   ],
   build: {

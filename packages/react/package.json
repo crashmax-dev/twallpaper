@@ -7,14 +7,20 @@
   "main": "./dist/index.cjs.js",
   "main:umd": "./dist/index.umd.js",
   "files": [
-    "dist"
+    "dist/index.cjs.js",
+    "dist/index.es.js",
+    "dist/index.umd.js",
+    "dist/index.d.ts",
+    "dist/style.css"
   ],
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js",
       "default": "./dist/index.es.js"
-    }
+    },
+    "./dist/style.css": "./dist/style.css",
+    "./css": "./dist/style.css"
   },
   "scripts": {
     "dev": "vite build --watch",
@@ -23,14 +29,15 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "twallpaper": "workspace:1.1.6"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
-    "typescript": "^4.6.4",
-    "vite": "^3.0.0"
+    "typescript": "^4.7.4",
+    "vite": "^3.0.4"
   },
   "peerDependencies": {
     "@types/react": ">=16.8.0",

@@ -1,7 +1,9 @@
 {
   "extends": "@crashmax/tsconfig",
   "compilerOptions": {
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "strictNullChecks": false,
+    "outDir": "dist"
   },
   "include": [
     "src/**/*"
