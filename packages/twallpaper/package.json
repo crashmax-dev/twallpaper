@@ -1,6 +1,6 @@
 {
   "name": "twallpaper",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.es.js",
@@ -25,7 +25,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
