@@ -1,7 +1,7 @@
 import { TWallpaper as TW } from 'twallpaper'
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import type { TWallpaperOptions } from 'twallpaper'
 import 'twallpaper/css'
-import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 
 export interface TWallpaperProps {
   options?: TWallpaperOptions

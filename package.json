@@ -1,24 +1,8 @@
 {
-  "name": "twallpaper",
+  "name": "@twallpaper/monorepo",
+  "private": true,
   "description": "🌈 Multicolor gradient wallpaper created algorithmically and shimmers smoothly.",
   "version": "1.1.6",
-  "type": "module",
-  "types": "./dist/index.d.ts",
-  "module": "./dist/twallpaper.es.js",
-  "main": "./dist/twallpaper.cjs.js",
-  "main:umd": "./dist/twallpaper.umd.js",
-  "files": [
-    "dist"
-  ],
-  "exports": {
-    ".": {
-      "import": "./dist/twallpaper.es.js",
-      "require": "./dist/twallpaper.cjs.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./dist/twallpaper.css": "./dist/twallpaper.css",
-    "./css": "./dist/twallpaper.css"
-  },
   "scripts": {
     "dev": "npm-run-all --parallel build:watch dev:website",
     "dev:website": "pnpm -r --filter=website run dev",

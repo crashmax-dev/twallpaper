@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 import banner from 'vite-plugin-banner'
 import dts from 'vite-plugin-dts'
 import { babel } from '@rollup/plugin-babel'
-import { description, homepage, name, version } from './package.json'
+import { description, homepage, name, version } from '../../package.json'
 
 export default defineConfig({
   plugins: [
@@ -47,7 +47,7 @@ export default defineConfig({
         'cjs',
         'es'
       ],
-      fileName: (format) => `twallpaper.${format}.js`
+      fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {
       output: {

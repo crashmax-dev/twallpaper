@@ -1,0 +1,30 @@
+{
+  "name": "twallpaper",
+  "version": "1.1.6",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.es.js",
+  "main": "./dist/index.cjs.js",
+  "main:umd": "./dist/index.umd.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/twallpaper.css": "./dist/twallpaper.css",
+    "./css": "./dist/twallpaper.css"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.4",
+    "vite": "^3.0.0"
+  }
+}
