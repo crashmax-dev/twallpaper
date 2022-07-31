@@ -1,5 +1,5 @@
 **/node_modules
 **/dist
-**/.tubo
+**/.turbo
 *.tgz
 *.log
