@@ -309,10 +309,6 @@ class TWallpaper {
     this.requestAnimate()
   }
 
-  get currentOptions(): TWallpaperOptions {
-    return this.options
-  }
-
   init(options?: TWallpaperOptions, container?: Element): void {
     this.options = options ? { ...this.options, ...options } : this.options
     this.container = container ?? this.container
