@@ -55,7 +55,7 @@ importers:
       '@types/react': ^18.0.15
       '@vitejs/plugin-react': ^2.0.0
       react: ^18.2.0
-      twallpaper: workspace:1.2.2
+      twallpaper: workspace:1.3.0
       typescript: ^4.7.4
       vite: ^3.0.4
     dependencies:

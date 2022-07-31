@@ -3,7 +3,7 @@ import banner from 'vite-plugin-banner'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { description, homepage, name, version } from '../../package.json'
+import { description, homepage, name, version } from './package.json'
 
 export default defineConfig({
   plugins: [
