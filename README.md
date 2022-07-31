@@ -96,6 +96,15 @@ pnpm add @twallpaper/react
 ```
 
 <!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./.github/markdown-autodocs/usage-react.js) -->
+<!-- The below code snippet is automatically added from ./.github/markdown-autodocs/usage-react.js -->
+```js
+import { TWallpaper } from '@twallpaper/react'
+import '@twallpaper/react/css'
+
+export function App() {
+  return <TWallpaper options={{ /* options */ }}/>
+}
+```
 <!-- MARKDOWN-AUTO-DOCS:END -->
 
 ## Using CDN
