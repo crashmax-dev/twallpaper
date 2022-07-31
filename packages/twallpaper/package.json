@@ -1,6 +1,7 @@
 {
   "name": "twallpaper",
   "version": "1.2.2",
+  "description": "🌈 Multicolor gradient wallpaper created algorithmically and shimmers smoothly.",
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.es.js",
@@ -22,6 +23,25 @@
     "./dist/style.css": "./dist/style.css",
     "./css": "./dist/style.css"
   },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crashmax-dev/twallpaper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/crashmax-dev/twallpaper/issues"
+  },
+  "homepage": "https://twallpaper.js.org",
+  "keywords": [
+    "react",
+    "multicolor",
+    "gradient",
+    "wallpaper",
+    "background",
+    "animation",
+    "telegram",
+    "canvas"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

@@ -22,7 +22,7 @@
     <img alt="npm" src="https://img.shields.io/npm/dt/twallpaper?color=blue">
   </a>
   <a href="https://bundlephobia.com/package/twallpaper@latest">
-    <img alt="npm bundle size" src="https://badgen.net/bundlephobia/minzip/twallpaper">
+    <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/twallpaper">
   </a>
 </p>
 
