@@ -66,7 +66,7 @@ You can play with `twallpaper` on [twallpaper.js.org](https://twallpaper.js.org)
   </a>
 </p>
 
-## Usage
+## Usage (vanilla)
 
 <!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./.github/markdown-autodocs/usage.js) -->
 <!-- The below code snippet is automatically added from ./.github/markdown-autodocs/usage.js -->
@@ -79,6 +79,23 @@ const wallpaper = new TWallpaper(container, {
 })
 wallpaper.init()
 ```
+<!-- MARKDOWN-AUTO-DOCS:END -->
+
+## React
+
+```sh
+npm install @twallpaper/react
+```
+
+```sh
+yarn add @twallpaper/react
+```
+
+```sh
+pnpm add @twallpaper/react
+```
+
+<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./.github/markdown-autodocs/usage-react.js) -->
 <!-- MARKDOWN-AUTO-DOCS:END -->
 
 ## Using CDN
