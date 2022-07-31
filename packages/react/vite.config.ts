@@ -4,7 +4,6 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { description, homepage, name, version } from '../../package.json'
-import { copyFile } from 'fs'
 
 export default defineConfig({
   plugins: [

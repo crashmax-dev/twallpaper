@@ -9,7 +9,11 @@ interface TWallpaperProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 interface TWallpaperHandlers {
-  toNextPosition: () => void
+  updateColors(colors: string[]): void
+  updateFrametime(fps: number): void
+  updatePattern(pattern: PatternOptions): void
+  updateTails(tails: number): void
+  toNextPosition(): void
 }
 
 const TWallpaper = forwardRef<TWallpaperHandlers, TWallpaperProps>(
