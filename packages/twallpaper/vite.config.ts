@@ -32,10 +32,10 @@ export default defineConfig({
     }),
     banner(
       `/**\n * name: ${name}` +
-      `\n * description: ${description}` +
-      `\n * version: ${version}` +
-      `\n * homepage: ${homepage}` +
-      '\n */'
+        `\n * description: ${description}` +
+        `\n * version: ${version}` +
+        `\n * homepage: ${homepage}` +
+        '\n */'
     )
   ],
   build: {
