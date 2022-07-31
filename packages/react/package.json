@@ -1,6 +1,6 @@
 {
   "name": "@twallpaper/react",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.es.js",
@@ -28,7 +28,7 @@
     "prepublishOnly": "pnpm build"
   },
   "dependencies": {
-    "twallpaper": "workspace:1.2.1"
+    "twallpaper": "workspace:1.2.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
