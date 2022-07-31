@@ -1,6 +1,6 @@
 {
   "name": "twallpaper",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.es.js",
