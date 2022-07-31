@@ -1,7 +1,8 @@
 {
+  "extends": "@crashmax/tsconfig",
   "compilerOptions": {
     "moduleResolution": "node",
-    "noUncheckedIndexedAccess": false,
+    "strictNullChecks": false,
     "outDir": "dist"
   },
   "include": [

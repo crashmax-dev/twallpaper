@@ -22,7 +22,7 @@
     <img alt="npm" src="https://img.shields.io/npm/dt/twallpaper?color=blue">
   </a>
   <a href="https://bundlephobia.com/package/twallpaper@latest">
-    <img alt="npm bundle size" src="https://badgen.net/bundlephobia/minzip/twallpaper">
+    <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/twallpaper">
   </a>
 </p>
 
@@ -66,7 +66,7 @@ You can play with `twallpaper` on [twallpaper.js.org](https://twallpaper.js.org)
   </a>
 </p>
 
-## Usage
+## Usage (vanilla)
 
 <!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./.github/markdown-autodocs/usage.js) -->
 <!-- The below code snippet is automatically added from ./.github/markdown-autodocs/usage.js -->
@@ -74,8 +74,36 @@ You can play with `twallpaper` on [twallpaper.js.org](https://twallpaper.js.org)
 import { TWallpaper } from 'twallpaper'
 
 const container = document.querySelector('.tw-wrap')
-const wallpaper = new TWallpaper(container, { /* options */ })
+const wallpaper = new TWallpaper(container, {
+  /* options */
+})
 wallpaper.init()
+```
+<!-- MARKDOWN-AUTO-DOCS:END -->
+
+## React
+
+```sh
+npm install @twallpaper/react
+```
+
+```sh
+yarn add @twallpaper/react
+```
+
+```sh
+pnpm add @twallpaper/react
+```
+
+<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./.github/markdown-autodocs/usage-react.js) -->
+<!-- The below code snippet is automatically added from ./.github/markdown-autodocs/usage-react.js -->
+```js
+import { TWallpaper } from '@twallpaper/react'
+import '@twallpaper/react/css'
+
+export function App() {
+  return <TWallpaper options={{ /* options */ }}/>
+}
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
 

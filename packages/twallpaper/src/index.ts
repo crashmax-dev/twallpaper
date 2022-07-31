@@ -9,7 +9,7 @@ interface RgbColor {
   b: number
 }
 
-export interface PatternOptions {
+interface PatternOptions {
   image?: string
   mask?: boolean
   background?: string
@@ -18,7 +18,7 @@ export interface PatternOptions {
   opacity?: number
 }
 
-export interface TWallpaperOptions {
+interface TWallpaperOptions {
   fps?: number
   tails?: number
   colors: string[]
@@ -27,6 +27,7 @@ export interface TWallpaperOptions {
   pattern?: PatternOptions
 }
 
+// prettier-ignore
 const curve = [
   0, 0.25, 0.50, 0.75, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5, 6, 7, 8, 9, 10, 11, 12,
   13, 14, 15, 16, 17, 18, 18.3, 18.6, 18.9, 19.2, 19.5, 19.8, 20.1, 20.4, 20.7,
@@ -45,7 +46,7 @@ const positions: Positions[] = [
   { x: 0.75, y: 0.4 }
 ]
 
-export class TWallpaper {
+class TWallpaper {
   private width = 50
   private height = 50
   private phase = 0
@@ -84,10 +85,10 @@ export class TWallpaper {
 
     return result
       ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-      }
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+        }
       : null
   }
 
@@ -311,15 +312,7 @@ export class TWallpaper {
   init(options?: TWallpaperOptions, container?: Element): void {
     this.options = options ? { ...this.options, ...options } : this.options
     this.container = container ?? this.container
-
-    const {
-      colors,
-      animate,
-      fps,
-      pattern,
-      scrollAnimate,
-      tails
-    } = this.options
+    const { colors, animate, fps, pattern, scrollAnimate, tails } = this.options
 
     if (!this.container || !colors.length) {
       throw new Error('Container or colors do not exist')
@@ -484,13 +477,17 @@ export class TWallpaper {
   }
 
   generateColors(length = 4): string[] {
-    return Array.from(
-      { length },
-      () => {
-        return '#' + Math.floor(Math.random() * 16777215)
+    return Array.from({ length }, () => {
+      return (
+        '#' +
+        Math.floor(Math.random() * 16777215)
           .toString(16)
           .padStart(6, '0')
-      }
-    )
+      )
+    })
   }
 }
+
+export { TWallpaper }
+export default TWallpaper
+export type { TWallpaperOptions, PatternOptions }
