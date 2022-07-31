@@ -31,18 +31,18 @@ importers:
 
   examples/with-react:
     specifiers:
+      '@twallpaper/react': workspace:*
       '@types/react': ^18.0.15
       '@types/react-dom': ^18.0.6
       '@vitejs/plugin-react': ^2.0.0
       react: ^18.2.0
       react-dom: ^18.2.0
-      twallpaper: workspace:*
       typescript: ^4.7.4
       vite: ^3.0.4
     dependencies:
+      '@twallpaper/react': link:../../packages/react
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      twallpaper: link:../../packages/twallpaper
     devDependencies:
       '@types/react': 18.0.15
       '@types/react-dom': 18.0.6
@@ -53,21 +53,17 @@ importers:
   packages/react:
     specifiers:
       '@types/react': ^18.0.15
-      '@types/react-dom': ^18.0.6
       '@vitejs/plugin-react': ^2.0.0
       react: ^18.2.0
-      react-dom: ^18.2.0
       twallpaper: workspace:1.2.0
       typescript: ^4.7.4
       vite: ^3.0.4
     dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
       twallpaper: link:../twallpaper
     devDependencies:
       '@types/react': 18.0.15
-      '@types/react-dom': 18.0.6
       '@vitejs/plugin-react': 2.0.0_vite@3.0.4
+      react: 18.2.0
       typescript: 4.7.4
       vite: 3.0.4
 
@@ -2317,7 +2313,6 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
-    dev: false
 
   /lru-cache/6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
@@ -2455,7 +2450,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /regenerate-unicode-properties/10.0.1:
     resolution: {integrity: sha512-vn5DU6yg6h8hP/2OkQo3K7uVILvY4iu0oI4t3HFa81UPkhGJwkRwM10JEc3upjdhHjs/k8GJY1sRBhk5sr69Bw==}
