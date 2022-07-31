@@ -15,4 +15,4 @@ jobs:
         with:
           commit_author: Vitalij Ryndin
           commit_user_email: sys@crashmax.ru
-          commit_message: 'docs: Update README.md'
+          commit_message: 'docs: update readme'
