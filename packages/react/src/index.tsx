@@ -9,7 +9,9 @@ interface TWallpaperProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 interface TWallpaperHandlers {
-  updateColors(colors: string[]): void
+  animate(start?: boolean): void
+  scrollAnimate(start?: boolean): void
+  updateColors(colors?: string[]): void
   updateFrametime(fps: number): void
   updatePattern(pattern: PatternOptions): void
   updateTails(tails: number): void
@@ -22,8 +24,16 @@ const TWallpaper = forwardRef<TWallpaperHandlers, TWallpaperProps>(
     const twallpaper = useRef<TW>()
 
     useImperativeHandle(ref, () => ({
-      updateColors(colors: string[]) {
-        twallpaper.current!.updateColors(colors)
+      animate(start?: boolean) {
+        twallpaper.current!.animate(start)
+      },
+      scrollAnimate(start?: boolean) {
+        twallpaper.current!.scrollAnimate(start)
+      },
+      updateColors(colors?: string[]) {
+        twallpaper.current!.updateColors(
+          colors ?? twallpaper.current!.generateColors()
+        )
       },
       updateFrametime(fps: number) {
         twallpaper.current!.updateFrametime(fps)
