@@ -31,11 +31,11 @@
     "canvas"
   ],
   "devDependencies": {
-    "@crashmax/prettier-config": "^2.0.2",
+    "@crashmax/prettier-config": "^2.0.3",
     "@crashmax/tsconfig": "^1.0.1",
     "@types/node": "^18.6.3",
     "turbo": "^1.4.0",
     "vite-plugin-banner": "^0.3.0",
-    "vite-plugin-dts": "^1.4.0"
+    "vite-plugin-dts": "^1.4.1"
   }
 }
