@@ -11,18 +11,20 @@
       }
 
       button {
-        z-index: 9999;
+        z-index: 2;
+        left: 10px;
+        top: 10px;
         position: absolute;
       }
 
       .canvas-preview {
-        z-index: 999;
+        z-index: 1;
         position: absolute;
       }
     </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app" class="tw-wrap"></div>
     <script type="module" src="./src/index.ts"></script>
   </body>
 </html>
