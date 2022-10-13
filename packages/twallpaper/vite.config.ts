@@ -42,10 +42,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'TWallpaper',
-      formats: [
-        'umd',
-        'es'
-      ],
+      formats: ['umd', 'es'],
       fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {

@@ -334,6 +334,10 @@ class TWallpaper {
     this.ctx = this.canvas.getContext('2d')!
     this.container.appendChild(this.canvas)
 
+    if (!this.container.classList.contains('tw-wrap')) {
+      this.container.classList.add('tw-wrap')
+    }
+
     if (pattern) {
       this.pattern = document.createElement('div')
       this.pattern.classList.add('tw-pattern')

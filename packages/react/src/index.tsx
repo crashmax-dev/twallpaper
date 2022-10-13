@@ -35,13 +35,13 @@ const TWallpaper = forwardRef<TWallpaperHandlers, TWallpaperProps>(
           colors ?? twallpaper.current!.generateColors()
         )
       },
-      updateFrametime(fps: number) {
+      updateFrametime(fps?: number) {
         twallpaper.current!.updateFrametime(fps)
       },
       updatePattern(pattern: PatternOptions) {
         twallpaper.current!.updatePattern(pattern)
       },
-      updateTails(tails: number) {
+      updateTails(tails?: number) {
         twallpaper.current!.updateTails(tails)
       },
       toNextPosition(callback?: () => void) {
