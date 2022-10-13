@@ -57,15 +57,6 @@ pnpm add twallpaper
 
 You can play with `twallpaper` on [twallpaper.js.org](https://twallpaper.js.org)
 
-<p align="left">
-  <a href="https://codesandbox.io/s/twallpaper-typescript-example-1hwedw?fontsize=14&hidenavigation=1&theme=dark">
-    <img alt="Edit twallpaper-typescript-example" src="https://img.shields.io/badge/TypeScript-informational?label=CodeSandbox&style=flat&logo=CodeSandbox&logoColor=ffffff&color=2286f7">
-  </a>
-  <a href="https://codesandbox.io/s/twallpaper-react-example-sl2sy0?fontsize=14&hidenavigation=1&theme=dark">
-    <img alt="Edit twallpaper-react-example" src="https://img.shields.io/badge/React-informational?label=CodeSandbox&style=flat&logo=CodeSandbox&logoColor=ffffff&color=2286f7">
-  </a>
-</p>
-
 ## Usage (vanilla)
 
 <!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./.github/markdown-autodocs/usage.js) -->
@@ -80,6 +71,10 @@ const wallpaper = new TWallpaper(container, {
 wallpaper.init()
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
+
+<a href="https://codesandbox.io/s/twallpaper-typescript-example-1hwedw?fontsize=14&hidenavigation=1&theme=dark">
+  <img alt="Edit twallpaper-typescript-example" src="https://codesandbox.io/static/img/play-codesandbox.svg">
+</a>
 
 ## React
 
@@ -106,6 +101,10 @@ export function App() {
 }
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
+
+<a href="https://codesandbox.io/s/twallpaper-react-example-sl2sy0?fontsize=14&hidenavigation=1&theme=dark">
+  <img alt="Edit twallpaper-react-example" src="https://codesandbox.io/static/img/play-codesandbox.svg">
+</a>
 
 ## Using CDN
 ```html
