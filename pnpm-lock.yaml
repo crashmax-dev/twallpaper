@@ -42,6 +42,17 @@ importers:
       typescript: 4.8.4
       vite: 3.1.7
 
+  examples/prefers-mask:
+    specifiers:
+      twallpaper: workspace:*
+      typescript: ^4.6.4
+      vite: ^3.1.0
+    dependencies:
+      twallpaper: link:../../packages/twallpaper
+    devDependencies:
+      typescript: 4.8.4
+      vite: 3.1.8
+
   examples/with-react:
     specifiers:
       '@twallpaper/react': workspace:*
