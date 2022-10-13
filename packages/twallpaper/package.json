@@ -4,25 +4,19 @@
   "description": "🌈 Multicolor gradient wallpaper created algorithmically and shimmers smoothly.",
   "type": "module",
   "types": "./dist/index.d.ts",
+  "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
-  "main": "./dist/index.cjs.js",
-  "main:umd": "./dist/index.umd.js",
-  "files": [
-    "dist/index.cjs.js",
-    "dist/index.es.js",
-    "dist/index.umd.js",
-    "dist/index.d.ts",
-    "dist/style.css"
-  ],
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js",
+      "require": "./dist/index.umd.js",
       "default": "./dist/index.es.js"
     },
     "./dist/style.css": "./dist/style.css",
     "./css": "./dist/style.css"
   },
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -43,8 +37,8 @@
     "canvas"
   ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "vite build --watch",
+    "build": "vite build",
     "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
@@ -52,6 +46,6 @@
     "@babel/preset-env": "^7.19.4",
     "@rollup/plugin-babel": "^6.0.0",
     "typescript": "^4.8.4",
-    "vite": "^3.1.7"
+    "vite": "^3.1.8"
   }
 }

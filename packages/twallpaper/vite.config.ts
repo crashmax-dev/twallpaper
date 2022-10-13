@@ -44,7 +44,6 @@ export default defineConfig({
       name: 'TWallpaper',
       formats: [
         'umd',
-        'cjs',
         'es'
       ],
       fileName: (format) => `index.${format}.js`
