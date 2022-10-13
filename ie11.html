@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <div class="tw-wrap"></div>
+  <div id="app"></div>
   <script src="https://unpkg.com/twallpaper@latest/dist/twallpaper.umd.js"></script>
   <script>
     var options = {
@@ -27,8 +27,8 @@
       ]
     }
 
-    var container = document.querySelector('.tw-wrap')
-    var wallpaper = new TWallpaper.default(container, options)
+    var app = document.querySelector('#app')
+    var wallpaper = new TWallpaper.default(app, options)
     wallpaper.init()
   </script>
 </body>
