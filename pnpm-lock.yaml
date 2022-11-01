@@ -76,7 +76,7 @@ importers:
 
   examples/with-vue:
     specifiers:
-      '@twallpaper/vue': workspace:^0.0.0
+      '@twallpaper/vue': workspace:*
       '@vitejs/plugin-vue': ^3.2.0
       typescript: ^4.6.4
       vite: ^3.2.0
@@ -125,7 +125,7 @@ importers:
   packages/vue:
     specifiers:
       '@vitejs/plugin-vue': ^3.2.0
-      twallpaper: workspace:^1.3.1
+      twallpaper: workspace:1.3.1
       typescript: ^4.6.4
       vite: ^3.2.0
       vue: ^3.2.41

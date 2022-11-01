@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@twallpaper/vue": "workspace:^0.0.0",
+    "@twallpaper/vue": "workspace:*",
     "vue": "^3.2.41"
   },
   "devDependencies": {
