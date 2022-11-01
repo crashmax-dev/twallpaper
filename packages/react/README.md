@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@twallpaper/react">
-    <img alt="npm" src="https://img.shields.io/npm/v/twallpaper">
+    <img alt="npm" src="https://img.shields.io/npm/v/@twallpaper/react">
   </a>
   <a href="https://www.npmjs.com/package/@twallpaper/react">
     <img alt="npm" src="https://img.shields.io/npm/dt/@twallpaper/react?color=blue">

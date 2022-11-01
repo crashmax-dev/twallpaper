@@ -1,0 +1,11 @@
+{
+  "extends": "@crashmax/tsconfig",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "outDir": "dist",
+    "noEmitOnError": false
+  },
+  "include": [
+    "src"
+  ]
+}
