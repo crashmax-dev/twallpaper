@@ -106,6 +106,22 @@ export function App() {
   <img alt="Edit twallpaper-react-example" src="https://codesandbox.io/static/img/play-codesandbox.svg">
 </a>
 
+## Vue
+
+```sh
+npm install @twallpaper/vue
+```
+
+```sh
+yarn add @twallpaper/vue
+```
+
+```sh
+pnpm add @twallpaper/vue
+```
+
+[![Edit @twallpaper/vue](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/compassionate-fog-wmhg4d?fontsize=14&hidenavigation=1&theme=dark)
+
 ## Using CDN
 ```html
 <!-- JSDelivr  -->
