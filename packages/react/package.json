@@ -46,11 +46,11 @@
     "twallpaper": "workspace:1.4.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.21",
-    "@vitejs/plugin-react": "^2.1.0",
+    "@types/react": "^18.0.25",
+    "@vitejs/plugin-react": "^2.2.0",
     "react": "^18.2.0",
-    "typescript": "^4.8.4",
-    "vite": "^3.1.7"
+    "typescript": "^4.9.3",
+    "vite": "^3.2.4"
   },
   "peerDependencies": {
     "@types/react": ">=16.8.0",
