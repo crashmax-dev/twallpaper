@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="https://github.com/crashmax-dev/twallpaper/actions">
-    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/crashmax-dev/twallpaper/github-pages">
+    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/crashmax-dev/twallpaper/gh-pages.yaml?branch=master">
   </a>
   <a href="https://www.npmjs.com/package/twallpaper">
     <img alt="npm" src="https://img.shields.io/npm/v/twallpaper">
