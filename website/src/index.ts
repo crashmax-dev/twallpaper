@@ -25,6 +25,7 @@ const options: TWallpaperOptions = {
 }
 
 const data = {
+  enablePattern: true,
   container: document.querySelector('#app')!,
   stringOptions: JSON.stringify(options, null, 2),
   copyOptions: cloneDeep(options),
@@ -160,6 +161,24 @@ generateColorsInput()
 
 /** pattern */
 const patternsFolder = tweakpane.addFolder({ title: 'Pattern' })
+
+patternsFolder.on('fold', () => {
+  data.enablePattern = !data.enablePattern
+  const newOptions = { ...options }
+  if (!data.enablePattern) {
+    delete newOptions.pattern
+  }
+  data.stringOptions = JSON.stringify(newOptions, null, 2)
+  wallpaper.updatePattern(data.enablePattern ? options.pattern! : {})
+
+  // prettier-ignore
+  const textarea = consolePane.controller_.view.valueElement
+    .querySelector<HTMLTextAreaElement>('.tp-mllv_i')!
+
+  const textareaLength = JSON.stringify(newOptions, null, 2).split('\n').length
+  textarea.style.height = `calc(var(--bld-us) * ${textareaLength})`
+  consolePane.refresh()
+})
 
 patternsFolder.addInput(options.pattern!, 'mask').on('change', ({ value }) => {
   patternBlur.disabled = value!
