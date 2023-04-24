@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
+import React from 'react'
 import { TWallpaper as TW } from 'twallpaper'
 import type { PatternOptions, TWallpaperOptions } from 'twallpaper'
 import 'twallpaper/css'
@@ -17,12 +17,12 @@ interface TWallpaperHandlers {
   toNextPosition(): void
 }
 
-const TWallpaper = forwardRef<TWallpaperHandlers, TWallpaperProps>(
+const TWallpaper = React.forwardRef<TWallpaperHandlers, TWallpaperProps>(
   ({ options, ...props }, ref) => {
-    const container = useRef<HTMLDivElement>(null)
-    const twallpaper = useRef<TW>()
+    const container = React.useRef<HTMLDivElement>(null)
+    const twallpaper = React.useRef<TW>()
 
-    useImperativeHandle(ref, () => ({
+    React.useImperativeHandle(ref, () => ({
       animate(start?: boolean) {
         twallpaper.current!.animate(start)
       },
@@ -48,7 +48,7 @@ const TWallpaper = forwardRef<TWallpaperHandlers, TWallpaperProps>(
       }
     }))
 
-    useEffect(() => {
+    React.useEffect(() => {
       if (!twallpaper.current) {
         twallpaper.current = new TW(container.current!)
       }
@@ -67,7 +67,7 @@ const TWallpaper = forwardRef<TWallpaperHandlers, TWallpaperProps>(
       <div
         {...props}
         ref={container}
-      ></div>
+      />
     )
   }
 )

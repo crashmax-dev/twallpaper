@@ -4,9 +4,9 @@ import { TWallpaper } from 'twallpaper'
 import type { TWallpaperOptions } from 'twallpaper'
 import 'twallpaper/css'
 import { Pane } from 'tweakpane'
-import type { InputBindingApi, ListApi } from 'tweakpane'
 import { defaultColors, mappedColors } from './colors.js'
 import { patterns } from './patterns.js'
+import type { InputBindingApi, ListApi } from 'tweakpane'
 
 const options: TWallpaperOptions = {
   fps: 60,
