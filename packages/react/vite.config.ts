@@ -17,15 +17,12 @@ export default defineConfig({
         '\n */'
     )],
   build: {
+    target: 'esnext',
     lib: {
       entry: resolve(__dirname, 'src/index.tsx'),
       name: 'TWallpaper',
-      formats: [
-        'es',
-        'cjs',
-        'umd'
-      ],
-      fileName: (format) => `index.${format}.js`
+      formats: ['es', 'cjs'],
+      fileName: 'index'
     },
     rollupOptions: {
       external: ['react', 'twallpaper'],

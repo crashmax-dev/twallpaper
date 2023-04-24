@@ -5,12 +5,13 @@
   "type": "module",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.cjs.js",
-  "umd:main": "./dist/index.umd.js",
+  "jsdelivr": "./dist/index.umd.js",
+  "unpkg": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js"
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.es.js"
     },
     "./dist/style.css": "./dist/style.css",
     "./css": "./dist/style.css"
@@ -39,8 +40,7 @@
   ],
   "scripts": {
     "dev": "vite build --watch",
-    "build": "vite build",
-    "prepublishOnly": "pnpm build"
+    "build": "vite build"
   },
   "devDependencies": {
     "typescript": "^5.0.4",
