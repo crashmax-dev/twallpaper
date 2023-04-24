@@ -3,7 +3,6 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import banner from 'vite-plugin-banner'
 import dts from 'vite-plugin-dts'
-import { babel } from '@rollup/plugin-babel'
 import { description, homepage, name, version } from './package.json'
 
 export default defineConfig({
@@ -16,19 +15,6 @@ export default defineConfig({
           console.log('[vite] style.css was copied')
         })
       }
-    }),
-    babel({
-      extensions: ['.ts'],
-      babelHelpers: 'bundled',
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            loose: true,
-            targets: { browsers: 'defaults, ie >= 11' }
-          }
-        ]
-      ]
     }),
     banner(
       `/**\n * name: ${name}` +

@@ -1,10 +1,9 @@
-import type { PatternOptions, TWallpaperOptions } from 'twallpaper'
+import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { TWallpaper as TW } from 'twallpaper'
+import type { PatternOptions, TWallpaperOptions } from 'twallpaper'
 import 'twallpaper/css'
-import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
-import type { HTMLAttributes } from 'react'
 
-interface TWallpaperProps extends HTMLAttributes<HTMLDivElement> {
+interface TWallpaperProps extends React.HTMLAttributes<HTMLDivElement> {
   options?: TWallpaperOptions
 }
 
