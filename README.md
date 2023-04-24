@@ -57,6 +57,7 @@ You can play with `twallpaper` on [twallpaper.js.org](https://twallpaper.js.org)
 <!-- The below code snippet is automatically added from ./.github/markdown-autodocs/usage.js -->
 ```js
 import { TWallpaper } from 'twallpaper'
+import 'twallpaper/css'
 
 const container = document.querySelector('.tw-wrap')
 const wallpaper = new TWallpaper(container, {
