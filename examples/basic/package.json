@@ -12,7 +12,7 @@
     "twallpaper": "workspace:*"
   },
   "devDependencies": {
-    "typescript": "^4.8.4",
-    "vite": "^3.1.7"
+    "typescript": "^5.0.4",
+    "vite": "^4.3.1"
   }
 }

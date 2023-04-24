@@ -4,12 +4,11 @@
   "description": "🌈 Multicolor gradient wallpaper created algorithmically and shimmers smoothly.",
   "private": true,
   "scripts": {
-    "dev:website": "turbo run dev --filter='./website'",
-    "dev:examples": "turbo run dev --filter='./examples/*'",
-    "build:website": "turbo run build --filter='./website'",
-    "build:packages": "turbo run build --filter='./packages/*'",
-    "build:examples": "turbo run build --filter='./examples/*'",
-    "format": "prettier --write --ignore-unknown **"
+    "dev": "turbo run dev --filter='./packages/*'",
+    "build": "turbo run build --filter='./packages/*'",
+    "website:dev": "turbo run dev --filter='./website/'",
+    "website:build": "turbo run build --filter='./website'",
+    "format": "prettier --write '**/*.{js,ts,tsx,json}'"
   },
   "license": "MIT",
   "repository": {
@@ -31,11 +30,14 @@
     "canvas"
   ],
   "devDependencies": {
-    "@crashmax/prettier-config": "^2.1.0",
-    "@crashmax/tsconfig": "^1.0.1",
-    "@types/node": "18.11.9",
-    "turbo": "^1.6.3",
-    "vite-plugin-banner": "^0.6.1",
-    "vite-plugin-dts": "^1.7.1"
+    "@crashmax/prettier-config": "^3.2.1",
+    "@crashmax/tsconfig": "^2.0.1",
+    "@types/node": "18.16.0",
+    "turbo": "^1.9.3",
+    "vite-plugin-banner": "^0.7.0",
+    "vite-plugin-dts": "^2.3.0"
+  },
+  "engines": {
+    "pnpm": ">=8.0.0"
   }
 }

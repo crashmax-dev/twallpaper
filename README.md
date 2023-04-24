@@ -33,12 +33,6 @@
  - 📦 Lightweight ([~2.5kB gzipped](https://bundlephobia.com/package/twallpaper))
  - 📜 Supports [TypeScript](https://www.typescriptlang.org) type definition
 
-## Browsers support
-
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Edge / IE | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Opera | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/yandex/yandex_48x48.png" alt="Yandex" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Yandex |
-| --------- | --------- | --------- | --------- | --------- | --------- | --------- |
-| ✔ , IE11 (partial) | ✔ | ✔ | ✔ | ✔ | ✔ | ✔
-
 ## Installation
 
 ```sh
@@ -63,6 +57,7 @@ You can play with `twallpaper` on [twallpaper.js.org](https://twallpaper.js.org)
 <!-- The below code snippet is automatically added from ./.github/markdown-autodocs/usage.js -->
 ```js
 import { TWallpaper } from 'twallpaper'
+import 'twallpaper/css'
 
 const container = document.querySelector('.tw-wrap')
 const wallpaper = new TWallpaper(container, {
@@ -125,10 +120,10 @@ pnpm add @twallpaper/vue
 ## Using CDN
 ```html
 <!-- JSDelivr  -->
-<script src="https://cdn.jsdelivr.net/npm/twallpaper@latest/dist/twallpaper.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/twallpaper@latest/dist/index.umd.js"></script>
 
 <!-- UNPKG -->
-<script src="https://unpkg.com/twallpaper@latest/dist/twallpaper.umd.js"></script>
+<script src="https://unpkg.com/twallpaper@latest/dist/index.umd.js"></script>
 ```
 
 ## API
