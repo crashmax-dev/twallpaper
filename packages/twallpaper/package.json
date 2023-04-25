@@ -1,6 +1,6 @@
 {
   "name": "twallpaper",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "🌈 Multicolor gradient wallpaper created algorithmically and shimmers smoothly.",
   "type": "module",
   "types": "./dist/index.d.ts",

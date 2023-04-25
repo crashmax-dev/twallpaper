@@ -118,7 +118,7 @@ importers:
   packages/react:
     dependencies:
       twallpaper:
-        specifier: workspace:1.4.0
+        specifier: workspace:2.0.0
         version: link:../twallpaper
     devDependencies:
       '@types/react':
@@ -144,12 +144,12 @@ importers:
         version: 5.0.4
       vite:
         specifier: ^4.3.1
-        version: 4.3.1
+        version: 4.3.1(@types/node@18.16.0)
 
   packages/vue:
     dependencies:
       twallpaper:
-        specifier: workspace:1.4.0
+        specifier: workspace:2.0.0
         version: link:../twallpaper
       vue:
         specifier: ^3.2.47
@@ -1786,38 +1786,6 @@ packages:
       - '@types/node'
       - rollup
       - supports-color
-    dev: true
-
-  /vite@4.3.1:
-    resolution: {integrity: sha512-EPmfPLAI79Z/RofuMvkIS0Yr091T2ReUoXQqc5ppBX/sjFRhHKiPPF/R46cTdoci/XgeQpB23diiJxq5w30vdg==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      esbuild: 0.17.18
-      postcss: 8.4.23
-      rollup: 3.21.0
-    optionalDependencies:
-      fsevents: 2.3.2
     dev: true
 
   /vite@4.3.1(@types/node@18.16.0):
