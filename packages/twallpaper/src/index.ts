@@ -309,6 +309,11 @@ class TWallpaper {
     this.requestAnimate()
   }
 
+  /**
+   * Initialize wallpaper
+   * @param options wallpaper options
+   * @param container container element
+   */
   init(options?: TWallpaperOptions, container?: Element): void {
     this.options = options ? { ...this.options, ...options } : this.options
     this.container = container ?? this.container
@@ -352,6 +357,9 @@ class TWallpaper {
     this.scrollAnimate(scrollAnimate)
   }
 
+  /**
+   * Dispose wallpaper
+   */
   dispose(): void {
     if (this.hc) {
       clearInterval(this.interval!)
@@ -364,16 +372,30 @@ class TWallpaper {
     }
   }
 
+  /**
+   * Tails speed animation
+   * @param tails number of tails
+   * @default 90
+   */
   updateTails(tails = 90): void {
     if (tails > 0) {
       this.tails = tails
     }
   }
 
+  /**
+   * Frame time is just the time between frames
+   * @param fps frames per second
+   * @default 30
+   */
   updateFrametime(fps = 30): void {
     this.frametime = 1000 / fps
   }
 
+  /**
+   * Update pattern options
+   * @param pattern pattern options
+   */
   updatePattern(pattern: PatternOptions): void {
     if (this.pattern && this.container) {
       const { mask, blur, size, image, opacity, background } = pattern
@@ -398,6 +420,10 @@ class TWallpaper {
     }
   }
 
+  /**
+   * Colors for gradient, use 1-4 full hex codes
+   * @param colors hex colors
+   */
   updateColors(colors: string[]): void {
     const rgbColors = colors.reduce<RgbColor[]>((acc, color) => {
       const rgb = this.hexToRgb(color)
@@ -416,6 +442,10 @@ class TWallpaper {
     }
   }
 
+  /**
+   * Next animation position (animation turns off after use)
+   * @param callback execution `toNextPosition` is finished
+   */
   toNextPosition(callback?: () => void): void {
     clearInterval(this.interval!)
     this.animate(false)
@@ -463,6 +493,11 @@ class TWallpaper {
     }, this.frametime)
   }
 
+  /**
+   * Start or stop animation
+   * @param start start or stop animation
+   * @default true
+   */
   animate(start = true): void {
     if (start) {
       this.doAnimate()
@@ -472,6 +507,11 @@ class TWallpaper {
     }
   }
 
+  /**
+   * Start or stop mouse scroll animation
+   * @param start start or stop scroll animation
+   * @default false
+   */
   scrollAnimate(start = false): void {
     if (start) {
       document.addEventListener('wheel', this.wheel)
@@ -480,6 +520,11 @@ class TWallpaper {
     }
   }
 
+  /**
+   * Generate random colors
+   * @param length - number of colors
+   * @returns array of random colors
+   */
   generateColors(length = 4): string[] {
     return Array.from({ length }, () => {
       return (
