@@ -21,6 +21,15 @@ const options = ref<TWallpaperOptions>({
   }
 })
 
+function updateColors() {
+  twallpaper.value?.twallpaper.updateColors([
+    '#eba',
+    '#681',
+    '#cf9',
+    '#0a50a5'
+  ])
+}
+
 function toggleWallpaper() {
   enabled.value = !enabled.value
 }
@@ -35,6 +44,7 @@ function togglePatternMask() {
   <div class="buttons">
     <button v-on:click="toggleWallpaper">Toggle Wallpaper</button>
     <button v-on:click="togglePatternMask">Toggle Mask</button>
+    <button v-on:click="updateColors">Update Colors</button>
   </div>
   <TWallpaper
     ref="twallpaper"
