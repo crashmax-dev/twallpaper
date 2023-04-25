@@ -44,6 +44,10 @@ function togglePatternMask() {
 </template>
 
 <style>
+body {
+  background: #000;
+}
+
 .buttons {
   display: flex;
   gap: 4px;

@@ -19,9 +19,9 @@ export interface PatternOptions {
 }
 
 export interface TWallpaperOptions {
+  colors: string[]
   fps?: number
   tails?: number
-  colors: string[]
   animate?: boolean
   scrollAnimate?: boolean
   pattern?: PatternOptions

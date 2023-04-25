@@ -5,22 +5,17 @@ import '@twallpaper/react/css'
 
 export function App() {
   const ref = useRef<TWallpaperHandlers>(null)
-
   return (
-    <div>
-      <div
-        style={{
-          position: 'absolute',
-          zIndex: 1,
-          display: 'flex',
-          gap: '1rem'
-        }}
-      >
-        <button onClick={() => ref.current!.updateColors()}>
-          Update colors
-        </button>
-      </div>
-      <TWallpaper ref={ref} />
-    </div>
+    <TWallpaper
+      ref={ref}
+      options={{
+        colors: [
+          '#dbddbb',
+          '#6ba587',
+          '#d5d88d',
+          '#88b884'
+        ]
+      }}
+    />
   )
 }

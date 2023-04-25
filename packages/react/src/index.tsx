@@ -4,13 +4,13 @@ import type { PatternOptions, TWallpaperOptions } from 'twallpaper'
 import 'twallpaper/css'
 
 interface TWallpaperProps extends React.HTMLAttributes<HTMLDivElement> {
-  options?: TWallpaperOptions
+  options: TWallpaperOptions
 }
 
 interface TWallpaperHandlers {
   animate(start?: boolean): void
   scrollAnimate(start?: boolean): void
-  updateColors(colors?: string[]): void
+  updateColors(colors: string[]): void
   updateFrametime(fps: number): void
   updatePattern(pattern: PatternOptions): void
   updateTails(tails: number): void

@@ -7,7 +7,7 @@ import { PropType, Ref, defineExpose, onMounted, onUnmounted, ref } from 'vue'
 const props = defineProps({
   options: {
     type: Object as PropType<TWallpaperOptions>,
-    required: false
+    required: true
   }
 })
 

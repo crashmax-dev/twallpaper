@@ -2,7 +2,7 @@ import { TWallpaper } from 'twallpaper'
 import type { TWallpaperOptions } from 'twallpaper'
 import 'twallpaper/css'
 
-const container = document.querySelector('#app')!
+const container = document.querySelector<HTMLElement>('#app')!
 const options: TWallpaperOptions = {
   colors: [
     '#4f5bd5',

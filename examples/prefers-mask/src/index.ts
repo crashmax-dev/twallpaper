@@ -8,9 +8,10 @@ const options: TWallpaperOptions = {
   fps: 60,
   tails: 30,
   colors: [
-    '#ff0000',
-    '#00ff00',
-    '#0000ff'
+    '#dbddbb',
+    '#6ba587',
+    '#d5d88d',
+    '#88b884'
   ],
   pattern: {
     image: 'https://twallpaper.js.org/patterns/games.svg'

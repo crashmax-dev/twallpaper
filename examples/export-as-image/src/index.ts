@@ -17,12 +17,13 @@ const options: TWallpaperOptions = {
   colors: [
     '#527bdd',
     '#009fdd',
-    '#a4dbff'
+    '#a4dbff',
+    '#f7f7f7'
   ]
 }
 
-const app = document.querySelector<HTMLElement>('#app')!
-const wallpaper = new TWallpaper(app)
+const container = document.querySelector<HTMLElement>('#app')!
+const wallpaper = new TWallpaper(container)
 wallpaper.init(options)
 
 const button = document.createElement('button')
