@@ -375,25 +375,29 @@ export class TWallpaper {
   }
 
   /**
-   * Colors for gradient, use 1-4 full hex codes
-   * @param colors hex colors
+   * Colors for gradient, use 1-4 hex codes
+   * @param hexCodes hex colors
    */
-  updateColors(colors: string[]): void {
-    const rgbColors = colors.reduce<RgbColor[]>((acc, color) => {
-      const rgb = hexToRgb(color)
+  updateColors(hexCodes: string[]): void {
+    const colors = hexCodes
+      .reduce<RgbColor[]>((rgbColors, color) => {
+        const rgb = hexToRgb(color)
 
-      if (rgb) {
-        acc.push(rgb)
-      }
+        if (rgb) {
+          rgbColors.push(rgb)
+        }
 
-      return acc
-    }, [])
+        return rgbColors
+      }, [])
+      .slice(0, 4)
 
-    if (rgbColors.length > 1 && rgbColors.length < 5) {
-      this.rgb = rgbColors
-    } else {
-      throw new Error('Required from 1-4 hex colors')
+    if (!colors.length) {
+      throw new Error(
+        'Colors do not exist or are not valid hex codes (e.g. #fff or #ffffff)'
+      )
     }
+
+    this.rgb = colors
   }
 
   /**
