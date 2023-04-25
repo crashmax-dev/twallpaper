@@ -172,3 +172,19 @@ export const defaultColors = [
 export function mappedColors(colors: string[]) {
   return Object.values(colors).map((color, key) => ({ [key]: color }))
 }
+
+/**
+ * Generate random colors
+ * @param length - number of colors
+ * @returns array of random colors
+ */
+export function generateColors(length = 4): string[] {
+  return Array.from({ length }, () => {
+    return (
+      '#' +
+      Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, '0')
+    )
+  })
+}

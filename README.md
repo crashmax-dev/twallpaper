@@ -187,12 +187,6 @@ Force update tails speed.
 Type: `number`\
 Default `90`
 
-### `.generateColors(length?)`
-Generation of colors up to 4 by default.
-
-#### length
-Type: `number`
-
 ## Options
 
 <!-- MARKDOWN-AUTO-DOCS:START (JSON_TO_HTML_TABLE:src=./.github/markdown-autodocs/options.json) -->

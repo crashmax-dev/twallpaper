@@ -4,7 +4,7 @@ import { TWallpaper } from 'twallpaper'
 import type { TWallpaperOptions } from 'twallpaper'
 import 'twallpaper/css'
 import { Pane } from 'tweakpane'
-import { defaultColors, mappedColors } from './colors.js'
+import { defaultColors, generateColors, mappedColors } from './colors.js'
 import { patterns } from './patterns.js'
 import type { InputBindingApi, ListApi } from 'tweakpane'
 
@@ -26,15 +26,14 @@ const options: TWallpaperOptions = {
 
 const data = {
   enablePattern: true,
-  container: document.querySelector('#app')!,
+  container: document.querySelector<HTMLElement>('#app')!,
   stringOptions: JSON.stringify(options, null, 2),
   copyOptions: cloneDeep(options),
   currentColors: mappedColors(options.colors),
   size: 420
 }
 
-const { container, copyOptions } = data
-const wallpaper = new TWallpaper(container, options)
+const wallpaper = new TWallpaper(data.container, options)
 wallpaper.init()
 console.log(wallpaper)
 
@@ -112,7 +111,7 @@ const colorsList = colorsFolder.addBlade({
 }) as ListApi<number>
 
 colorsFolder.addButton({ title: 'Random colors' }).on('click', () => {
-  const colors = wallpaper.generateColors()
+  const colors = generateColors()
   updateColors(colors)
 })
 
@@ -285,7 +284,7 @@ exportFolder.addButton({ title: 'Download' }).on('click', () => {
 
 /** reset */
 tweakpane.addButton({ title: 'Reset' }).on('click', () => {
-  merge(options, copyOptions)
+  merge(options, data.copyOptions)
   colorsList.value = 0
   colorsFolder.expanded = true
   data.currentColors = mappedColors(defaultColors[0].colors)
@@ -318,14 +317,14 @@ document.addEventListener('keydown', (event) => {
   if (event.code === 'F11') {
     event.preventDefault()
 
-    if (container.requestFullscreen) {
-      container.requestFullscreen()
-    } else if (container.webkitRequestFullscreen) {
-      container.webkitRequestFullscreen()
-    } else if (container.mozRequestFullScreen) {
-      container.mozRequestFullScreen()
-    } else if (container.msRequestFullscreen) {
-      container.msRequestFullscreen()
+    if (data.container.requestFullscreen) {
+      data.container.requestFullscreen()
+    } else if (data.container.webkitRequestFullscreen) {
+      data.container.webkitRequestFullscreen()
+    } else if (data.container.mozRequestFullScreen) {
+      data.container.mozRequestFullScreen()
+    } else if (data.container.msRequestFullscreen) {
+      data.container.msRequestFullscreen()
     }
   }
 })

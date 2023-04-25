@@ -11,11 +11,11 @@ const props = defineProps({
   }
 })
 
-const container = ref<HTMLDivElement | null>(null)
+const container = ref<HTMLElement | null>(null)
 const twallpaper = new TWallpaper()
 
 defineExpose<{
-  container: Ref<HTMLDivElement | null>
+  container: Ref<HTMLElement | null>
   twallpaper: TWallpaper
 }>({
   container,
@@ -23,13 +23,7 @@ defineExpose<{
 })
 
 onMounted(() => {
-  twallpaper.init(
-    {
-      colors: twallpaper.generateColors(),
-      ...props.options
-    },
-    container.value!
-  )
+  twallpaper.init(props.options, container.value!)
 })
 
 onUnmounted(() => {

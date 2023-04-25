@@ -2,13 +2,16 @@ import { TWallpaper } from 'twallpaper'
 import type { TWallpaperOptions } from 'twallpaper'
 import 'twallpaper/css'
 
-const app = document.querySelector('#app')!
-
-const wallpaper = new TWallpaper(app)
+const container = document.querySelector<HTMLElement>('#app')!
+const wallpaper = new TWallpaper(container)
 const options: TWallpaperOptions = {
   fps: 60,
   tails: 30,
-  colors: wallpaper.generateColors(),
+  colors: [
+    '#ff0000',
+    '#00ff00',
+    '#0000ff'
+  ],
   pattern: {
     image: 'https://twallpaper.js.org/patterns/games.svg'
   }

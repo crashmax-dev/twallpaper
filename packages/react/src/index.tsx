@@ -29,10 +29,8 @@ const TWallpaper = React.forwardRef<TWallpaperHandlers, TWallpaperProps>(
       scrollAnimate(start?: boolean) {
         twallpaper.current!.scrollAnimate(start)
       },
-      updateColors(colors?: string[]) {
-        twallpaper.current!.updateColors(
-          colors ?? twallpaper.current!.generateColors()
-        )
+      updateColors(colors: string[]) {
+        twallpaper.current!.updateColors(colors)
       },
       updateFrametime(fps?: number) {
         twallpaper.current!.updateFrametime(fps)
@@ -53,15 +51,12 @@ const TWallpaper = React.forwardRef<TWallpaperHandlers, TWallpaperProps>(
         twallpaper.current = new TW(container.current!)
       }
 
-      twallpaper.current.init({
-        colors: twallpaper.current.generateColors(),
-        ...options
-      })
+      twallpaper.current.init(options)
 
       return () => {
         twallpaper.current!.dispose()
       }
-    }, [options])
+    }, [])
 
     return (
       <div
