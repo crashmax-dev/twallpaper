@@ -11,11 +11,14 @@ export default defineConfig({
     dts({ insertTypesEntry: true }),
     banner(
       `/**\n * name: ${name}` +
-        `\n * description: ${description}` +
-        `\n * version: ${version}` +
-        `\n * homepage: ${homepage}` +
-        '\n */'
+      `\n * description: ${description}` +
+      `\n * version: ${version}` +
+      `\n * homepage: ${homepage}` +
+      '\n */'
     )],
+  esbuild: {
+    banner: '"use client";'
+  },
   build: {
     target: 'esnext',
     lib: {
