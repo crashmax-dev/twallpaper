@@ -3,13 +3,13 @@
     "Key": "colors",
     "Type": "<code>string[]</code>",
     "Default": "",
-    "Description": "Colors for gradient, use 1-4 full hex codes. This parameter is enough to make the fantastic gradient work."
+    "Description": "Array of colors in hex format. Allowed maximum of 4 colors."
   },
   {
     "Key": "fps",
     "Type": "<code>number</code>",
     "Default": "<code>30</code>",
-    "Description": "Frame time is just the time between frames."
+    "Description": "Animation speed."
   },
   {
     "Key": "tails",
@@ -21,17 +21,17 @@
     "Key": "animate",
     "Type": "<code>boolean</code>",
     "Default": "<code>true</code>",
-    "Description": "The main parameter responsible for the operation of the animation."
+    "Description": "Animation is enabled."
   },
   {
     "Key": "scrollAnimate",
     "Type": "<code>boolean</code>",
     "Default": "<code>false</code>",
-    "Description": "The animation is tied to scrolling with the mouse wheel."
+    "Description": "Animation is enabled when scrolling."
   },
   {
     "Key": "pattern",
-    "Type": "<code><a href='https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L14-L21'>PatternOptions</a></code>",
+    "Type": "<code><a href='https://github.com/crashmax-dev/twallpaper/blob/master/packages/twallpaper/src/types.ts#L12-L19'>PatternOptions</a></code>",
     "Default": "",
     "Description": "Pattern options."
   },
@@ -39,7 +39,7 @@
     "Key": "pattern.image",
     "Type": "<code>string</code>",
     "Default": "",
-    "Description": "Wallpaper image. Use standard <a href='https://github.com/crashmax-dev/twallpaper/tree/master/public/patterns'>pattern</a> or create your own."
+    "Description": "Wallpaper image. Use standard <a href='https://github.com/crashmax-dev/twallpaper/tree/master/website/public/patterns'>pattern</a> or create your own."
   },
   {
     "Key": "pattern.mask",
@@ -51,24 +51,24 @@
     "Key": "pattern.background",
     "Type": "<code>string</code>",
     "Default": "<code>#000</code>",
-    "Description": "Specify the mask color in hex format. Background does not work when <code>mask</code> is enabled."
+    "Description": "Background color for the pattern image. Background does not work when <code>pattern.mask</code> is enabled."
   },
   {
     "Key": "pattern.size",
     "Type": "<code>string</code>",
     "Default": "<code>auto</code>",
-    "Description": "Image background size."
+    "Description": "Size of the pattern image."
   },
   {
     "Key": "pattern.blur",
     "Type": "<code>number</code>",
     "Default": "<code>0</code>",
-    "Description": "Applies to the pattern image. Blur does not work when <code>mask</code> is enabled."
+    "Description": "Blur of the pattern image. Blur does not work when <code>pattern.mask</code> is enabled."
   },
   {
     "Key": "pattern.opacity",
     "Type": "<code>number</code>",
     "Default": "<code>0.5</code>",
-    "Description": "Applies to the pattern image."
+    "Description": "Opacity of the pattern image."
   }
 ]

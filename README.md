@@ -132,7 +132,7 @@ pnpm add @twallpaper/vue
 Initialize animation (before reinitializing, calls the `dispose()` method).
 
 #### options
-Type: [`TWallpaperOptions`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L23-L30)
+Type: [`TWallpaperOptions`](https://github.com/crashmax-dev/twallpaper/blob/master/packages/twallpaper/src/types.ts#L21-L28)
 
 #### container
 Type: `Element`
@@ -154,10 +154,10 @@ Start or stop mouse scroll animation.
 Type: `boolean`\
 Default: `false`
 
-### `.toNextPosition(callback?)`
+### `.toNextPosition(onNext?)`
 Next animation position (animation turns off after use).
 
-#### callback
+#### onNext
 Execution `toNextPosition` is finished.\
 Type: `function`
 
@@ -178,7 +178,7 @@ Default: `30`
 Force update pattern options.
 
 #### pattern
-Type: [`PatternOptions`](https://github.com/crashmax-dev/twallpaper/blob/master/src/twallpaper.ts#L14-L21)
+Type: [`PatternOptions`](https://github.com/crashmax-dev/twallpaper/blob/master/packages/twallpaper/src/types.ts#L12-L19)
 
 ### `.updateTails(tails?)`
 Force update tails speed.
