@@ -1,6 +1,6 @@
 {
   "name": "@twallpaper/vue",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "🌈 Multicolor gradient wallpaper created algorithmically and shimmers smoothly.",
   "type": "module",
   "types": "./dist/index.d.ts",
@@ -43,7 +43,7 @@
     "types": "vue-tsc --declaration --emitDeclarationOnly"
   },
   "dependencies": {
-    "twallpaper": "workspace:2.0.0",
+    "twallpaper": "workspace:2.1.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {
