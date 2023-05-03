@@ -1,23 +1,19 @@
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
-import banner from 'vite-plugin-banner'
 import dts from 'vite-plugin-dts'
 import { description, homepage, name, version } from './package.json'
 
 export default defineConfig({
-  plugins: [
-    react({ jsxRuntime: 'classic' }),
-    dts({ insertTypesEntry: true }),
-    banner(
-      `/**\n * name: ${name}` +
-        `\n * description: ${description}` +
-        `\n * version: ${version}` +
-        `\n * homepage: ${homepage}` +
-        '\n */'
-    )],
+  plugins: [react({ jsxRuntime: 'classic' }), dts({ insertTypesEntry: true })],
   esbuild: {
-    banner: '"use client";'
+    banner:
+      `/**\n * name: ${name}` +
+      `\n * description: ${description}` +
+      `\n * version: ${version}` +
+      `\n * homepage: ${homepage}` +
+      '\n */' +
+      '\n"use client";'
   },
   build: {
     target: 'esnext',

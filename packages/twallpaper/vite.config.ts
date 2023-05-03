@@ -1,7 +1,6 @@
-import { copyFile } from 'fs'
-import { resolve } from 'path'
+import { appendFile, copyFile, readFile, writeFile } from 'node:fs/promises'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
-import banner from 'vite-plugin-banner'
 import dts from 'vite-plugin-dts'
 import { description, homepage, name, version } from './package.json'
 
@@ -9,20 +8,25 @@ export default defineConfig({
   plugins: [
     dts({
       insertTypesEntry: true,
-      afterBuild() {
-        copyFile('src/style.css', 'dist/style.css', (err) => {
-          if (err) throw err
-          console.log('[vite] style.css was copied')
-        })
+      async afterBuild() {
+        try {
+          await copyFile('src/style.css', 'dist/style.css')
+          const umdFile = await readFile('dist/index.umd.js')
+          await writeFile(
+            'dist/index.umd.js',
+            `/**\n * name: ${name}` +
+              `\n * description: ${description}` +
+              `\n * version: ${version}` +
+              `\n * homepage: ${homepage}` +
+              '\n */\n'
+          )
+          await appendFile('dist/index.umd.js', umdFile)
+        } catch (err) {
+          console.log(err)
+          process.exit(1)
+        }
       }
-    }),
-    banner(
-      `/**\n * name: ${name}` +
-        `\n * description: ${description}` +
-        `\n * version: ${version}` +
-        `\n * homepage: ${homepage}` +
-        '\n */'
-    )
+    })
   ],
   build: {
     target: 'esnext',

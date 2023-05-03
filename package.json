@@ -34,7 +34,6 @@
     "@crashmax/tsconfig": "^2.0.1",
     "@types/node": "18.16.0",
     "turbo": "^1.9.3",
-    "vite-plugin-banner": "^0.7.0",
     "vite-plugin-dts": "^2.3.0"
   },
   "engines": {
