@@ -14,7 +14,7 @@ interface TWallpaperHandlers {
   updateFrametime(fps: number): void
   updatePattern(pattern: PatternOptions): void
   updateTails(tails: number): void
-  toNextPosition(): void
+  toNextPosition(onNext?: () => void): void
 }
 
 const TWallpaper = React.forwardRef<TWallpaperHandlers, TWallpaperProps>(
@@ -23,26 +23,26 @@ const TWallpaper = React.forwardRef<TWallpaperHandlers, TWallpaperProps>(
     const twallpaper = React.useRef<TW>()
 
     React.useImperativeHandle(ref, () => ({
-      animate(start?: boolean) {
+      animate(start) {
         twallpaper.current!.animate(start)
       },
-      scrollAnimate(start?: boolean) {
+      scrollAnimate(start) {
         twallpaper.current!.scrollAnimate(start)
       },
-      updateColors(colors: string[]) {
+      updateColors(colors) {
         twallpaper.current!.updateColors(colors)
       },
-      updateFrametime(fps?: number) {
+      updateFrametime(fps) {
         twallpaper.current!.updateFrametime(fps)
       },
-      updatePattern(pattern: PatternOptions) {
+      updatePattern(pattern) {
         twallpaper.current!.updatePattern(pattern)
       },
-      updateTails(tails?: number) {
+      updateTails(tails) {
         twallpaper.current!.updateTails(tails)
       },
-      toNextPosition(callback?: () => void) {
-        twallpaper.current!.toNextPosition(callback)
+      toNextPosition(onNext) {
+        twallpaper.current!.toNextPosition(onNext)
       }
     }))
 
