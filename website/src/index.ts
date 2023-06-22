@@ -170,7 +170,8 @@ patternsFolder
   .addInput(paneOptions, 'patternSize', {
     min: 100,
     max: 1000,
-    step: 10
+    step: 10,
+    label: 'size'
   })
   .on('change', ({ value }) => {
     wallpaperOptions.pattern!.size = `${value}px`
