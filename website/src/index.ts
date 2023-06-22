@@ -1,41 +1,14 @@
-import cloneDeep from 'lodash.clonedeep'
 import merge from 'lodash.merge'
 import { TWallpaper } from 'twallpaper'
-import type { TWallpaperOptions } from 'twallpaper'
-import 'twallpaper/css'
 import { Pane } from 'tweakpane'
-import { defaultColors, generateColors, mappedColors } from './colors.js'
-import { patterns } from './patterns.js'
+import { arrayColorToObject, COLORS, generateRandomColors } from './colors.js'
+import { paneOptions, wallpaperOptions } from './config.js'
+import { PATTERN_SIZE, PATTERNS } from './patterns.js'
 import type { InputBindingApi, ListApi } from 'tweakpane'
+import 'twallpaper/css'
 
-const options: TWallpaperOptions = {
-  fps: 60,
-  tails: 90,
-  animate: true,
-  scrollAnimate: true,
-  colors: defaultColors[0].colors,
-  pattern: {
-    image: patterns[0].path,
-    background: '#000',
-    blur: 0,
-    size: '420px',
-    opacity: 0.5,
-    mask: false
-  }
-}
-
-const data = {
-  enablePattern: true,
-  container: document.querySelector<HTMLElement>('#app')!,
-  stringOptions: JSON.stringify(options, null, 2),
-  copyOptions: cloneDeep(options),
-  currentColors: mappedColors(options.colors),
-  size: 420
-}
-
-const wallpaper = new TWallpaper(data.container, options)
+const wallpaper = new TWallpaper(paneOptions.container, wallpaperOptions)
 wallpaper.init()
-console.log(wallpaper)
 
 const tweakpane = new Pane({
   document,
@@ -46,13 +19,13 @@ const tweakpane = new Pane({
 tweakpane.on('change', () => refreshPaneConsole())
 
 function refreshPaneConsole() {
-  data.stringOptions = JSON.stringify(options, null, 2)
+  paneOptions.stringOptions = JSON.stringify(wallpaperOptions, null, 2)
   consoleButtonCopy.title = 'Copy'
   consolePane.refresh()
 }
 
 tweakpane
-  .addInput(options, 'fps', {
+  .addInput(wallpaperOptions, 'fps', {
     min: 1,
     max: 360,
     step: 1
@@ -62,7 +35,7 @@ tweakpane
   })
 
 tweakpane
-  .addInput(options, 'tails', {
+  .addInput(wallpaperOptions, 'tails', {
     min: 5,
     max: 90,
     step: 1
@@ -72,17 +45,19 @@ tweakpane
   })
 
 const toggleAnimate = tweakpane
-  .addInput(options, 'animate')
+  .addInput(wallpaperOptions, 'animate')
   .on('change', ({ value }) => {
     wallpaper.animate(value)
   })
 
-tweakpane.addInput(options, 'scrollAnimate').on('change', ({ value }) => {
-  wallpaper.scrollAnimate(value)
-})
+tweakpane
+  .addInput(wallpaperOptions, 'scrollAnimate')
+  .on('change', ({ value }) => {
+    wallpaper.scrollAnimate(value)
+  })
 
 tweakpane.addButton({ title: 'Next position' }).on('click', () => {
-  options.animate = false
+  wallpaperOptions.animate = false
   toggleAnimate.disabled = true
   toggleAnimate.refresh()
   wallpaper.animate(false)
@@ -102,7 +77,7 @@ const colorsList = colorsFolder.addBlade({
   view: 'list',
   label: 'colors',
   value: 0,
-  options: defaultColors.map(({ text }, key) => {
+  options: COLORS.map(({ text }, key) => {
     return {
       text,
       value: key
@@ -111,38 +86,40 @@ const colorsList = colorsFolder.addBlade({
 }) as ListApi<number>
 
 colorsFolder.addButton({ title: 'Random colors' }).on('click', () => {
-  const colors = generateColors()
+  const colors = generateRandomColors()
   updateColors(colors)
 })
 
 colorsList.on('change', ({ value }) => {
-  const { colors } = defaultColors[value]
+  const { colors } = COLORS[value]
   updateColors(colors)
 })
 
 function updateColors(colors: string[]): void {
-  options.colors = colors
+  wallpaperOptions.colors = colors
   wallpaper.updateColors(colors)
 
-  if (!options.animate) {
-    options.animate = true
+  if (!wallpaperOptions.animate) {
+    wallpaperOptions.animate = true
     toggleAnimate.refresh()
   }
 
-  data.currentColors = mappedColors(colors)
+  paneOptions.currentColors = arrayColorToObject(colors)
   generateColorsInput()
 }
 
 function generateColorsInput(): void {
-  const inputs = data.currentColors.map((color, key) => {
+  const inputs = paneOptions.currentColors.map((color, key) => {
     const input = colorsFolder.addInput(color, key, {
       label: `color ${key + 1}`
     })
 
     input.on('change', ({ value }) => {
       color[key] = value
-      options.colors = data.currentColors.map((color, key) => color[key])
-      wallpaper.updateColors(options.colors)
+      wallpaperOptions.colors = paneOptions.currentColors.map(
+        (color, key) => color[key]
+      )
+      wallpaper.updateColors(wallpaperOptions.colors)
     })
 
     input.controller_.view.labelElement.remove()
@@ -162,13 +139,15 @@ generateColorsInput()
 const patternsFolder = tweakpane.addFolder({ title: 'Pattern' })
 
 patternsFolder.on('fold', () => {
-  data.enablePattern = !data.enablePattern
-  const newOptions = { ...options }
-  if (!data.enablePattern) {
+  paneOptions.enablePattern = !paneOptions.enablePattern
+  const newOptions = { ...wallpaperOptions }
+  if (!paneOptions.enablePattern) {
     delete newOptions.pattern
   }
-  data.stringOptions = JSON.stringify(newOptions, null, 2)
-  wallpaper.updatePattern(data.enablePattern ? options.pattern! : {})
+  paneOptions.stringOptions = JSON.stringify(newOptions, null, 2)
+  wallpaper.updatePattern(
+    paneOptions.enablePattern ? wallpaperOptions.pattern! : {}
+  )
 
   // prettier-ignore
   const textarea = consolePane.controller_.view.valueElement
@@ -179,57 +158,59 @@ patternsFolder.on('fold', () => {
   consolePane.refresh()
 })
 
-patternsFolder.addInput(options.pattern!, 'mask').on('change', ({ value }) => {
-  patternBlur.disabled = value!
-  patternBackground.disabled = !value!
-  wallpaper.updatePattern(options.pattern!)
-})
+patternsFolder
+  .addInput(wallpaperOptions.pattern!, 'mask')
+  .on('change', ({ value }) => {
+    patternBlur.disabled = value!
+    patternBackground.disabled = !value!
+    wallpaper.updatePattern(wallpaperOptions.pattern!)
+  })
 
 patternsFolder
-  .addInput(data, 'size', {
+  .addInput(paneOptions, 'patternSize', {
     min: 100,
     max: 1000,
     step: 10
   })
   .on('change', ({ value }) => {
-    options.pattern!.size = `${value}px`
-    wallpaper.updatePattern(options.pattern!)
+    wallpaperOptions.pattern!.size = `${value}px`
+    wallpaper.updatePattern(wallpaperOptions.pattern!)
   })
 
 patternsFolder
-  .addInput(options.pattern!, 'opacity', {
+  .addInput(wallpaperOptions.pattern!, 'opacity', {
     min: 0,
     max: 1,
     step: 0.1
   })
   .on('change', ({ value }) => {
-    options.pattern!.opacity = Number(value!.toFixed(1))
-    wallpaper.updatePattern(options.pattern!)
+    wallpaperOptions.pattern!.opacity = Number(value!.toFixed(1))
+    wallpaper.updatePattern(wallpaperOptions.pattern!)
   })
 
 const patternBlur = patternsFolder
-  .addInput(options.pattern!, 'blur', {
+  .addInput(wallpaperOptions.pattern!, 'blur', {
     min: 0,
     max: 5,
     step: 0.1
   })
   .on('change', ({ value }) => {
-    options.pattern!.blur = Number(value!.toFixed(2))
-    wallpaper.updatePattern(options.pattern!)
+    wallpaperOptions.pattern!.blur = Number(value!.toFixed(2))
+    wallpaper.updatePattern(wallpaperOptions.pattern!)
   })
 
 const patternBackground = patternsFolder
-  .addInput(options.pattern!, 'background', {
+  .addInput(wallpaperOptions.pattern!, 'background', {
     disabled: true
   })
   .on('change', () => {
-    wallpaper.updatePattern(options.pattern!)
+    wallpaper.updatePattern(wallpaperOptions.pattern!)
   })
 
 const patternsList = patternsFolder.addBlade({
   view: 'list',
-  value: patterns[0].path,
-  options: patterns.map(({ path, text }) => {
+  value: PATTERNS[0].path,
+  options: PATTERNS.map(({ path, text }) => {
     return {
       text,
       value: path
@@ -238,8 +219,8 @@ const patternsList = patternsFolder.addBlade({
 }) as ListApi<string>
 
 patternsList.on('change', ({ value }) => {
-  options.pattern!.image = value
-  wallpaper.updatePattern(options.pattern!)
+  wallpaperOptions.pattern!.image = value
+  wallpaper.updatePattern(wallpaperOptions.pattern!)
 })
 
 /** export */
@@ -248,9 +229,9 @@ const exportFolder = tweakpane.addFolder({
   expanded: false
 })
 
-const consolePane = exportFolder.addMonitor(data, 'stringOptions', {
+const consolePane = exportFolder.addMonitor(paneOptions, 'stringOptions', {
   interval: 0,
-  lineCount: data.stringOptions.split('\n').length,
+  lineCount: paneOptions.stringOptions.split('\n').length,
   multiline: true
 })
 
@@ -271,7 +252,7 @@ consoleButtonCopy.on('click', () => {
 })
 
 exportFolder.addButton({ title: 'Download' }).on('click', () => {
-  const blob = new Blob([JSON.stringify(options, void 0, 2)], {
+  const blob = new Blob([JSON.stringify(wallpaperOptions, void 0, 2)], {
     type: 'text/plain'
   })
 
@@ -284,17 +265,20 @@ exportFolder.addButton({ title: 'Download' }).on('click', () => {
 
 /** reset */
 tweakpane.addButton({ title: 'Reset' }).on('click', () => {
-  merge(options, data.copyOptions)
+  merge(wallpaperOptions, paneOptions.copyOptions)
   colorsList.value = 0
   colorsFolder.expanded = true
-  data.currentColors = mappedColors(defaultColors[0].colors)
-  patternsList.value = patterns[0].path
+
+  paneOptions.patternSize = PATTERN_SIZE
+  paneOptions.currentColors = arrayColorToObject(COLORS[0].colors)
+
+  patternsList.value = PATTERNS[0].path
   patternsFolder.expanded = true
 
   generateColorsInput()
   refreshPaneConsole()
   tweakpane.refresh()
-  wallpaper.init(options)
+  wallpaper.init(wallpaperOptions)
 })
 
 tweakpane.addSeparator()
@@ -317,14 +301,14 @@ document.addEventListener('keydown', (event) => {
   if (event.code === 'F11') {
     event.preventDefault()
 
-    if (data.container.requestFullscreen) {
-      data.container.requestFullscreen()
-    } else if (data.container.webkitRequestFullscreen) {
-      data.container.webkitRequestFullscreen()
-    } else if (data.container.mozRequestFullScreen) {
-      data.container.mozRequestFullScreen()
-    } else if (data.container.msRequestFullscreen) {
-      data.container.msRequestFullscreen()
+    if (paneOptions.container.requestFullscreen) {
+      paneOptions.container.requestFullscreen()
+    } else if (paneOptions.container.webkitRequestFullscreen) {
+      paneOptions.container.webkitRequestFullscreen()
+    } else if (paneOptions.container.mozRequestFullScreen) {
+      paneOptions.container.mozRequestFullScreen()
+    } else if (paneOptions.container.msRequestFullscreen) {
+      paneOptions.container.msRequestFullscreen()
     }
   }
 })

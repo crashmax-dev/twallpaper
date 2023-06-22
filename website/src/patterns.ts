@@ -1,80 +1,80 @@
-const BASE_PATH = location.href + 'patterns/'
-
-export const patterns = [
+export const PATTERNS_PATH = location.href + 'patterns/'
+export const PATTERN_SIZE = 420
+export const PATTERNS = [
   {
     text: 'Animals',
-    path: BASE_PATH + 'animals.svg'
+    path: PATTERNS_PATH + 'animals.svg'
   },
   {
     text: 'Astronaut Cats',
-    path: BASE_PATH + 'astronaut_cats.svg'
+    path: PATTERNS_PATH + 'astronaut_cats.svg'
   },
   {
     text: 'Beach',
-    path: BASE_PATH + 'beach.svg'
+    path: PATTERNS_PATH + 'beach.svg'
   },
   {
     text: 'Cats and Dogs',
-    path: BASE_PATH + 'cats_and_dogs.svg'
+    path: PATTERNS_PATH + 'cats_and_dogs.svg'
   },
   {
     text: 'Christmas',
-    path: BASE_PATH + 'christmas.svg'
+    path: PATTERNS_PATH + 'christmas.svg'
   },
   {
     text: 'Fantasy',
-    path: BASE_PATH + 'fantasy.svg'
+    path: PATTERNS_PATH + 'fantasy.svg'
   },
   {
     text: 'Late Night Delight',
-    path: BASE_PATH + 'late_night_delight.svg'
+    path: PATTERNS_PATH + 'late_night_delight.svg'
   },
   {
     text: 'Magic',
-    path: BASE_PATH + 'magic.svg'
+    path: PATTERNS_PATH + 'magic.svg'
   },
   {
     text: 'Math',
-    path: BASE_PATH + 'math.svg'
+    path: PATTERNS_PATH + 'math.svg'
   },
   {
     text: 'Paris',
-    path: BASE_PATH + 'paris.svg'
+    path: PATTERNS_PATH + 'paris.svg'
   },
   {
     text: 'Games',
-    path: BASE_PATH + 'games.svg'
+    path: PATTERNS_PATH + 'games.svg'
   },
   {
     text: 'Snowflakes',
-    path: BASE_PATH + 'snowflakes.svg'
+    path: PATTERNS_PATH + 'snowflakes.svg'
   },
   {
     text: 'Space',
-    path: BASE_PATH + 'space.svg'
+    path: PATTERNS_PATH + 'space.svg'
   },
   {
     text: 'Star Wars',
-    path: BASE_PATH + 'star_wars.svg'
+    path: PATTERNS_PATH + 'star_wars.svg'
   },
   {
     text: 'Sweets',
-    path: BASE_PATH + 'sweets.svg'
+    path: PATTERNS_PATH + 'sweets.svg'
   },
   {
     text: 'Tattoos',
-    path: BASE_PATH + 'tattoos.svg'
+    path: PATTERNS_PATH + 'tattoos.svg'
   },
   {
     text: 'Underwater World',
-    path: BASE_PATH + 'underwater_world.svg'
+    path: PATTERNS_PATH + 'underwater_world.svg'
   },
   {
     text: 'Unicorns',
-    path: BASE_PATH + 'unicorn.svg'
+    path: PATTERNS_PATH + 'unicorn.svg'
   },
   {
     text: 'Zoo',
-    path: BASE_PATH + 'zoo.svg'
+    path: PATTERNS_PATH + 'zoo.svg'
   }
 ]

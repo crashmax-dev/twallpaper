@@ -1,4 +1,4 @@
-export const defaultColors = [
+export const COLORS = [
   {
     text: 'Default',
     colors: [
@@ -169,7 +169,7 @@ export const defaultColors = [
   }
 ]
 
-export function mappedColors(colors: string[]) {
+export function arrayColorToObject(colors: string[]) {
   return Object.values(colors).map((color, key) => ({ [key]: color }))
 }
 
@@ -178,7 +178,7 @@ export function mappedColors(colors: string[]) {
  * @param length - number of colors
  * @returns array of random colors
  */
-export function generateColors(length = 4): string[] {
+export function generateRandomColors(length = 4): string[] {
   return Array.from({ length }, () => {
     return (
       '#' +
