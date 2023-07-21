@@ -122,7 +122,7 @@ importers:
   packages/react:
     dependencies:
       twallpaper:
-        specifier: workspace:2.1.0
+        specifier: workspace:2.1.1
         version: link:../twallpaper
     devDependencies:
       '@types/react':
@@ -153,7 +153,7 @@ importers:
   packages/vue:
     dependencies:
       twallpaper:
-        specifier: workspace:2.1.0
+        specifier: workspace:2.1.1
         version: link:../twallpaper
       vue:
         specifier: ^3.2.47
