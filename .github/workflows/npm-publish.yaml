@@ -1,9 +1,12 @@
-name: Publish
+name: NPM Publish
 
 on:
   push:
     branches:
       - master
+
+permissions:
+  id-token: write
 
 jobs:
   cache-and-install:
@@ -15,7 +18,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -48,4 +51,4 @@ jobs:
         shell: bash
         run: |
           echo "//registry.npmjs.org/:_authToken="${{ secrets.NPM_TOKEN }}"" > ~/.npmrc
-          pnpm -r --filter='./packages/*' publish --access public
+          pnpm -r --filter='./packages/*' publish --access public --provenance
