@@ -1,4 +1,4 @@
-name: markdown-autodocs
+name: Markdown Autodocs
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Markdown autodocs
-        uses: dineshsonachalam/markdown-autodocs@v1.0.4
+        uses: dineshsonachalam/markdown-autodocs@v1.0.7
         with:
           commit_author: Vitalij Ryndin
           commit_user_email: sys@crashmax.ru
