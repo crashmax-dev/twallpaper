@@ -13,7 +13,6 @@
     "prefers-mask",
     "with-react",
     "with-vue",
-    "website",
-    "@twallpaper/*"
+    "website"
   ]
 }
