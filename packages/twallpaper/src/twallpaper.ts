@@ -137,8 +137,7 @@ export class TWallpaper {
 
     if (diff) {
       this.changeTail(diff)
-      const curPos = this.curPosition(this.phase, this.tail)
-      this.drawGradient(curPos)
+      this.drawGradient()
     }
 
     this.scrollTicking = false
@@ -235,8 +234,9 @@ export class TWallpaper {
     this.ctx.drawImage(this.hc, 0, 0, this.width, this.height)
   }
 
-  private drawGradient(pos: Position[]): void {
-    this.drawImageData(this.getGradientImageData(pos))
+  private drawGradient(): void {
+    const position = this.curPosition(this.phase, this.tail)
+    this.drawImageData(this.getGradientImageData(position))
   }
 
   private requestAnimate(): void {
@@ -252,9 +252,7 @@ export class TWallpaper {
 
     this.timestamp = now
     this.changeTail(1)
-
-    const pos = this.curPosition(this.phase, this.tail)
-    this.drawGradient(pos)
+    this.drawGradient()
     this.requestAnimate()
   }
 
@@ -303,6 +301,7 @@ export class TWallpaper {
     this.updateColors(this.options.colors)
     this.updateFrametime(this.options.fps)
     this.scrollAnimate(this.options.scrollAnimate)
+    this.drawGradient()
   }
 
   /**
