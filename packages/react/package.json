@@ -1,6 +1,6 @@
 {
   "name": "@twallpaper/react",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "🌈 Multicolor gradient wallpaper created algorithmically and shimmers smoothly.",
   "type": "module",
   "types": "./dist/index.d.ts",
@@ -41,7 +41,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "twallpaper": "workspace:2.1.1"
+    "twallpaper": "workspace:2.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.38",
