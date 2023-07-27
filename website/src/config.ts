@@ -25,5 +25,6 @@ export const paneOptions = {
   stringOptions: JSON.stringify(wallpaperOptions, null, 2),
   copyOptions: cloneDeep(wallpaperOptions),
   currentColors: arrayColorToObject(wallpaperOptions.colors),
-  patternSize: PATTERN_SIZE
+  patternSize: PATTERN_SIZE,
+  mixBlendMode: 'overlay'
 }

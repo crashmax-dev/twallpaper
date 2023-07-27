@@ -10,6 +10,10 @@ import 'twallpaper/css'
 const wallpaper = new TWallpaper(paneOptions.container, wallpaperOptions)
 wallpaper.init()
 
+const wallpaperPatternElement =
+  document.querySelector<HTMLElement>('.tw-pattern')!
+wallpaperPatternElement.style.mixBlendMode = paneOptions.mixBlendMode
+
 const tweakpane = new Pane({
   document,
   expanded: true,
@@ -163,6 +167,7 @@ patternsFolder
   .on('change', ({ value }) => {
     patternBlur.disabled = value!
     patternBackground.disabled = !value!
+    patternMixBlendMode.disabled = value!
     wallpaper.updatePattern(wallpaperOptions.pattern!)
   })
 
@@ -207,6 +212,22 @@ const patternBackground = patternsFolder
   .on('change', () => {
     wallpaper.updatePattern(wallpaperOptions.pattern!)
   })
+
+const patternMixBlendMode = patternsFolder.addBlade({
+  view: 'list',
+  value: paneOptions.mixBlendMode,
+  label: 'mix-blend-mode',
+  options: [
+    { text: 'normal', value: 'normal' },
+    { text: 'overlay', value: 'overlay' },
+    { text: 'hard-light', value: 'hard-light' },
+    { text: 'soft-light', value: 'soft-light' }
+  ]
+}) as ListApi<string>
+
+patternMixBlendMode.on('change', (event) => {
+  wallpaperPatternElement.style.mixBlendMode = event.value
+})
 
 const patternsList = patternsFolder.addBlade({
   view: 'list',
