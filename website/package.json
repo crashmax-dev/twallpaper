@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@twallpaper/webgl": "workspace:*",
     "@tweakpane/core": "^1.1.8",
     "lodash.clonedeep": "^4.5.0",
     "lodash.merge": "^4.6.2",

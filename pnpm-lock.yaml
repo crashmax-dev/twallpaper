@@ -183,6 +183,9 @@ importers:
 
   website:
     dependencies:
+      '@twallpaper/webgl':
+        specifier: workspace:*
+        version: link:../packages/twallpaper-webgl
       '@tweakpane/core':
         specifier: ^1.1.8
         version: 1.1.8
