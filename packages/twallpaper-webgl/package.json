@@ -1,6 +1,6 @@
 {
   "name": "@twallpaper/webgl",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "🌈 Multicolor gradient wallpaper created algorithmically and shimmers smoothly.",
   "type": "module",
   "types": "./dist/index.d.ts",
