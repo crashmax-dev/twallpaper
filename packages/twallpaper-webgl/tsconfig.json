@@ -1,0 +1,11 @@
+{
+  "extends": "@crashmax/tsconfig",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "strictNullChecks": false,
+    "outDir": "dist"
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

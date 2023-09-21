@@ -305,6 +305,11 @@ tweakpane.addButton({ title: 'Reset' }).on('click', () => {
 
 tweakpane.addSeparator()
 
+/** webgl version */
+tweakpane.addButton({ title: 'WebGL version' }).on('click', () => {
+  window.open('/webgl.html', '_blank')
+})
+
 /** github link */
 tweakpane.addButton({ title: 'GitHub' }).on('click', () => {
   window.open('https://github.com/crashmax-dev/twallpaper', '_blank')
