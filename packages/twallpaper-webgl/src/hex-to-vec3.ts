@@ -1,8 +1,6 @@
-export type Vec3 = [r: number, g: number, b: number];
+export type Vec3 = [r: number, g: number, b: number]
 
-export function hexToVec3(
-  hex: string
-): Vec3 {
+export function hexToVec3(hex: string): Vec3 {
   if (hex.startsWith('#')) {
     hex = hex.slice(1)
   }
@@ -11,5 +9,9 @@ export function hexToVec3(
   const g = parseInt(hex.slice(2, 4), 16)
   const b = parseInt(hex.slice(4, 6), 16)
 
-  return [r, g, b]
+  return [
+    r,
+    g,
+    b
+  ]
 }

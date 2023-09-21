@@ -16,7 +16,7 @@ const KEY_POINTS = [
 
 ]
 
-export interface TwallpaperOptions {
+export interface TWallpaperWebGLOptions {
   colors: Vec3[]
   mask: boolean
   image: string
@@ -25,11 +25,11 @@ export interface TwallpaperOptions {
   opacity: number
 }
 
-export class Twallpaper {
+export class TWallpaperWebGL {
   private gl: WebGLRenderingContext
   private glslProgram: WebGLProgram
 
-  private options: TwallpaperOptions
+  private options: TWallpaperWebGLOptions
   private gradientContainer: HTMLCanvasElement
   private maskContainer: HTMLDivElement
 
@@ -61,20 +61,20 @@ export class Twallpaper {
     this.render = this.render.bind(this)
   }
 
-  updateOptions(options: Partial<TwallpaperOptions>): void {
+  updateOptions(options: Partial<TWallpaperWebGLOptions>): void {
     this.options = { ...this.options, ...options }
   }
 
-  init(options: TwallpaperOptions): void {
+  init(options: TWallpaperWebGLOptions): void {
     this.updateOptions(options)
 
     this.gradientContainer = document.createElement('canvas')
-    this.gradientContainer.classList.add('wallpaper-canvas')
+    this.gradientContainer.classList.add('tw-canvas')
 
     this.maskContainer = document.createElement('div')
-    this.maskContainer.classList.add('wallpaper-pattern')
+    this.maskContainer.classList.add('tw-pattern')
 
-    this.container.classList.add('wallpaper-wrap')
+    this.container.classList.add('tw-wrap')
     this.container.append(this.gradientContainer, this.maskContainer)
 
     this.updateMask()
@@ -195,19 +195,16 @@ export class Twallpaper {
   updateMask(): void {
     const { image, mask, opacity, size, backgroundColor } = this.options
 
-    this.container.style.setProperty('--wallpaper-opacity', `${opacity}`)
-    this.container.style.setProperty('--wallpaper-size', `${size}px`)
-    this.container.style.setProperty(
-      '--wallpaper-background-color',
-      backgroundColor
-    )
+    this.container.style.setProperty('--tw-opacity', `${opacity}`)
+    this.container.style.setProperty('--tw-size', `${size}px`)
+    this.container.style.setProperty('--tw-background-color', backgroundColor)
 
-    this.container.style.setProperty('--wallpaper-image', `url(${image})`)
+    this.container.style.setProperty('--tw-image', `url(${image})`)
 
     if (mask) {
-      this.gradientContainer.classList.add('wallpaper-mask')
+      this.gradientContainer.classList.add('tw-mask')
     } else {
-      this.gradientContainer.classList.remove('wallpaper-mask')
+      this.gradientContainer.classList.remove('tw-mask')
     }
   }
 

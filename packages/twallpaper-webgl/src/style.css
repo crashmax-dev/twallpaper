@@ -13,7 +13,7 @@
   height: 100%;
   pointer-events: none;
   z-index: -1;
-  background: var(--tw-background);
+  background-color: var(--tw-background-color);
 }
 
 .tw-canvas.tw-mask + .tw-pattern {
